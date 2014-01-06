@@ -6,4 +6,5 @@ C:\GIT\PV3TestUtility3\bin\Debug\PV3TestUtility3.pdb
 C:\GIT\PV3TestUtility3\obj\Debug\PV3TestUtility3.exe
 C:\GIT\PV3TestUtility3\obj\Debug\PV3TestUtility3.pdb
 C:\GIT\PV3TestUtility3\obj\Debug\PV3TestUtility3.PV3TestUtility3Main.resources
-C:\GIT\PV3TestUtility3\obj\Debug\PV3TestUtility3.csprojResolveAssemblyReference.cache
+C:\GIT\PV3TestUtility3\obj\Debug\PV3TestUtility3.HSSCalibDialog.resources
+C:\GIT\PV3TestUtility3\obj\Debug\PV3TestUtility3.LSSCalibDialog.resources

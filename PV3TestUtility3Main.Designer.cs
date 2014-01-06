@@ -37,7 +37,7 @@
             this.potProgressBar = new System.Windows.Forms.ProgressBar();
             this.usbCommTimer = new System.Windows.Forms.Timer(this.components);
             this.auxinLabel = new System.Windows.Forms.Label();
-            this.auxinDisplayLabel = new System.Windows.Forms.Label();
+            this.auxinBarDisplayLabel = new System.Windows.Forms.Label();
             this.ch0Label = new System.Windows.Forms.Label();
             this.ch1Label = new System.Windows.Forms.Label();
             this.ch2Label = new System.Windows.Forms.Label();
@@ -70,6 +70,14 @@
             this.leftLungTemperatureDisplayLabel = new System.Windows.Forms.Label();
             this.rightLungTemperatureDisplayLabel = new System.Windows.Forms.Label();
             this.fio2DisplayLabel = new System.Windows.Forms.Label();
+            this.setReadComplianceCalibrationDataButton = new System.Windows.Forms.Button();
+            this.setReadHSSCDButton = new System.Windows.Forms.Button();
+            this.setReadLSSCDButton = new System.Windows.Forms.Button();
+            this.auxinDisplayLabel = new System.Windows.Forms.Label();
+            this.phighDisplayLabel = new System.Windows.Forms.Label();
+            this.prghtDisplayLabel = new System.Windows.Forms.Label();
+            this.pleftDisplayLabel = new System.Windows.Forms.Label();
+            this.pproxDisplayLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // connectionStateLabel
@@ -143,63 +151,63 @@
             this.auxinLabel.TabIndex = 5;
             this.auxinLabel.Text = "AUX IN:";
             // 
-            // auxinDisplayLabel
+            // auxinBarDisplayLabel
             // 
-            this.auxinDisplayLabel.Location = new System.Drawing.Point(238, 411);
-            this.auxinDisplayLabel.Name = "auxinDisplayLabel";
-            this.auxinDisplayLabel.Size = new System.Drawing.Size(45, 13);
-            this.auxinDisplayLabel.TabIndex = 6;
-            this.auxinDisplayLabel.Text = "0";
-            this.auxinDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.auxinBarDisplayLabel.Location = new System.Drawing.Point(238, 411);
+            this.auxinBarDisplayLabel.Name = "auxinBarDisplayLabel";
+            this.auxinBarDisplayLabel.Size = new System.Drawing.Size(45, 13);
+            this.auxinBarDisplayLabel.TabIndex = 6;
+            this.auxinBarDisplayLabel.Text = "0";
+            this.auxinBarDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // ch0Label
             // 
             this.ch0Label.AutoSize = true;
             this.ch0Label.Location = new System.Drawing.Point(12, 204);
             this.ch0Label.Name = "ch0Label";
-            this.ch0Label.Size = new System.Drawing.Size(28, 13);
+            this.ch0Label.Size = new System.Drawing.Size(47, 13);
             this.ch0Label.TabIndex = 7;
-            this.ch0Label.Text = "CH0";
+            this.ch0Label.Text = "PPROX:";
             // 
             // ch1Label
             // 
             this.ch1Label.AutoSize = true;
             this.ch1Label.Location = new System.Drawing.Point(12, 228);
             this.ch1Label.Name = "ch1Label";
-            this.ch1Label.Size = new System.Drawing.Size(28, 13);
+            this.ch1Label.Size = new System.Drawing.Size(43, 13);
             this.ch1Label.TabIndex = 8;
-            this.ch1Label.Text = "CH1";
+            this.ch1Label.Text = "PLEFT:";
             // 
             // ch2Label
             // 
             this.ch2Label.AutoSize = true;
             this.ch2Label.Location = new System.Drawing.Point(12, 252);
             this.ch2Label.Name = "ch2Label";
-            this.ch2Label.Size = new System.Drawing.Size(28, 13);
+            this.ch2Label.Size = new System.Drawing.Size(48, 13);
             this.ch2Label.TabIndex = 9;
-            this.ch2Label.Text = "CH2";
+            this.ch2Label.Text = "PRGHT:";
             // 
             // ch3Label
             // 
             this.ch3Label.AutoSize = true;
             this.ch3Label.Location = new System.Drawing.Point(12, 276);
             this.ch3Label.Name = "ch3Label";
-            this.ch3Label.Size = new System.Drawing.Size(28, 13);
+            this.ch3Label.Size = new System.Drawing.Size(44, 13);
             this.ch3Label.TabIndex = 10;
-            this.ch3Label.Text = "CH3";
+            this.ch3Label.Text = "PHIGH:";
             // 
             // ch4Label
             // 
             this.ch4Label.AutoSize = true;
             this.ch4Label.Location = new System.Drawing.Point(12, 300);
             this.ch4Label.Name = "ch4Label";
-            this.ch4Label.Size = new System.Drawing.Size(28, 13);
+            this.ch4Label.Size = new System.Drawing.Size(43, 13);
             this.ch4Label.TabIndex = 11;
-            this.ch4Label.Text = "CH4";
+            this.ch4Label.Text = "AUXIN:";
             // 
             // ch4DisplayLabel
             // 
-            this.ch4DisplayLabel.Location = new System.Drawing.Point(46, 300);
+            this.ch4DisplayLabel.Location = new System.Drawing.Point(65, 300);
             this.ch4DisplayLabel.Name = "ch4DisplayLabel";
             this.ch4DisplayLabel.Size = new System.Drawing.Size(55, 13);
             this.ch4DisplayLabel.TabIndex = 16;
@@ -208,7 +216,7 @@
             // 
             // ch3DisplayLabel
             // 
-            this.ch3DisplayLabel.Location = new System.Drawing.Point(46, 276);
+            this.ch3DisplayLabel.Location = new System.Drawing.Point(65, 276);
             this.ch3DisplayLabel.Name = "ch3DisplayLabel";
             this.ch3DisplayLabel.Size = new System.Drawing.Size(55, 13);
             this.ch3DisplayLabel.TabIndex = 15;
@@ -217,7 +225,7 @@
             // 
             // ch2DisplayLabel
             // 
-            this.ch2DisplayLabel.Location = new System.Drawing.Point(46, 252);
+            this.ch2DisplayLabel.Location = new System.Drawing.Point(65, 252);
             this.ch2DisplayLabel.Name = "ch2DisplayLabel";
             this.ch2DisplayLabel.Size = new System.Drawing.Size(55, 13);
             this.ch2DisplayLabel.TabIndex = 14;
@@ -226,7 +234,7 @@
             // 
             // ch1DisplayLabel
             // 
-            this.ch1DisplayLabel.Location = new System.Drawing.Point(46, 228);
+            this.ch1DisplayLabel.Location = new System.Drawing.Point(65, 228);
             this.ch1DisplayLabel.Name = "ch1DisplayLabel";
             this.ch1DisplayLabel.Size = new System.Drawing.Size(55, 13);
             this.ch1DisplayLabel.TabIndex = 13;
@@ -235,7 +243,7 @@
             // 
             // ch0DisplayLabel
             // 
-            this.ch0DisplayLabel.Location = new System.Drawing.Point(46, 204);
+            this.ch0DisplayLabel.Location = new System.Drawing.Point(65, 204);
             this.ch0DisplayLabel.Name = "ch0DisplayLabel";
             this.ch0DisplayLabel.Size = new System.Drawing.Size(55, 13);
             this.ch0DisplayLabel.TabIndex = 12;
@@ -244,7 +252,7 @@
             // 
             // sizeLabel
             // 
-            this.sizeLabel.Location = new System.Drawing.Point(120, 204);
+            this.sizeLabel.Location = new System.Drawing.Point(286, 204);
             this.sizeLabel.Name = "sizeLabel";
             this.sizeLabel.Size = new System.Drawing.Size(122, 23);
             this.sizeLabel.TabIndex = 17;
@@ -253,7 +261,7 @@
             // 
             // packageCountLabel
             // 
-            this.packageCountLabel.Location = new System.Drawing.Point(120, 228);
+            this.packageCountLabel.Location = new System.Drawing.Point(286, 228);
             this.packageCountLabel.Name = "packageCountLabel";
             this.packageCountLabel.Size = new System.Drawing.Size(124, 13);
             this.packageCountLabel.TabIndex = 18;
@@ -262,7 +270,7 @@
             // 
             // sizeDisplayLabel
             // 
-            this.sizeDisplayLabel.Location = new System.Drawing.Point(250, 204);
+            this.sizeDisplayLabel.Location = new System.Drawing.Point(416, 204);
             this.sizeDisplayLabel.Name = "sizeDisplayLabel";
             this.sizeDisplayLabel.Size = new System.Drawing.Size(34, 13);
             this.sizeDisplayLabel.TabIndex = 19;
@@ -271,7 +279,7 @@
             // 
             // packageCountDisplayLabel
             // 
-            this.packageCountDisplayLabel.Location = new System.Drawing.Point(250, 228);
+            this.packageCountDisplayLabel.Location = new System.Drawing.Point(416, 228);
             this.packageCountDisplayLabel.Name = "packageCountDisplayLabel";
             this.packageCountDisplayLabel.Size = new System.Drawing.Size(34, 13);
             this.packageCountDisplayLabel.TabIndex = 20;
@@ -390,7 +398,7 @@
             // 
             // leftLungTemperatureLabel
             // 
-            this.leftLungTemperatureLabel.Location = new System.Drawing.Point(341, 204);
+            this.leftLungTemperatureLabel.Location = new System.Drawing.Point(534, 204);
             this.leftLungTemperatureLabel.Name = "leftLungTemperatureLabel";
             this.leftLungTemperatureLabel.Size = new System.Drawing.Size(124, 23);
             this.leftLungTemperatureLabel.TabIndex = 33;
@@ -399,7 +407,7 @@
             // 
             // rightLungTemperatureLabel
             // 
-            this.rightLungTemperatureLabel.Location = new System.Drawing.Point(341, 227);
+            this.rightLungTemperatureLabel.Location = new System.Drawing.Point(534, 227);
             this.rightLungTemperatureLabel.Name = "rightLungTemperatureLabel";
             this.rightLungTemperatureLabel.Size = new System.Drawing.Size(124, 23);
             this.rightLungTemperatureLabel.TabIndex = 34;
@@ -408,7 +416,7 @@
             // 
             // fio2Label
             // 
-            this.fio2Label.Location = new System.Drawing.Point(341, 252);
+            this.fio2Label.Location = new System.Drawing.Point(534, 252);
             this.fio2Label.Name = "fio2Label";
             this.fio2Label.Size = new System.Drawing.Size(124, 23);
             this.fio2Label.TabIndex = 35;
@@ -417,7 +425,7 @@
             // 
             // leftLungTemperatureDisplayLabel
             // 
-            this.leftLungTemperatureDisplayLabel.Location = new System.Drawing.Point(471, 204);
+            this.leftLungTemperatureDisplayLabel.Location = new System.Drawing.Point(664, 204);
             this.leftLungTemperatureDisplayLabel.Name = "leftLungTemperatureDisplayLabel";
             this.leftLungTemperatureDisplayLabel.Size = new System.Drawing.Size(45, 13);
             this.leftLungTemperatureDisplayLabel.TabIndex = 36;
@@ -426,7 +434,7 @@
             // 
             // rightLungTemperatureDisplayLabel
             // 
-            this.rightLungTemperatureDisplayLabel.Location = new System.Drawing.Point(471, 227);
+            this.rightLungTemperatureDisplayLabel.Location = new System.Drawing.Point(664, 227);
             this.rightLungTemperatureDisplayLabel.Name = "rightLungTemperatureDisplayLabel";
             this.rightLungTemperatureDisplayLabel.Size = new System.Drawing.Size(45, 13);
             this.rightLungTemperatureDisplayLabel.TabIndex = 37;
@@ -435,18 +443,100 @@
             // 
             // fio2DisplayLabel
             // 
-            this.fio2DisplayLabel.Location = new System.Drawing.Point(471, 252);
+            this.fio2DisplayLabel.Location = new System.Drawing.Point(664, 252);
             this.fio2DisplayLabel.Name = "fio2DisplayLabel";
             this.fio2DisplayLabel.Size = new System.Drawing.Size(45, 13);
             this.fio2DisplayLabel.TabIndex = 38;
             this.fio2DisplayLabel.Text = "21";
             this.fio2DisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // setReadComplianceCalibrationDataButton
+            // 
+            this.setReadComplianceCalibrationDataButton.Location = new System.Drawing.Point(838, 70);
+            this.setReadComplianceCalibrationDataButton.Name = "setReadComplianceCalibrationDataButton";
+            this.setReadComplianceCalibrationDataButton.Size = new System.Drawing.Size(146, 47);
+            this.setReadComplianceCalibrationDataButton.TabIndex = 39;
+            this.setReadComplianceCalibrationDataButton.Text = "Set / Read Compliance Calibration Data";
+            this.setReadComplianceCalibrationDataButton.UseVisualStyleBackColor = true;
+            // 
+            // setReadHSSCDButton
+            // 
+            this.setReadHSSCDButton.Location = new System.Drawing.Point(12, 169);
+            this.setReadHSSCDButton.Name = "setReadHSSCDButton";
+            this.setReadHSSCDButton.Size = new System.Drawing.Size(271, 23);
+            this.setReadHSSCDButton.TabIndex = 40;
+            this.setReadHSSCDButton.Text = "Set / Read High Speed Calibration Data";
+            this.setReadHSSCDButton.UseVisualStyleBackColor = true;
+            this.setReadHSSCDButton.Click += new System.EventHandler(this.setReadHSSCDButton_Click);
+            // 
+            // setReadLSSCDButton
+            // 
+            this.setReadLSSCDButton.Location = new System.Drawing.Point(512, 169);
+            this.setReadLSSCDButton.Name = "setReadLSSCDButton";
+            this.setReadLSSCDButton.Size = new System.Drawing.Size(209, 23);
+            this.setReadLSSCDButton.TabIndex = 41;
+            this.setReadLSSCDButton.Text = "Set / Read Low Speed Calibration Data";
+            this.setReadLSSCDButton.UseVisualStyleBackColor = true;
+            this.setReadLSSCDButton.Click += new System.EventHandler(this.setReadLSSCDButton_Click);
+            // 
+            // auxinDisplayLabel
+            // 
+            this.auxinDisplayLabel.Location = new System.Drawing.Point(126, 300);
+            this.auxinDisplayLabel.Name = "auxinDisplayLabel";
+            this.auxinDisplayLabel.Size = new System.Drawing.Size(55, 13);
+            this.auxinDisplayLabel.TabIndex = 46;
+            this.auxinDisplayLabel.Text = "0.00";
+            this.auxinDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // phighDisplayLabel
+            // 
+            this.phighDisplayLabel.Location = new System.Drawing.Point(126, 276);
+            this.phighDisplayLabel.Name = "phighDisplayLabel";
+            this.phighDisplayLabel.Size = new System.Drawing.Size(55, 13);
+            this.phighDisplayLabel.TabIndex = 45;
+            this.phighDisplayLabel.Text = "0.00";
+            this.phighDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // prghtDisplayLabel
+            // 
+            this.prghtDisplayLabel.Location = new System.Drawing.Point(126, 252);
+            this.prghtDisplayLabel.Name = "prghtDisplayLabel";
+            this.prghtDisplayLabel.Size = new System.Drawing.Size(55, 13);
+            this.prghtDisplayLabel.TabIndex = 44;
+            this.prghtDisplayLabel.Text = "0.00";
+            this.prghtDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // pleftDisplayLabel
+            // 
+            this.pleftDisplayLabel.Location = new System.Drawing.Point(126, 228);
+            this.pleftDisplayLabel.Name = "pleftDisplayLabel";
+            this.pleftDisplayLabel.Size = new System.Drawing.Size(55, 13);
+            this.pleftDisplayLabel.TabIndex = 43;
+            this.pleftDisplayLabel.Text = "0.00";
+            this.pleftDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // pproxDisplayLabel
+            // 
+            this.pproxDisplayLabel.Location = new System.Drawing.Point(126, 204);
+            this.pproxDisplayLabel.Name = "pproxDisplayLabel";
+            this.pproxDisplayLabel.Size = new System.Drawing.Size(55, 13);
+            this.pproxDisplayLabel.TabIndex = 42;
+            this.pproxDisplayLabel.Text = "0.00";
+            this.pproxDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // PV3TestUtility3Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 441);
+            this.Controls.Add(this.auxinDisplayLabel);
+            this.Controls.Add(this.phighDisplayLabel);
+            this.Controls.Add(this.prghtDisplayLabel);
+            this.Controls.Add(this.pleftDisplayLabel);
+            this.Controls.Add(this.pproxDisplayLabel);
+            this.Controls.Add(this.setReadLSSCDButton);
+            this.Controls.Add(this.setReadHSSCDButton);
+            this.Controls.Add(this.setReadComplianceCalibrationDataButton);
             this.Controls.Add(this.fio2DisplayLabel);
             this.Controls.Add(this.rightLungTemperatureDisplayLabel);
             this.Controls.Add(this.leftLungTemperatureDisplayLabel);
@@ -479,7 +569,7 @@
             this.Controls.Add(this.ch2Label);
             this.Controls.Add(this.ch1Label);
             this.Controls.Add(this.ch0Label);
-            this.Controls.Add(this.auxinDisplayLabel);
+            this.Controls.Add(this.auxinBarDisplayLabel);
             this.Controls.Add(this.auxinLabel);
             this.Controls.Add(this.potProgressBar);
             this.Controls.Add(this.resetMCUButton);
@@ -504,7 +594,7 @@
         private System.Windows.Forms.ProgressBar potProgressBar;
         private System.Windows.Forms.Timer usbCommTimer;
         private System.Windows.Forms.Label auxinLabel;
-        private System.Windows.Forms.Label auxinDisplayLabel;
+        private System.Windows.Forms.Label auxinBarDisplayLabel;
         private System.Windows.Forms.Label ch0Label;
         private System.Windows.Forms.Label ch1Label;
         private System.Windows.Forms.Label ch2Label;
@@ -537,6 +627,14 @@
         private System.Windows.Forms.Label leftLungTemperatureDisplayLabel;
         private System.Windows.Forms.Label rightLungTemperatureDisplayLabel;
         private System.Windows.Forms.Label fio2DisplayLabel;
+        private System.Windows.Forms.Button setReadComplianceCalibrationDataButton;
+        private System.Windows.Forms.Button setReadHSSCDButton;
+        private System.Windows.Forms.Button setReadLSSCDButton;
+        private System.Windows.Forms.Label auxinDisplayLabel;
+        private System.Windows.Forms.Label phighDisplayLabel;
+        private System.Windows.Forms.Label prghtDisplayLabel;
+        private System.Windows.Forms.Label pleftDisplayLabel;
+        private System.Windows.Forms.Label pproxDisplayLabel;
     }
 }
 

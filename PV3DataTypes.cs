@@ -54,5 +54,79 @@ namespace PV3TestUtility3
 
             RESET_FROM_BOOTLOADER = 0x08 //Reset MCU from the Microchip HID Bootloader firmware
         }
+
+        public ushort PPROXZero = 2048;
+        public ushort PLEFTZero = 2048;
+        public ushort PRGHTZero = 2048;
+        public ushort PHIGHZero = 150;
+        public ushort AUXINZero = 815;
+
+        public ushort PPROXGain = 8313;
+        public ushort PLEFTGain = 8313;
+        public ushort PRGHTGain = 8313;
+        public ushort PHIGHGain = 8313;
+        public ushort AUXINGain = 8313;
+
+        public ushort PPROXRaw;
+        public ushort PLEFTRaw;
+        public ushort PRGHTRaw;
+        public ushort PHIGHRaw;
+        public ushort AUXINRaw;
+
+        private double pprox;
+
+        public double PPROX
+        {
+            get {
+                pprox = (PPROXRaw - PPROXZero) * PPROXGain / 100000.0;
+                return pprox; 
+            }
+            set { pprox = value; }
+        }
+
+        private double pleft;
+
+        public double PLEFT
+        {
+            get {
+                pleft = (PLEFTRaw - PLEFTZero) * PLEFTGain / 100000.0;
+                return pleft; 
+            }
+            set { pleft = value; }
+        }
+
+        private double prght;
+
+        public double PRGHT
+        {
+            get {
+                prght = (PRGHTRaw - PRGHTZero) * PRGHTGain / 100000.0;
+                return prght; 
+            }
+            set { prght = value; }
+        }
+
+        private double phigh;
+
+        public double PHIGH
+        {
+            get {
+                phigh = (PHIGHRaw - PHIGHZero) * PHIGHGain / 100000.0;
+                return phigh; 
+            }
+            set { phigh = value; }
+        }
+
+        private double auxin;
+
+        public double AUXIN
+        {
+            get {
+                auxin = (AUXINRaw - AUXINZero) * AUXINGain / 100000.0;
+                return auxin; 
+            }
+            set { auxin = value; }
+        }
+
     }
 }
