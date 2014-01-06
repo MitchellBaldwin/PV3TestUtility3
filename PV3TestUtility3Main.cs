@@ -21,6 +21,14 @@ namespace PV3TestUtility3
             set { usbConnection = value; }
         }
 
+        PV3DataTypes pv3Data = new PV3DataTypes();
+
+        internal PV3DataTypes PV3Data
+        {
+            get { return pv3Data; }
+            set { pv3Data = value; }
+        }
+
         PV3DataTypes.PV3CommandType cmd;
 
         private uint AUXINValue;
@@ -202,7 +210,7 @@ namespace PV3TestUtility3
 
             usbConnection.receiveViaUSB();
             AUXINValue = (uint)(usbConnection.InBuffer[3] << 8) + (uint)usbConnection.InBuffer[2];
-            auxinDisplayLabel.Text = AUXINValue.ToString();
+            auxinBarDisplayLabel.Text = AUXINValue.ToString();
             potProgressBar.Value = (int)AUXINValue;
 
             cmd = PV3DataTypes.PV3CommandType.RD_HSSDP;
@@ -210,11 +218,21 @@ namespace PV3TestUtility3
             usbConnection.sendViaUSB();
 
             usbConnection.receiveViaUSB();
-            ch0DisplayLabel.Text = ((uint)(usbConnection.InBuffer[5] << 8) + (uint)usbConnection.InBuffer[4]).ToString();
-            ch1DisplayLabel.Text = ((uint)(usbConnection.InBuffer[7] << 8) + (uint)usbConnection.InBuffer[6]).ToString();
-            ch2DisplayLabel.Text = ((uint)(usbConnection.InBuffer[9] << 8) + (uint)usbConnection.InBuffer[8]).ToString();
-            ch3DisplayLabel.Text = ((uint)(usbConnection.InBuffer[11] << 8) + (uint)usbConnection.InBuffer[10]).ToString();
-            ch4DisplayLabel.Text = ((uint)(usbConnection.InBuffer[13] << 8) + (uint)usbConnection.InBuffer[12]).ToString();
+            pv3Data.PPROXRaw = (ushort)((uint)(usbConnection.InBuffer[5] << 8) + (uint)usbConnection.InBuffer[4]);
+            ch0DisplayLabel.Text = pv3Data.PPROXRaw.ToString();
+            pproxDisplayLabel.Text = string.Format("{0:0.00}", pv3Data.PPROX);
+            pv3Data.PLEFTRaw = (ushort)((uint)(usbConnection.InBuffer[7] << 8) + (uint)usbConnection.InBuffer[6]);
+            ch1DisplayLabel.Text = pv3Data.PLEFTRaw.ToString();
+            pleftDisplayLabel.Text = pv3Data.PLEFT.ToString("0.00");
+            pv3Data.PRGHTRaw = (ushort)((uint)(usbConnection.InBuffer[9] << 8) + (uint)usbConnection.InBuffer[8]);
+            ch2DisplayLabel.Text = pv3Data.PRGHTRaw.ToString();
+            prghtDisplayLabel.Text = pv3Data.PRGHT.ToString("0.00");
+            pv3Data.PHIGHRaw = (ushort)((uint)(usbConnection.InBuffer[11] << 8) + (uint)usbConnection.InBuffer[10]);
+            ch3DisplayLabel.Text = pv3Data.PHIGHRaw.ToString();
+            phighDisplayLabel.Text = pv3Data.PHIGH.ToString("0.00");
+            pv3Data.AUXINRaw = (ushort)((uint)(usbConnection.InBuffer[13] << 8) + (uint)usbConnection.InBuffer[12]);
+            ch4DisplayLabel.Text = pv3Data.AUXINRaw.ToString();
+            auxinDisplayLabel.Text = pv3Data.AUXIN.ToString("0.00");
             packageCountDisplayLabel.Text = usbConnection.InBuffer[2].ToString();
             sizeDisplayLabel.Text = usbConnection.InBuffer[3].ToString();
 
@@ -257,6 +275,19 @@ namespace PV3TestUtility3
                 lungSerialNumberDisplayLabel.Text = ((uint)(ttlSN[1] * 100) + ttlSN[0]).ToString();
             }
 
+        }
+
+        private void setReadHSSCDButton_Click(object sender, EventArgs e)
+        {
+            HSSCalibDialog hsscd = new HSSCalibDialog();
+            hsscd.ShowDialog();
+
+        }
+
+        private void setReadLSSCDButton_Click(object sender, EventArgs e)
+        {
+            LSSCalibDialog lsscd = new LSSCalibDialog();
+            lsscd.ShowDialog();
 
         }
 

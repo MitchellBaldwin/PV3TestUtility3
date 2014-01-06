@@ -48,6 +48,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HSSCalibDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HSSCalibDialog.Designer.cs">
+      <DependentUpon>HSSCalibDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LSSCalibDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LSSCalibDialog.Designer.cs">
+      <DependentUpon>LSSCalibDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="PV3DataTypes.cs" />
     <Compile Include="PV3TestUtility3Main.cs">
       <SubType>Form</SubType>
@@ -60,6 +72,12 @@
     <Compile Include="USBClass.cs">
       <SubType>Form</SubType>
     </Compile>
+    <EmbeddedResource Include="HSSCalibDialog.resx">
+      <DependentUpon>HSSCalibDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LSSCalibDialog.resx">
+      <DependentUpon>LSSCalibDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
