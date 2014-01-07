@@ -55,11 +55,11 @@
             this.setPLEFTGainButton = new System.Windows.Forms.Button();
             this.setPPROXGainButton = new System.Windows.Forms.Button();
             this.okButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.readAUXINGainButton = new System.Windows.Forms.Button();
+            this.readPHIGHGainButton = new System.Windows.Forms.Button();
+            this.readPRGHTGainButton = new System.Windows.Forms.Button();
+            this.readPLEFTGainButton = new System.Windows.Forms.Button();
+            this.readPPROXGainButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // pproxZeroButton
@@ -293,53 +293,53 @@
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 27;
-            this.okButton.Text = "OK";
+            this.okButton.Text = "Close";
             this.okButton.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // readAUXINGainButton
             // 
-            this.button1.Location = new System.Drawing.Point(372, 209);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(109, 23);
-            this.button1.TabIndex = 32;
-            this.button1.Text = "Raed AUXIN Gain";
-            this.button1.UseVisualStyleBackColor = true;
+            this.readAUXINGainButton.Location = new System.Drawing.Point(372, 209);
+            this.readAUXINGainButton.Name = "readAUXINGainButton";
+            this.readAUXINGainButton.Size = new System.Drawing.Size(109, 23);
+            this.readAUXINGainButton.TabIndex = 32;
+            this.readAUXINGainButton.Text = "Raed AUXIN Gain";
+            this.readAUXINGainButton.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // readPHIGHGainButton
             // 
-            this.button2.Location = new System.Drawing.Point(372, 180);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(109, 23);
-            this.button2.TabIndex = 31;
-            this.button2.Text = "Read PHIGH Gain";
-            this.button2.UseVisualStyleBackColor = true;
+            this.readPHIGHGainButton.Location = new System.Drawing.Point(372, 180);
+            this.readPHIGHGainButton.Name = "readPHIGHGainButton";
+            this.readPHIGHGainButton.Size = new System.Drawing.Size(109, 23);
+            this.readPHIGHGainButton.TabIndex = 31;
+            this.readPHIGHGainButton.Text = "Read PHIGH Gain";
+            this.readPHIGHGainButton.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // readPRGHTGainButton
             // 
-            this.button3.Location = new System.Drawing.Point(372, 151);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(109, 23);
-            this.button3.TabIndex = 30;
-            this.button3.Text = "Read PRGHT Gain";
-            this.button3.UseVisualStyleBackColor = true;
+            this.readPRGHTGainButton.Location = new System.Drawing.Point(372, 151);
+            this.readPRGHTGainButton.Name = "readPRGHTGainButton";
+            this.readPRGHTGainButton.Size = new System.Drawing.Size(109, 23);
+            this.readPRGHTGainButton.TabIndex = 30;
+            this.readPRGHTGainButton.Text = "Read PRGHT Gain";
+            this.readPRGHTGainButton.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // readPLEFTGainButton
             // 
-            this.button4.Location = new System.Drawing.Point(372, 122);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(109, 23);
-            this.button4.TabIndex = 29;
-            this.button4.Text = "Read PLEFT Gain";
-            this.button4.UseVisualStyleBackColor = true;
+            this.readPLEFTGainButton.Location = new System.Drawing.Point(372, 122);
+            this.readPLEFTGainButton.Name = "readPLEFTGainButton";
+            this.readPLEFTGainButton.Size = new System.Drawing.Size(109, 23);
+            this.readPLEFTGainButton.TabIndex = 29;
+            this.readPLEFTGainButton.Text = "Read PLEFT Gain";
+            this.readPLEFTGainButton.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // readPPROXGainButton
             // 
-            this.button5.Location = new System.Drawing.Point(372, 93);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(109, 23);
-            this.button5.TabIndex = 28;
-            this.button5.Text = "Read PPROX Gain";
-            this.button5.UseVisualStyleBackColor = true;
+            this.readPPROXGainButton.Location = new System.Drawing.Point(372, 93);
+            this.readPPROXGainButton.Name = "readPPROXGainButton";
+            this.readPPROXGainButton.Size = new System.Drawing.Size(109, 23);
+            this.readPPROXGainButton.TabIndex = 28;
+            this.readPPROXGainButton.Text = "Read PPROX Gain";
+            this.readPPROXGainButton.UseVisualStyleBackColor = true;
             // 
             // HSSCalibDialog
             // 
@@ -347,11 +347,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 441);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button5);
+            this.Controls.Add(this.readAUXINGainButton);
+            this.Controls.Add(this.readPHIGHGainButton);
+            this.Controls.Add(this.readPRGHTGainButton);
+            this.Controls.Add(this.readPLEFTGainButton);
+            this.Controls.Add(this.readPPROXGainButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.setAUXINGainButton);
             this.Controls.Add(this.setPHIGHGainButton);
@@ -418,10 +418,10 @@
         private System.Windows.Forms.Button setPLEFTGainButton;
         private System.Windows.Forms.Button setPPROXGainButton;
         private System.Windows.Forms.Button okButton;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button readAUXINGainButton;
+        private System.Windows.Forms.Button readPHIGHGainButton;
+        private System.Windows.Forms.Button readPRGHTGainButton;
+        private System.Windows.Forms.Button readPLEFTGainButton;
+        private System.Windows.Forms.Button readPPROXGainButton;
     }
 }
