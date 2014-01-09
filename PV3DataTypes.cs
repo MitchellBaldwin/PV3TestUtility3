@@ -55,18 +55,18 @@ namespace PV3TestUtility3
             RESET_FROM_BOOTLOADER = 0x08 //Reset MCU from the Microchip HID Bootloader firmware
         }
 
-        public ushort PPROXZero = 2048;
-        public ushort PLEFTZero = 2048;
-        public ushort PRGHTZero = 2048;
+        public ushort PPROXZero = 939;
+        public ushort PLEFTZero = 915;
+        public ushort PRGHTZero = 919;
         public ushort PHIGHZero = 150;
         public ushort AUXINZero = 815;
 
-        public ushort PPROXGain = 8313;
-        public ushort PLEFTGain = 8313;
-        public ushort PRGHTGain = 8313;
-        public ushort PHIGHGain = 8313;
-        public ushort AUXINGain = 8313;
-
+        public ushort PPROXGain = 44944;
+        public ushort PLEFTGain = 44944;
+        public ushort PRGHTGain = 44944;
+        public ushort PHIGHGain = 1;
+        public ushort AUXINGain = 1;
+        
         public ushort PPROXRaw;
         public ushort PLEFTRaw;
         public ushort PRGHTRaw;
@@ -78,7 +78,7 @@ namespace PV3TestUtility3
         public double PPROX
         {
             get {
-                pprox = (PPROXRaw - PPROXZero) * PPROXGain / 100000.0;
+                pprox = (PPROXRaw - PPROXZero) * PPROXGain / 1000000.0;
                 return pprox; 
             }
             set { pprox = value; }
@@ -89,7 +89,7 @@ namespace PV3TestUtility3
         public double PLEFT
         {
             get {
-                pleft = (PLEFTRaw - PLEFTZero) * PLEFTGain / 100000.0;
+                pleft = (PLEFTRaw - PLEFTZero) * PLEFTGain / 1000000.0;
                 return pleft; 
             }
             set { pleft = value; }
@@ -100,7 +100,7 @@ namespace PV3TestUtility3
         public double PRGHT
         {
             get {
-                prght = (PRGHTRaw - PRGHTZero) * PRGHTGain / 100000.0;
+                prght = (PRGHTRaw - PRGHTZero) * PRGHTGain / 1000000.0;
                 return prght; 
             }
             set { prght = value; }
@@ -111,7 +111,7 @@ namespace PV3TestUtility3
         public double PHIGH
         {
             get {
-                phigh = (PHIGHRaw - PHIGHZero) * PHIGHGain / 100000.0;
+                phigh = (PHIGHRaw - PHIGHZero) * PHIGHGain;
                 return phigh; 
             }
             set { phigh = value; }
@@ -122,7 +122,7 @@ namespace PV3TestUtility3
         public double AUXIN
         {
             get {
-                auxin = (AUXINRaw - AUXINZero) * AUXINGain / 100000.0;
+                auxin = (AUXINRaw - AUXINZero) * AUXINGain;
                 return auxin; 
             }
             set { auxin = value; }
