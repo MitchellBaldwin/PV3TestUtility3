@@ -167,7 +167,11 @@ namespace PV3TestUtility3
 
         public double TRGHT
         {
-            get { return trght; }
+            get
+            {
+                trght = (TRGHTRaw >> 3) + (TRGHTRaw & 0x07) * 0.125;
+                return trght;
+            }
             set { trght = value; }
         }
 
