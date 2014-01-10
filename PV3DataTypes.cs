@@ -55,6 +55,9 @@ namespace PV3TestUtility3
             RESET_FROM_BOOTLOADER = 0x08 //Reset MCU from the Microchip HID Bootloader firmware
         }
 
+        public byte ttlModel = 0;                              //Flag indicating the TTL model attached
+        public byte[] ttlSN = new byte[2];                     //Byte array for the serial number of the TTL attached
+        
         public ushort PPROXZero = 939;
         public ushort PLEFTZero = 915;
         public ushort PRGHTZero = 919;
@@ -126,6 +129,46 @@ namespace PV3TestUtility3
                 return auxin; 
             }
             set { auxin = value; }
+        }
+
+        public ushort FiO2Zero;
+        public ushort TLEFTZero;
+        public ushort TRGHTZero;
+
+        public ushort FiO2Gain;
+        public ushort TLEFTGain;
+        public ushort TRGHTGain;
+        
+        public ushort FiO2Raw;
+        public ushort TLEFTRaw;
+        public ushort TRGHTRaw;
+        
+        private double fio2;
+
+        public double FiO2
+        {
+            get { return fio2; }
+            set { fio2 = value; }
+        }
+
+        private double tleft;
+
+        public double TLEFT
+        {
+            get
+            {
+                tleft = (TLEFTRaw >> 3) + (TLEFTRaw & 0x07)*0.125;
+                return tleft;
+            }
+            set { tleft = value; }
+        }
+
+        private double trght;
+
+        public double TRGHT
+        {
+            get { return trght; }
+            set { trght = value; }
         }
 
     }

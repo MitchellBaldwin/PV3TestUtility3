@@ -429,7 +429,7 @@
             this.leftLungTemperatureDisplayLabel.Name = "leftLungTemperatureDisplayLabel";
             this.leftLungTemperatureDisplayLabel.Size = new System.Drawing.Size(45, 13);
             this.leftLungTemperatureDisplayLabel.TabIndex = 36;
-            this.leftLungTemperatureDisplayLabel.Text = "20";
+            this.leftLungTemperatureDisplayLabel.Text = "0.000";
             this.leftLungTemperatureDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // rightLungTemperatureDisplayLabel
@@ -438,7 +438,7 @@
             this.rightLungTemperatureDisplayLabel.Name = "rightLungTemperatureDisplayLabel";
             this.rightLungTemperatureDisplayLabel.Size = new System.Drawing.Size(45, 13);
             this.rightLungTemperatureDisplayLabel.TabIndex = 37;
-            this.rightLungTemperatureDisplayLabel.Text = "20";
+            this.rightLungTemperatureDisplayLabel.Text = "0.000";
             this.rightLungTemperatureDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // fio2DisplayLabel
@@ -447,7 +447,7 @@
             this.fio2DisplayLabel.Name = "fio2DisplayLabel";
             this.fio2DisplayLabel.Size = new System.Drawing.Size(45, 13);
             this.fio2DisplayLabel.TabIndex = 38;
-            this.fio2DisplayLabel.Text = "21";
+            this.fio2DisplayLabel.Text = "0.0";
             this.fio2DisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // setReadComplianceCalibrationDataButton

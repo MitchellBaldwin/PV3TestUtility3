@@ -21,6 +21,13 @@ namespace PV3TestUtility3
             set { usbConnection = value; }
         }
 
+        USBClass blConnection;
+        public USBClass BLConnection
+        {
+            get { return blConnection; }
+            set {blConnection = value; }
+        }
+
         PV3DataTypes pv3Data = new PV3DataTypes();
 
         internal PV3DataTypes PV3Data
@@ -48,6 +55,9 @@ namespace PV3TestUtility3
         {
             InitializeComponent();
             usbConnection = new USBClass();
+            usbConnection.deviceID = "Vid_04D8&Pid_FCB6";
+            blConnection = new USBClass();
+            blConnection.deviceID = "Vid_04D8&Pid_003C";
         }
 
         //This is a callback function that gets called when a Windows message is received by the form.
@@ -79,10 +89,10 @@ namespace PV3TestUtility3
 
                 return true;
             }
-            else if (usbConnection.attemptUSBConnectionToBootloader() == USBClass.BOOTLOADER_CONNECTED)
+            else if (blConnection.attemptUSBConnection() == USBClass.CONNECTION_SUCCESSFUL)
             {
                 connectionStateLabel.BackColor = Color.LightBlue;
-                connectionStateLabel.Text = "Connected to: " + usbConnection.blDeviceID;
+                connectionStateLabel.Text = "Connected to: " + blConnection.blDeviceID;
                 usbCommTimer.Enabled = true;
 
                 // Configure the form controls as appropriate for being connected to the HID Bootloader:
@@ -105,7 +115,7 @@ namespace PV3TestUtility3
 
         private void PV3TestUtility3Main_Load(object sender, EventArgs e)
         {
-            if (usbConnection.connectionState == USBClass.CONNECTION_NOT_SUCCESSFUL)
+            if (usbConnection.connectionState == USBClass.CONNECTION_NOT_SUCCESSFUL || blConnection.connectionState == USBClass.CONNECTION_NOT_SUCCESSFUL)
             {
                 ConnectToUSB();
             }
@@ -132,11 +142,11 @@ namespace PV3TestUtility3
 
         private void resetMCUButton_Click(object sender, EventArgs e)
         {
-            if (usbConnection.connectionState == USBClass.BOOTLOADER_CONNECTED)
+            if (blConnection.connectionState == USBClass.CONNECTION_SUCCESSFUL)
             {
                 cmd = PV3DataTypes.PV3CommandType.RESET_FROM_BOOTLOADER;
-                usbConnection.OutBuffer[1] = (byte)cmd;
-                usbConnection.sendViaUSB();
+                blConnection.OutBuffer[1] = (byte)cmd;
+                blConnection.sendViaUSB();
             }
             else if (usbConnection.connectionState == USBClass.CONNECTION_SUCCESSFUL)
             {
@@ -241,9 +251,12 @@ namespace PV3TestUtility3
             usbConnection.sendViaUSB();
             
             usbConnection.receiveViaUSB();
-            leftLungTemperatureDisplayLabel.Text = ((uint)(usbConnection.InBuffer[3] << 8) + (uint)usbConnection.InBuffer[2]).ToString();
-            rightLungTemperatureDisplayLabel.Text = ((uint)(usbConnection.InBuffer[5] << 8) + (uint)usbConnection.InBuffer[4]).ToString();
-            fio2DisplayLabel.Text = ((uint)(usbConnection.InBuffer[7] << 8) + (uint)usbConnection.InBuffer[6]).ToString();
+            pv3Data.TLEFTRaw = (ushort)((uint)(usbConnection.InBuffer[3] << 8) + (uint)usbConnection.InBuffer[2]);
+            leftLungTemperatureDisplayLabel.Text = pv3Data.TLEFT.ToString("0.000");
+            pv3Data.TRGHTRaw = (ushort)((uint)(usbConnection.InBuffer[5] << 8) + (uint)usbConnection.InBuffer[4]);
+            rightLungTemperatureDisplayLabel.Text = pv3Data.TRGHT.ToString("0.000");
+            pv3Data.FiO2Raw = (ushort)((uint)(usbConnection.InBuffer[7] << 8) + (uint)usbConnection.InBuffer[6]);
+            fio2DisplayLabel.Text = pv3Data.FiO2.ToString("0.0");
 
 
             switch (ttlModel)
@@ -280,7 +293,7 @@ namespace PV3TestUtility3
         private void setReadHSSCDButton_Click(object sender, EventArgs e)
         {
             HSSCalibDialog hsscd = new HSSCalibDialog();
-            hsscd.ShowDialog();
+            hsscd.ShowDialog(this);
 
         }
 
