@@ -77,6 +77,7 @@ namespace PV3TestUtility3
         // Connect to PV3 embedded system over USB
         public bool ConnectToUSB()
         {
+            System.Threading.Thread.Sleep(500);
             usbConnection.connectionState = usbConnection.attemptUSBConnection();
             if (usbConnection.connectionState == USBClass.CONNECTION_SUCCESSFUL)
             {
@@ -89,7 +90,8 @@ namespace PV3TestUtility3
 
                 return true;
             }
-            else if (blConnection.attemptUSBConnection() == USBClass.CONNECTION_SUCCESSFUL)
+            blConnection.connectionState = blConnection.attemptUSBConnection();
+            if (blConnection.connectionState == USBClass.CONNECTION_SUCCESSFUL)
             {
                 connectionStateLabel.BackColor = Color.LightBlue;
                 connectionStateLabel.Text = "Connected to: " + blConnection.blDeviceID;
@@ -300,7 +302,7 @@ namespace PV3TestUtility3
         private void setReadLSSCDButton_Click(object sender, EventArgs e)
         {
             LSSCalibDialog lsscd = new LSSCalibDialog();
-            lsscd.ShowDialog();
+            lsscd.ShowDialog(this);
 
         }
 

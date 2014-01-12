@@ -38,7 +38,7 @@ namespace PV3TestUtility3
                 // Enable low speed data acquisition timer
                 //lpsTimer.Enabled = true;
                 // Enable controls
-                foreach (Button button in this.Controls)
+                foreach (Control button in this.Controls)
                 {
                     if (button is Button && button != okButton)
                     {
