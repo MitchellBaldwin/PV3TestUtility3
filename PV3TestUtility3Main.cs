@@ -258,7 +258,7 @@ namespace PV3TestUtility3
             pv3Data.TRGHTRaw = (ushort)((uint)(usbConnection.InBuffer[5] << 8) + (uint)usbConnection.InBuffer[4]);
             rightLungTemperatureDisplayLabel.Text = pv3Data.TRGHT.ToString("0.000");
             pv3Data.FiO2Raw = (ushort)((uint)(usbConnection.InBuffer[7] << 8) + (uint)usbConnection.InBuffer[6]);
-            fio2DisplayLabel.Text = pv3Data.FiO2.ToString("0.0");
+            fio2DisplayLabel.Text = pv3Data.FiO2Raw.ToString("0000");
 
 
             switch (ttlModel)
