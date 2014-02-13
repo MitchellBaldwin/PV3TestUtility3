@@ -147,6 +147,7 @@ namespace PV3TestUtility3
             cmd = PV3DataTypes.PV3CommandType.TOGGLE_LEDS;
             usbConnection.OutBuffer[1] = (byte)cmd;
             usbConnection.sendViaUSB();
+            DisplayUSBBufferData();
         }
 
         private void toggleBlinkStatusButton_Click(object sender, EventArgs e)
@@ -154,6 +155,7 @@ namespace PV3TestUtility3
             cmd = PV3DataTypes.PV3CommandType.TOGGLE_BLINKSTATUS;
             usbConnection.OutBuffer[1] = (byte)cmd;
             usbConnection.sendViaUSB();
+            DisplayUSBBufferData();
         }
 
         private void enterBootloaderButton_Click(object sender, EventArgs e)
@@ -161,6 +163,7 @@ namespace PV3TestUtility3
             cmd = PV3DataTypes.PV3CommandType.BOOTLOAD;
             usbConnection.OutBuffer[1] = (byte)cmd;
             usbConnection.sendViaUSB();
+            DisplayUSBBufferData();
         }
 
         private void resetMCUButton_Click(object sender, EventArgs e)
@@ -170,12 +173,14 @@ namespace PV3TestUtility3
                 cmd = PV3DataTypes.PV3CommandType.RESET_FROM_BOOTLOADER;
                 blConnection.OutBuffer[1] = (byte)cmd;
                 blConnection.sendViaUSB();
+                DisplayUSBBufferData();
             }
             else if (usbConnection.connectionState == USBClass.CONNECTION_SUCCESSFUL)
             {
                 cmd = PV3DataTypes.PV3CommandType.RESET;
                 usbConnection.OutBuffer[1] = (byte)cmd;
                 usbConnection.sendViaUSB();
+                DisplayUSBBufferData();
             }
         }
 
@@ -185,6 +190,7 @@ namespace PV3TestUtility3
             usbConnection.OutBuffer[1] = (byte)cmd;
             usbConnection.sendViaUSB();
             usbConnection.receiveViaUSB();
+            DisplayUSBBufferData();
         }
 
         private void stopDataAcquisitionButton_Click(object sender, EventArgs e)
@@ -193,6 +199,7 @@ namespace PV3TestUtility3
             usbConnection.OutBuffer[1] = (byte)cmd;
             usbConnection.sendViaUSB();
             usbConnection.receiveViaUSB();
+            DisplayUSBBufferData();
         }
 
         private void readLungModelButton_Click(object sender, EventArgs e)
@@ -219,6 +226,7 @@ namespace PV3TestUtility3
                     lungModelDisplayLabel.Text = string.Format("Invalid flag set: {0:X2}", ttlModel);
                     break;
             }
+            DisplayUSBBufferData();
         }
 
         private void writeLungModelButton_Click(object sender, EventArgs e)
@@ -230,6 +238,7 @@ namespace PV3TestUtility3
             usbConnection.sendViaUSB();
             usbConnection.receiveViaUSB();
             lungModelDisplayLabel.Text = "Model flag not read";
+            DisplayUSBBufferData();
         }
 
         private void readLungSerialNumberButton_Click(object sender, EventArgs e)
@@ -241,6 +250,7 @@ namespace PV3TestUtility3
             ttlSN[0] = usbConnection.InBuffer[2];
             ttlSN[1] = usbConnection.InBuffer[3];
             lungSerialNumberDisplayLabel.Text = ((uint)(ttlSN[1] * 100) + ttlSN[0]).ToString();
+            DisplayUSBBufferData();
         }
 
         private void writeLungSerialNumberButton_Click(object sender, EventArgs e)
@@ -255,6 +265,7 @@ namespace PV3TestUtility3
             usbConnection.sendViaUSB();
             usbConnection.receiveViaUSB();
             lungSerialNumberDisplayLabel.Text = "S/N not read";
+            DisplayUSBBufferData();
         }
 
         private void usbCommTimer_Tick(object sender, EventArgs e)
@@ -331,7 +342,8 @@ namespace PV3TestUtility3
             usbConnection.OutBuffer[3] = hwVerMin;
             usbConnection.sendViaUSB();
             usbConnection.receiveViaUSB();
-            hwVersionDisplayLabel.Text = string.Format("v{0:X3}.{1:XX3}", hwVerMaj, hwVerMin);
+            hwVersionDisplayLabel.Text = string.Format("v{0:X3}.{1:X3}", hwVerMaj, hwVerMin);
+            DisplayUSBBufferData();
 
         }
 
@@ -343,7 +355,10 @@ namespace PV3TestUtility3
             usbConnection.receiveViaUSB();
             byte hwVerMaj = usbConnection.InBuffer[2];
             byte hwVerMin = usbConnection.InBuffer[3];
-            hwVersionDisplayLabel.Text = string.Format("v{0:X3}.{1:XX3}", hwVerMaj, hwVerMin);
+            hwVersionDisplayLabel.Text = string.Format("v{0:X3}.{1:X3}", hwVerMaj, hwVerMin);
+            hwVerMajTextBox.Text = hwVerMaj.ToString();
+            hwVerMinTextBox.Text = hwVerMin.ToString();
+            DisplayUSBBufferData();
 
         }
 
@@ -355,7 +370,8 @@ namespace PV3TestUtility3
             usbConnection.receiveViaUSB();
             byte swVerMaj = usbConnection.InBuffer[2];
             byte swVerMin = usbConnection.InBuffer[3];
-            swVersionDisplayLabel.Text = string.Format("v{0:X3}.{1:XX3}", swVerMaj, swVerMin);
+            swVersionDisplayLabel.Text = string.Format("v{0:X3}.{1:X3}", swVerMaj, swVerMin);
+            DisplayUSBBufferData();
 
         }
 
