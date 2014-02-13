@@ -78,6 +78,20 @@
             this.prghtDisplayLabel = new System.Windows.Forms.Label();
             this.pleftDisplayLabel = new System.Windows.Forms.Label();
             this.pproxDisplayLabel = new System.Windows.Forms.Label();
+            this.toggleBlinkStatusButton = new System.Windows.Forms.Button();
+            this.readHWVersionButton = new System.Windows.Forms.Button();
+            this.hwVersionDisplayLabel = new System.Windows.Forms.Label();
+            this.setHWVersionButton = new System.Windows.Forms.Button();
+            this.hwVerMajTextBox = new System.Windows.Forms.TextBox();
+            this.hwVerMajLabel = new System.Windows.Forms.Label();
+            this.hwVerMinTextBox = new System.Windows.Forms.TextBox();
+            this.hwVerMinLabel = new System.Windows.Forms.Label();
+            this.readSWVersionButton = new System.Windows.Forms.Button();
+            this.swVersionDisplayLabel = new System.Windows.Forms.Label();
+            this.usbOutLabel = new System.Windows.Forms.Label();
+            this.usbInLabel = new System.Windows.Forms.Label();
+            this.usbOutDisplayLabel = new System.Windows.Forms.Label();
+            this.usbInDisplayLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // connectionStateLabel
@@ -130,7 +144,7 @@
             this.potProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.potProgressBar.BackColor = System.Drawing.Color.Black;
             this.potProgressBar.ForeColor = System.Drawing.Color.Lime;
-            this.potProgressBar.Location = new System.Drawing.Point(289, 406);
+            this.potProgressBar.Location = new System.Drawing.Point(367, 406);
             this.potProgressBar.Maximum = 4095;
             this.potProgressBar.Name = "potProgressBar";
             this.potProgressBar.Size = new System.Drawing.Size(393, 23);
@@ -140,12 +154,13 @@
             // 
             // usbCommTimer
             // 
+            this.usbCommTimer.Interval = 500;
             this.usbCommTimer.Tick += new System.EventHandler(this.usbCommTimer_Tick);
             // 
             // auxinLabel
             // 
             this.auxinLabel.AutoSize = true;
-            this.auxinLabel.Location = new System.Drawing.Point(186, 411);
+            this.auxinLabel.Location = new System.Drawing.Point(264, 411);
             this.auxinLabel.Name = "auxinLabel";
             this.auxinLabel.Size = new System.Drawing.Size(46, 13);
             this.auxinLabel.TabIndex = 5;
@@ -153,7 +168,7 @@
             // 
             // auxinBarDisplayLabel
             // 
-            this.auxinBarDisplayLabel.Location = new System.Drawing.Point(238, 411);
+            this.auxinBarDisplayLabel.Location = new System.Drawing.Point(316, 411);
             this.auxinBarDisplayLabel.Name = "auxinBarDisplayLabel";
             this.auxinBarDisplayLabel.Size = new System.Drawing.Size(45, 13);
             this.auxinBarDisplayLabel.TabIndex = 6;
@@ -163,7 +178,7 @@
             // ch0Label
             // 
             this.ch0Label.AutoSize = true;
-            this.ch0Label.Location = new System.Drawing.Point(12, 204);
+            this.ch0Label.Location = new System.Drawing.Point(12, 231);
             this.ch0Label.Name = "ch0Label";
             this.ch0Label.Size = new System.Drawing.Size(47, 13);
             this.ch0Label.TabIndex = 7;
@@ -172,7 +187,7 @@
             // ch1Label
             // 
             this.ch1Label.AutoSize = true;
-            this.ch1Label.Location = new System.Drawing.Point(12, 228);
+            this.ch1Label.Location = new System.Drawing.Point(12, 255);
             this.ch1Label.Name = "ch1Label";
             this.ch1Label.Size = new System.Drawing.Size(43, 13);
             this.ch1Label.TabIndex = 8;
@@ -181,7 +196,7 @@
             // ch2Label
             // 
             this.ch2Label.AutoSize = true;
-            this.ch2Label.Location = new System.Drawing.Point(12, 252);
+            this.ch2Label.Location = new System.Drawing.Point(12, 279);
             this.ch2Label.Name = "ch2Label";
             this.ch2Label.Size = new System.Drawing.Size(48, 13);
             this.ch2Label.TabIndex = 9;
@@ -190,7 +205,7 @@
             // ch3Label
             // 
             this.ch3Label.AutoSize = true;
-            this.ch3Label.Location = new System.Drawing.Point(12, 276);
+            this.ch3Label.Location = new System.Drawing.Point(12, 303);
             this.ch3Label.Name = "ch3Label";
             this.ch3Label.Size = new System.Drawing.Size(44, 13);
             this.ch3Label.TabIndex = 10;
@@ -199,7 +214,7 @@
             // ch4Label
             // 
             this.ch4Label.AutoSize = true;
-            this.ch4Label.Location = new System.Drawing.Point(12, 300);
+            this.ch4Label.Location = new System.Drawing.Point(12, 327);
             this.ch4Label.Name = "ch4Label";
             this.ch4Label.Size = new System.Drawing.Size(43, 13);
             this.ch4Label.TabIndex = 11;
@@ -207,7 +222,7 @@
             // 
             // ch4DisplayLabel
             // 
-            this.ch4DisplayLabel.Location = new System.Drawing.Point(65, 300);
+            this.ch4DisplayLabel.Location = new System.Drawing.Point(65, 327);
             this.ch4DisplayLabel.Name = "ch4DisplayLabel";
             this.ch4DisplayLabel.Size = new System.Drawing.Size(55, 13);
             this.ch4DisplayLabel.TabIndex = 16;
@@ -216,7 +231,7 @@
             // 
             // ch3DisplayLabel
             // 
-            this.ch3DisplayLabel.Location = new System.Drawing.Point(65, 276);
+            this.ch3DisplayLabel.Location = new System.Drawing.Point(65, 303);
             this.ch3DisplayLabel.Name = "ch3DisplayLabel";
             this.ch3DisplayLabel.Size = new System.Drawing.Size(55, 13);
             this.ch3DisplayLabel.TabIndex = 15;
@@ -225,7 +240,7 @@
             // 
             // ch2DisplayLabel
             // 
-            this.ch2DisplayLabel.Location = new System.Drawing.Point(65, 252);
+            this.ch2DisplayLabel.Location = new System.Drawing.Point(65, 279);
             this.ch2DisplayLabel.Name = "ch2DisplayLabel";
             this.ch2DisplayLabel.Size = new System.Drawing.Size(55, 13);
             this.ch2DisplayLabel.TabIndex = 14;
@@ -234,7 +249,7 @@
             // 
             // ch1DisplayLabel
             // 
-            this.ch1DisplayLabel.Location = new System.Drawing.Point(65, 228);
+            this.ch1DisplayLabel.Location = new System.Drawing.Point(65, 255);
             this.ch1DisplayLabel.Name = "ch1DisplayLabel";
             this.ch1DisplayLabel.Size = new System.Drawing.Size(55, 13);
             this.ch1DisplayLabel.TabIndex = 13;
@@ -243,7 +258,7 @@
             // 
             // ch0DisplayLabel
             // 
-            this.ch0DisplayLabel.Location = new System.Drawing.Point(65, 204);
+            this.ch0DisplayLabel.Location = new System.Drawing.Point(65, 231);
             this.ch0DisplayLabel.Name = "ch0DisplayLabel";
             this.ch0DisplayLabel.Size = new System.Drawing.Size(55, 13);
             this.ch0DisplayLabel.TabIndex = 12;
@@ -252,7 +267,7 @@
             // 
             // sizeLabel
             // 
-            this.sizeLabel.Location = new System.Drawing.Point(286, 204);
+            this.sizeLabel.Location = new System.Drawing.Point(286, 231);
             this.sizeLabel.Name = "sizeLabel";
             this.sizeLabel.Size = new System.Drawing.Size(122, 23);
             this.sizeLabel.TabIndex = 17;
@@ -261,7 +276,7 @@
             // 
             // packageCountLabel
             // 
-            this.packageCountLabel.Location = new System.Drawing.Point(286, 228);
+            this.packageCountLabel.Location = new System.Drawing.Point(286, 255);
             this.packageCountLabel.Name = "packageCountLabel";
             this.packageCountLabel.Size = new System.Drawing.Size(124, 13);
             this.packageCountLabel.TabIndex = 18;
@@ -270,7 +285,7 @@
             // 
             // sizeDisplayLabel
             // 
-            this.sizeDisplayLabel.Location = new System.Drawing.Point(416, 204);
+            this.sizeDisplayLabel.Location = new System.Drawing.Point(416, 231);
             this.sizeDisplayLabel.Name = "sizeDisplayLabel";
             this.sizeDisplayLabel.Size = new System.Drawing.Size(34, 13);
             this.sizeDisplayLabel.TabIndex = 19;
@@ -279,7 +294,7 @@
             // 
             // packageCountDisplayLabel
             // 
-            this.packageCountDisplayLabel.Location = new System.Drawing.Point(416, 228);
+            this.packageCountDisplayLabel.Location = new System.Drawing.Point(416, 255);
             this.packageCountDisplayLabel.Name = "packageCountDisplayLabel";
             this.packageCountDisplayLabel.Size = new System.Drawing.Size(34, 13);
             this.packageCountDisplayLabel.TabIndex = 20;
@@ -398,7 +413,7 @@
             // 
             // leftLungTemperatureLabel
             // 
-            this.leftLungTemperatureLabel.Location = new System.Drawing.Point(534, 204);
+            this.leftLungTemperatureLabel.Location = new System.Drawing.Point(534, 231);
             this.leftLungTemperatureLabel.Name = "leftLungTemperatureLabel";
             this.leftLungTemperatureLabel.Size = new System.Drawing.Size(124, 23);
             this.leftLungTemperatureLabel.TabIndex = 33;
@@ -407,7 +422,7 @@
             // 
             // rightLungTemperatureLabel
             // 
-            this.rightLungTemperatureLabel.Location = new System.Drawing.Point(534, 227);
+            this.rightLungTemperatureLabel.Location = new System.Drawing.Point(534, 254);
             this.rightLungTemperatureLabel.Name = "rightLungTemperatureLabel";
             this.rightLungTemperatureLabel.Size = new System.Drawing.Size(124, 23);
             this.rightLungTemperatureLabel.TabIndex = 34;
@@ -416,7 +431,7 @@
             // 
             // fio2Label
             // 
-            this.fio2Label.Location = new System.Drawing.Point(534, 252);
+            this.fio2Label.Location = new System.Drawing.Point(534, 279);
             this.fio2Label.Name = "fio2Label";
             this.fio2Label.Size = new System.Drawing.Size(124, 23);
             this.fio2Label.TabIndex = 35;
@@ -425,27 +440,27 @@
             // 
             // leftLungTemperatureDisplayLabel
             // 
-            this.leftLungTemperatureDisplayLabel.Location = new System.Drawing.Point(664, 204);
+            this.leftLungTemperatureDisplayLabel.Location = new System.Drawing.Point(664, 231);
             this.leftLungTemperatureDisplayLabel.Name = "leftLungTemperatureDisplayLabel";
-            this.leftLungTemperatureDisplayLabel.Size = new System.Drawing.Size(45, 13);
+            this.leftLungTemperatureDisplayLabel.Size = new System.Drawing.Size(57, 13);
             this.leftLungTemperatureDisplayLabel.TabIndex = 36;
             this.leftLungTemperatureDisplayLabel.Text = "0.000";
             this.leftLungTemperatureDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // rightLungTemperatureDisplayLabel
             // 
-            this.rightLungTemperatureDisplayLabel.Location = new System.Drawing.Point(664, 227);
+            this.rightLungTemperatureDisplayLabel.Location = new System.Drawing.Point(664, 254);
             this.rightLungTemperatureDisplayLabel.Name = "rightLungTemperatureDisplayLabel";
-            this.rightLungTemperatureDisplayLabel.Size = new System.Drawing.Size(45, 13);
+            this.rightLungTemperatureDisplayLabel.Size = new System.Drawing.Size(57, 13);
             this.rightLungTemperatureDisplayLabel.TabIndex = 37;
             this.rightLungTemperatureDisplayLabel.Text = "0.000";
             this.rightLungTemperatureDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // fio2DisplayLabel
             // 
-            this.fio2DisplayLabel.Location = new System.Drawing.Point(664, 252);
+            this.fio2DisplayLabel.Location = new System.Drawing.Point(664, 279);
             this.fio2DisplayLabel.Name = "fio2DisplayLabel";
-            this.fio2DisplayLabel.Size = new System.Drawing.Size(45, 13);
+            this.fio2DisplayLabel.Size = new System.Drawing.Size(57, 13);
             this.fio2DisplayLabel.TabIndex = 38;
             this.fio2DisplayLabel.Text = "0.0";
             this.fio2DisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -461,7 +476,7 @@
             // 
             // setReadHSSCDButton
             // 
-            this.setReadHSSCDButton.Location = new System.Drawing.Point(12, 169);
+            this.setReadHSSCDButton.Location = new System.Drawing.Point(12, 196);
             this.setReadHSSCDButton.Name = "setReadHSSCDButton";
             this.setReadHSSCDButton.Size = new System.Drawing.Size(271, 23);
             this.setReadHSSCDButton.TabIndex = 40;
@@ -471,7 +486,7 @@
             // 
             // setReadLSSCDButton
             // 
-            this.setReadLSSCDButton.Location = new System.Drawing.Point(512, 169);
+            this.setReadLSSCDButton.Location = new System.Drawing.Point(512, 196);
             this.setReadLSSCDButton.Name = "setReadLSSCDButton";
             this.setReadLSSCDButton.Size = new System.Drawing.Size(209, 23);
             this.setReadLSSCDButton.TabIndex = 41;
@@ -481,7 +496,7 @@
             // 
             // auxinDisplayLabel
             // 
-            this.auxinDisplayLabel.Location = new System.Drawing.Point(126, 300);
+            this.auxinDisplayLabel.Location = new System.Drawing.Point(126, 327);
             this.auxinDisplayLabel.Name = "auxinDisplayLabel";
             this.auxinDisplayLabel.Size = new System.Drawing.Size(55, 13);
             this.auxinDisplayLabel.TabIndex = 46;
@@ -490,7 +505,7 @@
             // 
             // phighDisplayLabel
             // 
-            this.phighDisplayLabel.Location = new System.Drawing.Point(126, 276);
+            this.phighDisplayLabel.Location = new System.Drawing.Point(126, 303);
             this.phighDisplayLabel.Name = "phighDisplayLabel";
             this.phighDisplayLabel.Size = new System.Drawing.Size(55, 13);
             this.phighDisplayLabel.TabIndex = 45;
@@ -499,7 +514,7 @@
             // 
             // prghtDisplayLabel
             // 
-            this.prghtDisplayLabel.Location = new System.Drawing.Point(126, 252);
+            this.prghtDisplayLabel.Location = new System.Drawing.Point(126, 279);
             this.prghtDisplayLabel.Name = "prghtDisplayLabel";
             this.prghtDisplayLabel.Size = new System.Drawing.Size(55, 13);
             this.prghtDisplayLabel.TabIndex = 44;
@@ -508,7 +523,7 @@
             // 
             // pleftDisplayLabel
             // 
-            this.pleftDisplayLabel.Location = new System.Drawing.Point(126, 228);
+            this.pleftDisplayLabel.Location = new System.Drawing.Point(126, 255);
             this.pleftDisplayLabel.Name = "pleftDisplayLabel";
             this.pleftDisplayLabel.Size = new System.Drawing.Size(55, 13);
             this.pleftDisplayLabel.TabIndex = 43;
@@ -517,18 +532,165 @@
             // 
             // pproxDisplayLabel
             // 
-            this.pproxDisplayLabel.Location = new System.Drawing.Point(126, 204);
+            this.pproxDisplayLabel.Location = new System.Drawing.Point(126, 231);
             this.pproxDisplayLabel.Name = "pproxDisplayLabel";
             this.pproxDisplayLabel.Size = new System.Drawing.Size(55, 13);
             this.pproxDisplayLabel.TabIndex = 42;
             this.pproxDisplayLabel.Text = "0.00";
             this.pproxDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // toggleBlinkStatusButton
+            // 
+            this.toggleBlinkStatusButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.toggleBlinkStatusButton.Location = new System.Drawing.Point(126, 406);
+            this.toggleBlinkStatusButton.Name = "toggleBlinkStatusButton";
+            this.toggleBlinkStatusButton.Size = new System.Drawing.Size(114, 23);
+            this.toggleBlinkStatusButton.TabIndex = 47;
+            this.toggleBlinkStatusButton.Text = "Toggle Blink Status";
+            this.toggleBlinkStatusButton.UseVisualStyleBackColor = true;
+            this.toggleBlinkStatusButton.Click += new System.EventHandler(this.toggleBlinkStatusButton_Click);
+            // 
+            // readHWVersionButton
+            // 
+            this.readHWVersionButton.Location = new System.Drawing.Point(566, 128);
+            this.readHWVersionButton.Name = "readHWVersionButton";
+            this.readHWVersionButton.Size = new System.Drawing.Size(114, 23);
+            this.readHWVersionButton.TabIndex = 52;
+            this.readHWVersionButton.Text = "Read HW Version";
+            this.readHWVersionButton.UseVisualStyleBackColor = true;
+            this.readHWVersionButton.Click += new System.EventHandler(this.readHWVersionButton_Click);
+            // 
+            // hwVersionDisplayLabel
+            // 
+            this.hwVersionDisplayLabel.AutoSize = true;
+            this.hwVersionDisplayLabel.Location = new System.Drawing.Point(686, 133);
+            this.hwVersionDisplayLabel.Name = "hwVersionDisplayLabel";
+            this.hwVersionDisplayLabel.Size = new System.Drawing.Size(138, 13);
+            this.hwVersionDisplayLabel.TabIndex = 51;
+            this.hwVersionDisplayLabel.Text = "Invalid HW Version Number";
+            // 
+            // setHWVersionButton
+            // 
+            this.setHWVersionButton.Location = new System.Drawing.Point(446, 128);
+            this.setHWVersionButton.Name = "setHWVersionButton";
+            this.setHWVersionButton.Size = new System.Drawing.Size(114, 23);
+            this.setHWVersionButton.TabIndex = 50;
+            this.setHWVersionButton.Text = "Set HW Version";
+            this.setHWVersionButton.UseVisualStyleBackColor = true;
+            this.setHWVersionButton.Click += new System.EventHandler(this.setHWVersionButton_Click);
+            // 
+            // hwVerMajTextBox
+            // 
+            this.hwVerMajTextBox.Location = new System.Drawing.Point(289, 130);
+            this.hwVerMajTextBox.Name = "hwVerMajTextBox";
+            this.hwVerMajTextBox.Size = new System.Drawing.Size(32, 20);
+            this.hwVerMajTextBox.TabIndex = 49;
+            this.hwVerMajTextBox.Text = "3";
+            this.hwVerMajTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // hwVerMajLabel
+            // 
+            this.hwVerMajLabel.Location = new System.Drawing.Point(208, 133);
+            this.hwVerMajLabel.Name = "hwVerMajLabel";
+            this.hwVerMajLabel.Size = new System.Drawing.Size(75, 13);
+            this.hwVerMajLabel.TabIndex = 48;
+            this.hwVerMajLabel.Text = "HW Ver Maj:";
+            this.hwVerMajLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // hwVerMinTextBox
+            // 
+            this.hwVerMinTextBox.Location = new System.Drawing.Point(408, 130);
+            this.hwVerMinTextBox.Name = "hwVerMinTextBox";
+            this.hwVerMinTextBox.Size = new System.Drawing.Size(32, 20);
+            this.hwVerMinTextBox.TabIndex = 54;
+            this.hwVerMinTextBox.Text = "3";
+            this.hwVerMinTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // hwVerMinLabel
+            // 
+            this.hwVerMinLabel.Location = new System.Drawing.Point(327, 133);
+            this.hwVerMinLabel.Name = "hwVerMinLabel";
+            this.hwVerMinLabel.Size = new System.Drawing.Size(75, 13);
+            this.hwVerMinLabel.TabIndex = 53;
+            this.hwVerMinLabel.Text = "HW Ver Min:";
+            this.hwVerMinLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // readSWVersionButton
+            // 
+            this.readSWVersionButton.Location = new System.Drawing.Point(566, 157);
+            this.readSWVersionButton.Name = "readSWVersionButton";
+            this.readSWVersionButton.Size = new System.Drawing.Size(114, 23);
+            this.readSWVersionButton.TabIndex = 56;
+            this.readSWVersionButton.Text = "Read FW Version";
+            this.readSWVersionButton.UseVisualStyleBackColor = true;
+            this.readSWVersionButton.Click += new System.EventHandler(this.readSWVersionButton_Click);
+            // 
+            // swVersionDisplayLabel
+            // 
+            this.swVersionDisplayLabel.AutoSize = true;
+            this.swVersionDisplayLabel.Location = new System.Drawing.Point(686, 162);
+            this.swVersionDisplayLabel.Name = "swVersionDisplayLabel";
+            this.swVersionDisplayLabel.Size = new System.Drawing.Size(136, 13);
+            this.swVersionDisplayLabel.TabIndex = 55;
+            this.swVersionDisplayLabel.Text = "Invalid FW Version Number";
+            // 
+            // usbOutLabel
+            // 
+            this.usbOutLabel.AutoSize = true;
+            this.usbOutLabel.Location = new System.Drawing.Point(274, 14);
+            this.usbOutLabel.Name = "usbOutLabel";
+            this.usbOutLabel.Size = new System.Drawing.Size(52, 13);
+            this.usbOutLabel.TabIndex = 57;
+            this.usbOutLabel.Text = "USB Out:";
+            this.usbOutLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // usbInLabel
+            // 
+            this.usbInLabel.AutoSize = true;
+            this.usbInLabel.Location = new System.Drawing.Point(282, 36);
+            this.usbInLabel.Name = "usbInLabel";
+            this.usbInLabel.Size = new System.Drawing.Size(44, 13);
+            this.usbInLabel.TabIndex = 58;
+            this.usbInLabel.Text = "USB In:";
+            this.usbInLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // usbOutDisplayLabel
+            // 
+            this.usbOutDisplayLabel.AutoSize = true;
+            this.usbOutDisplayLabel.Location = new System.Drawing.Point(332, 14);
+            this.usbOutDisplayLabel.Name = "usbOutDisplayLabel";
+            this.usbOutDisplayLabel.Size = new System.Drawing.Size(19, 13);
+            this.usbOutDisplayLabel.TabIndex = 59;
+            this.usbOutDisplayLabel.Text = "00";
+            // 
+            // usbInDisplayLabel
+            // 
+            this.usbInDisplayLabel.AutoSize = true;
+            this.usbInDisplayLabel.Location = new System.Drawing.Point(332, 36);
+            this.usbInDisplayLabel.Name = "usbInDisplayLabel";
+            this.usbInDisplayLabel.Size = new System.Drawing.Size(19, 13);
+            this.usbInDisplayLabel.TabIndex = 60;
+            this.usbInDisplayLabel.Text = "00";
+            // 
             // PV3TestUtility3Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 441);
+            this.Controls.Add(this.usbInDisplayLabel);
+            this.Controls.Add(this.usbOutDisplayLabel);
+            this.Controls.Add(this.usbInLabel);
+            this.Controls.Add(this.usbOutLabel);
+            this.Controls.Add(this.readSWVersionButton);
+            this.Controls.Add(this.swVersionDisplayLabel);
+            this.Controls.Add(this.hwVerMinTextBox);
+            this.Controls.Add(this.hwVerMinLabel);
+            this.Controls.Add(this.readHWVersionButton);
+            this.Controls.Add(this.hwVersionDisplayLabel);
+            this.Controls.Add(this.setHWVersionButton);
+            this.Controls.Add(this.hwVerMajTextBox);
+            this.Controls.Add(this.hwVerMajLabel);
+            this.Controls.Add(this.toggleBlinkStatusButton);
             this.Controls.Add(this.auxinDisplayLabel);
             this.Controls.Add(this.phighDisplayLabel);
             this.Controls.Add(this.prghtDisplayLabel);
@@ -635,6 +797,20 @@
         private System.Windows.Forms.Label prghtDisplayLabel;
         private System.Windows.Forms.Label pleftDisplayLabel;
         private System.Windows.Forms.Label pproxDisplayLabel;
+        private System.Windows.Forms.Button toggleBlinkStatusButton;
+        private System.Windows.Forms.Button readHWVersionButton;
+        private System.Windows.Forms.Label hwVersionDisplayLabel;
+        private System.Windows.Forms.Button setHWVersionButton;
+        private System.Windows.Forms.TextBox hwVerMajTextBox;
+        private System.Windows.Forms.Label hwVerMajLabel;
+        private System.Windows.Forms.TextBox hwVerMinTextBox;
+        private System.Windows.Forms.Label hwVerMinLabel;
+        private System.Windows.Forms.Button readSWVersionButton;
+        private System.Windows.Forms.Label swVersionDisplayLabel;
+        private System.Windows.Forms.Label usbOutLabel;
+        private System.Windows.Forms.Label usbInLabel;
+        private System.Windows.Forms.Label usbOutDisplayLabel;
+        private System.Windows.Forms.Label usbInDisplayLabel;
     }
 }
 

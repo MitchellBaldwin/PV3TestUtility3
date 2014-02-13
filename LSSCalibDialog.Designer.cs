@@ -280,7 +280,7 @@
             // 
             // lpsTimer
             // 
-            this.lpsTimer.Interval = 500;
+            this.lpsTimer.Interval = 1000;
             this.lpsTimer.Tick += new System.EventHandler(this.lpsTimer_Tick);
             // 
             // connectionErrorLabel

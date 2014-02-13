@@ -88,11 +88,11 @@ namespace PV3TestUtility3
                 fio2RawDisplayLabel.Text = pv3Data.FiO2Raw.ToString();
                 fio2MeasurementDisplayLabel.Text = pv3Data.FiO2.ToString("0.0");
                 pv3Data.TLEFTRaw = (ushort)((uint)(pv3Connection.InBuffer[3] << 8) + (uint)pv3Connection.InBuffer[2]);
-                tleftRawDisplayLabel.Text = pv3Data.PLEFTRaw.ToString("X4");
-                tleftMeasurementDisplayLabel.Text = pv3Data.TLEFT.ToString("0.0");
+                tleftRawDisplayLabel.Text = pv3Data.TLEFTRaw.ToString("X4");
+                tleftMeasurementDisplayLabel.Text = pv3Data.TLEFT.ToString("0.000");
                 pv3Data.TRGHTRaw = (ushort)((uint)(pv3Connection.InBuffer[5] << 8) + (uint)pv3Connection.InBuffer[4]);
                 trghtRawDisplayLabel.Text = pv3Data.TRGHTRaw.ToString("X4");
-                trghtMeasurementDisplayLabel.Text = pv3Data.TRGHT.ToString("0.0");
+                trghtMeasurementDisplayLabel.Text = pv3Data.TRGHT.ToString("0.000");
             }
 
         }

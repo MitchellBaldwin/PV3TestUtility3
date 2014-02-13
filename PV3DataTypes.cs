@@ -23,11 +23,14 @@ namespace PV3TestUtility3
 
             TOGGLE_LEDS = 0x80,
             RD_SW2 = 0x81,
+            TOGGLE_BLINKSTATUS = 0x82, //Toggle USB status indication via LED on/off
 
             START_DATA_ACQ = 0xA0, //Start acquisition of data
             STOP_DATA_ACQ = 0xA1, //Stop acquisition of data
-
             RD_DATA_EEPROM_CHECKSUM = 0xA2, //Return sum of DATA EEPROM contents
+            RD_FIRMWARE_VERSION = 0xA3, //Return firmware version
+            RD_HARDWARE_VERSION = 0xA4, //Return hardware version
+            SET_HARDWARE_VERSION = 0xA5, //Set hardware version
 
             RD_LSSDP = 0xEB, //Read low speed sensor data packet
             SET_LUNG_SN = 0xEC, //Write SNPkt to TTL (PC to TTL)
@@ -157,7 +160,8 @@ namespace PV3TestUtility3
         {
             get
             {
-                tleft = (TLEFTRaw >> 3) + (TLEFTRaw & 0x07)*0.125;
+                tleft = (TLEFTRaw >> 3) + (TLEFTRaw & 0x07) * 0.125;
+                //tleft = (TLEFTRaw >> 3);
                 return tleft;
             }
             set { tleft = value; }
