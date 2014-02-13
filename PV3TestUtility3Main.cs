@@ -375,5 +375,14 @@ namespace PV3TestUtility3
 
         }
 
+        private void setReadComplianceCalibrationDataButton_Click(object sender, EventArgs e)
+        {
+            usbConnection.OutBuffer[1] = 0xB1;
+            usbConnection.sendViaUSB();
+            usbConnection.receiveViaUSB();
+            DisplayUSBBufferData();
+            
+        }
+
     }
 }

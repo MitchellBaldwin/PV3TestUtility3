@@ -147,6 +147,7 @@ namespace PV3TestUtility3
             pv3Connection.OutBuffer[2] = byteGain[0];
             pv3Connection.OutBuffer[3] = byteGain[1];
             pv3Connection.sendViaUSB();
+            pv3Connection.receiveViaUSB();
         }
 
         private void setPLEFTGainButton_Click(object sender, EventArgs e)
@@ -161,6 +162,7 @@ namespace PV3TestUtility3
             pv3Connection.OutBuffer[2] = byteGain[0];
             pv3Connection.OutBuffer[3] = byteGain[1];
             pv3Connection.sendViaUSB();
+            pv3Connection.receiveViaUSB();
         }
 
         private void setPRGHTGainButton_Click(object sender, EventArgs e)
@@ -175,6 +177,7 @@ namespace PV3TestUtility3
             pv3Connection.OutBuffer[2] = byteGain[0];
             pv3Connection.OutBuffer[3] = byteGain[1];
             pv3Connection.sendViaUSB();
+            pv3Connection.receiveViaUSB();
         }
 
         private void setPHIGHGainButton_Click(object sender, EventArgs e)
@@ -189,6 +192,7 @@ namespace PV3TestUtility3
             pv3Connection.OutBuffer[2] = byteGain[0];
             pv3Connection.OutBuffer[3] = byteGain[1];
             pv3Connection.sendViaUSB();
+            pv3Connection.receiveViaUSB();
         }
 
         private void setAUXINGainButton_Click(object sender, EventArgs e)
@@ -203,6 +207,7 @@ namespace PV3TestUtility3
             pv3Connection.OutBuffer[2] = byteGain[0];
             pv3Connection.OutBuffer[3] = byteGain[1];
             pv3Connection.sendViaUSB();
+            pv3Connection.receiveViaUSB();
         }
 
         private void readAllGainValuesButton_Click(object sender, EventArgs e)

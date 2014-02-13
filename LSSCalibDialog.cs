@@ -50,7 +50,7 @@ namespace PV3TestUtility3
                 pv3Data.FiO2Zero = (ushort)((uint)(pv3Connection.InBuffer[11] << 8) + (uint)pv3Connection.InBuffer[10]);
                 fio2OffsetDisplayLabel.Text = pv3Data.FiO2Zero.ToString();
                 pv3Data.FiO2Gain = (ushort)((uint)(pv3Connection.InBuffer[13] << 8) + (uint)pv3Connection.InBuffer[12]);
-                fio2GainDisplayLabel.Text = pv3Data.FiO2Zero.ToString();
+                fio2GainDisplayLabel.Text = pv3Data.FiO2Gain.ToString();
 
                 pv3Data.TLEFTZero = (ushort)((uint)(pv3Connection.InBuffer[3] << 8) + (uint)pv3Connection.InBuffer[2]);
                 tleftOffsetDisplayLabel.Text = pv3Data.TLEFTZero.ToString();
@@ -109,6 +109,7 @@ namespace PV3TestUtility3
             pv3Connection.OutBuffer[2] = byteGain[0];
             pv3Connection.OutBuffer[3] = byteGain[1];
             pv3Connection.sendViaUSB();
+            pv3Connection.receiveViaUSB();
         }
 
         private void setTLEFTGainButton_Click(object sender, EventArgs e)
@@ -123,6 +124,7 @@ namespace PV3TestUtility3
             pv3Connection.OutBuffer[2] = byteGain[0];
             pv3Connection.OutBuffer[3] = byteGain[1];
             pv3Connection.sendViaUSB();
+            pv3Connection.receiveViaUSB();
         }
 
         private void setTRGHTGainButton_Click(object sender, EventArgs e)
@@ -137,6 +139,7 @@ namespace PV3TestUtility3
             pv3Connection.OutBuffer[2] = byteGain[0];
             pv3Connection.OutBuffer[3] = byteGain[1];
             pv3Connection.sendViaUSB();
+            pv3Connection.receiveViaUSB();
         }
     }
 }

@@ -473,6 +473,7 @@
             this.setReadComplianceCalibrationDataButton.TabIndex = 39;
             this.setReadComplianceCalibrationDataButton.Text = "Set / Read Compliance Calibration Data";
             this.setReadComplianceCalibrationDataButton.UseVisualStyleBackColor = true;
+            this.setReadComplianceCalibrationDataButton.Click += new System.EventHandler(this.setReadComplianceCalibrationDataButton_Click);
             // 
             // setReadHSSCDButton
             // 
