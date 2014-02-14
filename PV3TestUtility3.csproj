@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompCalibDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CompCalibDialog.Designer.cs">
+      <DependentUpon>CompCalibDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="HSSCalibDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +78,9 @@
     <Compile Include="USBClass.cs">
       <SubType>Form</SubType>
     </Compile>
+    <EmbeddedResource Include="CompCalibDialog.resx">
+      <DependentUpon>CompCalibDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HSSCalibDialog.resx">
       <DependentUpon>HSSCalibDialog.cs</DependentUpon>
     </EmbeddedResource>
