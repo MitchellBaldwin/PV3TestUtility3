@@ -71,7 +71,16 @@ namespace PV3TestUtility3
             double[] CC;
             CC = new double[4];
 
-            byte command = 0xD0;
+            byte command = 0xB0;
+
+            if (leftRadioButton.Checked)
+            {
+                command = 0xB0;
+            }
+            else
+            {
+                command = 0xD0;
+            }
 
             pv3Connection.OutBuffer[1] = (byte)(command + currentCompliance);
  
@@ -96,7 +105,16 @@ namespace PV3TestUtility3
 
         private void readCCDataButton_Click(object sender, EventArgs e)
         {
-            byte command = 0xE0;
+            byte command = 0xC0;
+
+            if (leftRadioButton.Checked)
+            {
+                command = 0xC0;
+            }
+            else
+            {
+                command = 0xE0;
+            }
 
             pv3Connection.OutBuffer[1] = (byte)(command + currentCompliance);
 
@@ -113,8 +131,35 @@ namespace PV3TestUtility3
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            progCompDisplayLabel.Text = "Programming compliance setting " + ((ToolStripButton)sender).Text;
+            string side;
+            if (leftRadioButton.Checked)
+            {
+                side = "LEFT";
+            }
+            else
+            {
+                side = "RIGHT";
+            }
+
+            progCompDisplayLabel.Text = "Programming compliance setting " + ((ToolStripButton)sender).Text + " " + side;
             currentCompliance = Convert.ToByte(((ToolStripButton)sender).Tag);
+            readCCDataButton_Click(sender, new EventArgs());
         }
+
+        private void leftRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            double compliance = (double)currentCompliance / 100.0;
+            if (leftRadioButton.Checked)
+            {
+                progCompDisplayLabel.Text = string.Format("Programming compliance setting {0:0.00} LEFT", compliance);
+            }
+            else
+            {
+                progCompDisplayLabel.Text = string.Format("Programming compliance setting {0:0.000} RIGHT", compliance);
+            }
+
+            readCCDataButton_Click(sender, new EventArgs());
+        }
+
     }
 }
