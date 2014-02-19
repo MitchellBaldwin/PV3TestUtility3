@@ -66,10 +66,17 @@ namespace PV3TestUtility3
         {
             if (m.Msg == WM_DEVICECHANGE)
             {
-                if (((int)m.WParam == DBT_DEVICEARRIVAL) || ((int)m.WParam == DBT_DEVICEREMOVEPENDING) || ((int)m.WParam == DBT_DEVICEREMOVECOMPLETE) || ((int)m.WParam == DBT_CONFIGCHANGED))
+                if (((int)m.WParam == DBT_DEVICEARRIVAL) 
+                 || ((int)m.WParam == DBT_DEVICEREMOVEPENDING) 
+                 || ((int)m.WParam == DBT_DEVICEREMOVECOMPLETE) 
+                 || ((int)m.WParam == DBT_CONFIGCHANGED))
                 {
-                    ConnectToUSB();
+                    // Moved ConnectToUSB() outside of this clause so it will be called for any WM_DEVICECHANGE message
+                    // This is being done to work around the issue encountered with the ARRIVAL, REMOVAL or CONFIGCHANGE
+                    //parameters apparently no longer arriving after the MSD functions were removed from the firmware
                 }
+                ConnectToUSB();
+
             } //end of: if(m.Msg == WM_DEVICECHANGE)
             base.WndProc(ref m);
         } //end of: WndProc() function
