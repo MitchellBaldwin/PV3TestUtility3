@@ -258,7 +258,7 @@ namespace PV3TestUtility3
             usbConnection.receiveViaUSB();
             ttlSN[0] = usbConnection.InBuffer[2];
             ttlSN[1] = usbConnection.InBuffer[3];
-            lungSerialNumberDisplayLabel.Text = ((uint)(ttlSN[1] * 100) + ttlSN[0]).ToString();
+            lungSerialNumberDisplayLabel.Text = (BitConverter.ToUInt16(ttlSN, 0)).ToString();
             DisplayUSBBufferData();
         }
 
@@ -267,8 +267,7 @@ namespace PV3TestUtility3
             cmd = PV3DataTypes.PV3CommandType.SET_LUNG_SN;
             usbConnection.OutBuffer[1] = (byte)cmd;
             ushort intSN = Convert.ToUInt16(lungSerialNumberTextBox.Text);
-            ttlSN[1] = (byte)(intSN / 100);
-            ttlSN[0] = (byte)(intSN % 100);
+            ttlSN = BitConverter.GetBytes(intSN);
             usbConnection.OutBuffer[2] = ttlSN[0];
             usbConnection.OutBuffer[3] = ttlSN[1];
             usbConnection.sendViaUSB();
