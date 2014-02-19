@@ -95,7 +95,7 @@ namespace PV3TestUtility3
             {
                 connectionStateLabel.BackColor = Color.LightBlue;
                 connectionStateLabel.Text = "Connected to: " + blConnection.blDeviceID;
-                usbCommTimer.Enabled = true;
+                usbCommTimer.Enabled = false;
 
                 // Configure the form controls as appropriate for being connected to the HID Bootloader:
 
@@ -164,6 +164,7 @@ namespace PV3TestUtility3
             usbConnection.OutBuffer[1] = (byte)cmd;
             usbConnection.sendViaUSB();
             DisplayUSBBufferData();
+            ConnectToUSB();
         }
 
         private void resetMCUButton_Click(object sender, EventArgs e)
@@ -182,6 +183,7 @@ namespace PV3TestUtility3
                 usbConnection.sendViaUSB();
                 DisplayUSBBufferData();
             }
+            ConnectToUSB();
         }
 
         private void startDataAcquisitionButton_Click(object sender, EventArgs e)
