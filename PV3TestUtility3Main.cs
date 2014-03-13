@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace PV3TestUtility3
 {
@@ -280,6 +281,11 @@ namespace PV3TestUtility3
 
         private void usbCommTimer_Tick(object sender, EventArgs e)
         {
+            byte packetNum = 0;
+            byte nextPacketNum = 0;
+            long avgPackageInterval = 0;
+            long maxPackageInterval = 0;
+
             cmd = PV3DataTypes.PV3CommandType.RD_POT;
             usbConnection.OutBuffer[1] = (byte)cmd;
             usbConnection.sendViaUSB();
@@ -290,28 +296,54 @@ namespace PV3TestUtility3
             auxinBarDisplayLabel.Text = AUXINValue.ToString();
             potProgressBar.Value = (int)AUXINValue;
 
-            cmd = PV3DataTypes.PV3CommandType.RD_HSSDP;
-            usbConnection.OutBuffer[1] = (byte)cmd;
-            usbConnection.sendViaUSB();
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            for (int i = 0; i < 10; ++i)
+            {
+                cmd = PV3DataTypes.PV3CommandType.RD_HSSDP;
+                usbConnection.OutBuffer[1] = (byte)cmd;
+                usbConnection.sendViaUSB();
+                usbConnection.receiveViaUSB();
 
-            usbConnection.receiveViaUSB();
-            pv3Data.PPROXRaw = (ushort)((uint)(usbConnection.InBuffer[5] << 8) + (uint)usbConnection.InBuffer[4]);
-            ch0DisplayLabel.Text = pv3Data.PPROXRaw.ToString();
-            pproxDisplayLabel.Text = string.Format("{0:0.00}", pv3Data.PPROX);
-            pv3Data.PLEFTRaw = (ushort)((uint)(usbConnection.InBuffer[7] << 8) + (uint)usbConnection.InBuffer[6]);
-            ch1DisplayLabel.Text = pv3Data.PLEFTRaw.ToString();
-            pleftDisplayLabel.Text = pv3Data.PLEFT.ToString("0.00");
-            pv3Data.PRGHTRaw = (ushort)((uint)(usbConnection.InBuffer[9] << 8) + (uint)usbConnection.InBuffer[8]);
-            ch2DisplayLabel.Text = pv3Data.PRGHTRaw.ToString();
-            prghtDisplayLabel.Text = pv3Data.PRGHT.ToString("0.00");
-            pv3Data.PHIGHRaw = (ushort)((uint)(usbConnection.InBuffer[11] << 8) + (uint)usbConnection.InBuffer[10]);
-            ch3DisplayLabel.Text = pv3Data.PHIGHRaw.ToString();
-            phighDisplayLabel.Text = pv3Data.PHIGH.ToString("0.00");
-            pv3Data.AUXINRaw = (ushort)((uint)(usbConnection.InBuffer[13] << 8) + (uint)usbConnection.InBuffer[12]);
-            ch4DisplayLabel.Text = pv3Data.AUXINRaw.ToString();
-            auxinDisplayLabel.Text = pv3Data.AUXIN.ToString("0.00");
-            packageCountDisplayLabel.Text = usbConnection.InBuffer[2].ToString();
-            sizeDisplayLabel.Text = usbConnection.InBuffer[3].ToString();
+                if (i == 0)
+                {
+                    pv3Data.PPROXRaw = (ushort)((uint)(usbConnection.InBuffer[5] << 8) + (uint)usbConnection.InBuffer[4]);
+                    ch0DisplayLabel.Text = pv3Data.PPROXRaw.ToString();
+                    pproxDisplayLabel.Text = string.Format("{0:0.00}", pv3Data.PPROX);
+                    pv3Data.PLEFTRaw = (ushort)((uint)(usbConnection.InBuffer[7] << 8) + (uint)usbConnection.InBuffer[6]);
+                    ch1DisplayLabel.Text = pv3Data.PLEFTRaw.ToString();
+                    pleftDisplayLabel.Text = pv3Data.PLEFT.ToString("0.00");
+                    pv3Data.PRGHTRaw = (ushort)((uint)(usbConnection.InBuffer[9] << 8) + (uint)usbConnection.InBuffer[8]);
+                    ch2DisplayLabel.Text = pv3Data.PRGHTRaw.ToString();
+                    prghtDisplayLabel.Text = pv3Data.PRGHT.ToString("0.00");
+                    pv3Data.PHIGHRaw = (ushort)((uint)(usbConnection.InBuffer[11] << 8) + (uint)usbConnection.InBuffer[10]);
+                    ch3DisplayLabel.Text = pv3Data.PHIGHRaw.ToString();
+                    phighDisplayLabel.Text = pv3Data.PHIGH.ToString("0.00");
+                    pv3Data.AUXINRaw = (ushort)((uint)(usbConnection.InBuffer[13] << 8) + (uint)usbConnection.InBuffer[12]);
+                    ch4DisplayLabel.Text = pv3Data.AUXINRaw.ToString();
+                    auxinDisplayLabel.Text = pv3Data.AUXIN.ToString("0.00");
+                }
+                
+                nextPacketNum = usbConnection.InBuffer[2];
+                if ((packetNum != 0) && (packetNum != 255))
+                {
+                    packagesMissedDisplayLabel.Text = (nextPacketNum - packetNum - 1).ToString();
+                }
+                long elapsedMilliseconds = stopwatch.ElapsedMilliseconds;
+                if (i != 0)
+                {
+                    packageCountDisplayLabel.Text = usbConnection.InBuffer[2].ToString();
+                    sizeDisplayLabel.Text = usbConnection.InBuffer[3].ToString();
+                    if (elapsedMilliseconds > maxPackageInterval)
+                    {
+                        maxPackageInterval = elapsedMilliseconds;
+                    }
+                    avgPackageInterval += elapsedMilliseconds;
+                }
+                stopwatch.Restart();
+                packetNum = nextPacketNum;
+            }
+            packageIntervalDisplayLabel.Text = ((double)avgPackageInterval / 10.0).ToString();
+            maxPackageIntervalDisplayLabel.Text = maxPackageInterval.ToString();
 
             cmd = PV3DataTypes.PV3CommandType.RD_LSSDP;
             usbConnection.OutBuffer[1] = (byte)cmd;

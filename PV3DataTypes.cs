@@ -61,15 +61,15 @@ namespace PV3TestUtility3
         public byte ttlModel = 0;                              //Flag indicating the TTL model attached
         public byte[] ttlSN = new byte[2];                     //Byte array for the serial number of the TTL attached
         
-        public ushort PPROXZero = 939;
-        public ushort PLEFTZero = 915;
-        public ushort PRGHTZero = 919;
+        public ushort PPROXZero = 953;
+        public ushort PLEFTZero = 953;
+        public ushort PRGHTZero = 953;
         public ushort PHIGHZero = 150;
         public ushort AUXINZero = 815;
 
-        public ushort PPROXGain = 44944;
-        public ushort PLEFTGain = 44944;
-        public ushort PRGHTGain = 44944;
+        public ushort PPROXGain = 45435;
+        public ushort PLEFTGain = 45435;
+        public ushort PRGHTGain = 45435;
         public ushort PHIGHGain = 1;
         public ushort AUXINGain = 1;
         
@@ -163,7 +163,6 @@ namespace PV3TestUtility3
             get
             {
                 tleft = (TLEFTRaw >> 3) + (TLEFTRaw & 0x07) * 0.125;
-                //tleft = (TLEFTRaw >> 3);
                 return tleft;
             }
             set { tleft = value; }

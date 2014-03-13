@@ -92,6 +92,12 @@
             this.usbInLabel = new System.Windows.Forms.Label();
             this.usbOutDisplayLabel = new System.Windows.Forms.Label();
             this.usbInDisplayLabel = new System.Windows.Forms.Label();
+            this.packageIntervalDisplayLabel = new System.Windows.Forms.Label();
+            this.packageIntervalLabel = new System.Windows.Forms.Label();
+            this.packagesMissedDisplayLabel = new System.Windows.Forms.Label();
+            this.packagesMissedLabel = new System.Windows.Forms.Label();
+            this.maxPackageIntervalDisplayLabel = new System.Windows.Forms.Label();
+            this.maxPackageIntervalLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // connectionStateLabel
@@ -280,7 +286,7 @@
             this.packageCountLabel.Name = "packageCountLabel";
             this.packageCountLabel.Size = new System.Drawing.Size(124, 13);
             this.packageCountLabel.TabIndex = 18;
-            this.packageCountLabel.Text = "Package count::";
+            this.packageCountLabel.Text = "Package count:";
             this.packageCountLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // sizeDisplayLabel
@@ -673,11 +679,71 @@
             this.usbInDisplayLabel.TabIndex = 60;
             this.usbInDisplayLabel.Text = "00";
             // 
+            // packageIntervalDisplayLabel
+            // 
+            this.packageIntervalDisplayLabel.Location = new System.Drawing.Point(416, 279);
+            this.packageIntervalDisplayLabel.Name = "packageIntervalDisplayLabel";
+            this.packageIntervalDisplayLabel.Size = new System.Drawing.Size(34, 13);
+            this.packageIntervalDisplayLabel.TabIndex = 62;
+            this.packageIntervalDisplayLabel.Text = "0";
+            this.packageIntervalDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // packageIntervalLabel
+            // 
+            this.packageIntervalLabel.Location = new System.Drawing.Point(286, 279);
+            this.packageIntervalLabel.Name = "packageIntervalLabel";
+            this.packageIntervalLabel.Size = new System.Drawing.Size(124, 13);
+            this.packageIntervalLabel.TabIndex = 61;
+            this.packageIntervalLabel.Text = "Package interval:";
+            this.packageIntervalLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // packagesMissedDisplayLabel
+            // 
+            this.packagesMissedDisplayLabel.Location = new System.Drawing.Point(416, 327);
+            this.packagesMissedDisplayLabel.Name = "packagesMissedDisplayLabel";
+            this.packagesMissedDisplayLabel.Size = new System.Drawing.Size(34, 13);
+            this.packagesMissedDisplayLabel.TabIndex = 64;
+            this.packagesMissedDisplayLabel.Text = "0";
+            this.packagesMissedDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // packagesMissedLabel
+            // 
+            this.packagesMissedLabel.Location = new System.Drawing.Point(286, 327);
+            this.packagesMissedLabel.Name = "packagesMissedLabel";
+            this.packagesMissedLabel.Size = new System.Drawing.Size(124, 13);
+            this.packagesMissedLabel.TabIndex = 63;
+            this.packagesMissedLabel.Text = "Packages missed:";
+            this.packagesMissedLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // maxPackageIntervalDisplayLabel
+            // 
+            this.maxPackageIntervalDisplayLabel.Location = new System.Drawing.Point(416, 303);
+            this.maxPackageIntervalDisplayLabel.Name = "maxPackageIntervalDisplayLabel";
+            this.maxPackageIntervalDisplayLabel.Size = new System.Drawing.Size(34, 13);
+            this.maxPackageIntervalDisplayLabel.TabIndex = 66;
+            this.maxPackageIntervalDisplayLabel.Text = "0";
+            this.maxPackageIntervalDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // maxPackageIntervalLabel
+            // 
+            this.maxPackageIntervalLabel.Location = new System.Drawing.Point(286, 303);
+            this.maxPackageIntervalLabel.Name = "maxPackageIntervalLabel";
+            this.maxPackageIntervalLabel.Size = new System.Drawing.Size(124, 13);
+            this.maxPackageIntervalLabel.TabIndex = 65;
+            this.maxPackageIntervalLabel.Text = "Max package interval:";
+            this.maxPackageIntervalLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // PV3TestUtility3Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 441);
+            this.Controls.Add(this.maxPackageIntervalDisplayLabel);
+            this.Controls.Add(this.maxPackageIntervalLabel);
+            this.Controls.Add(this.packagesMissedDisplayLabel);
+            this.Controls.Add(this.packagesMissedLabel);
+            this.Controls.Add(this.packageIntervalDisplayLabel);
+            this.Controls.Add(this.packageIntervalLabel);
             this.Controls.Add(this.usbInDisplayLabel);
             this.Controls.Add(this.usbOutDisplayLabel);
             this.Controls.Add(this.usbInLabel);
@@ -812,6 +878,12 @@
         private System.Windows.Forms.Label usbInLabel;
         private System.Windows.Forms.Label usbOutDisplayLabel;
         private System.Windows.Forms.Label usbInDisplayLabel;
+        private System.Windows.Forms.Label packageIntervalDisplayLabel;
+        private System.Windows.Forms.Label packageIntervalLabel;
+        private System.Windows.Forms.Label packagesMissedDisplayLabel;
+        private System.Windows.Forms.Label packagesMissedLabel;
+        private System.Windows.Forms.Label maxPackageIntervalDisplayLabel;
+        private System.Windows.Forms.Label maxPackageIntervalLabel;
     }
 }
 
