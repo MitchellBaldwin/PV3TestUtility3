@@ -342,7 +342,7 @@ namespace PV3TestUtility3
                 stopwatch.Restart();
                 packetNum = nextPacketNum;
             }
-            packageIntervalDisplayLabel.Text = ((double)avgPackageInterval / 10.0).ToString();
+            packageIntervalDisplayLabel.Text = ((double)avgPackageInterval / 9.0).ToString("0.0");
             maxPackageIntervalDisplayLabel.Text = maxPackageInterval.ToString();
 
             cmd = PV3DataTypes.PV3CommandType.RD_LSSDP;
