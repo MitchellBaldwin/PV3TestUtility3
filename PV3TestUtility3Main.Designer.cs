@@ -98,6 +98,8 @@
             this.packagesMissedLabel = new System.Windows.Forms.Label();
             this.maxPackageIntervalDisplayLabel = new System.Windows.Forms.Label();
             this.maxPackageIntervalLabel = new System.Windows.Forms.Label();
+            this.packageIntervalUnitsLabel = new System.Windows.Forms.Label();
+            this.maxPackageIntervalUnitsLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // connectionStateLabel
@@ -733,11 +735,31 @@
             this.maxPackageIntervalLabel.Text = "Max package interval:";
             this.maxPackageIntervalLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // packageIntervalUnitsLabel
+            // 
+            this.packageIntervalUnitsLabel.AutoSize = true;
+            this.packageIntervalUnitsLabel.Location = new System.Drawing.Point(456, 279);
+            this.packageIntervalUnitsLabel.Name = "packageIntervalUnitsLabel";
+            this.packageIntervalUnitsLabel.Size = new System.Drawing.Size(20, 13);
+            this.packageIntervalUnitsLabel.TabIndex = 67;
+            this.packageIntervalUnitsLabel.Text = "ms";
+            // 
+            // maxPackageIntervalUnitsLabel
+            // 
+            this.maxPackageIntervalUnitsLabel.AutoSize = true;
+            this.maxPackageIntervalUnitsLabel.Location = new System.Drawing.Point(456, 303);
+            this.maxPackageIntervalUnitsLabel.Name = "maxPackageIntervalUnitsLabel";
+            this.maxPackageIntervalUnitsLabel.Size = new System.Drawing.Size(20, 13);
+            this.maxPackageIntervalUnitsLabel.TabIndex = 68;
+            this.maxPackageIntervalUnitsLabel.Text = "ms";
+            // 
             // PV3TestUtility3Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 441);
+            this.Controls.Add(this.maxPackageIntervalUnitsLabel);
+            this.Controls.Add(this.packageIntervalUnitsLabel);
             this.Controls.Add(this.maxPackageIntervalDisplayLabel);
             this.Controls.Add(this.maxPackageIntervalLabel);
             this.Controls.Add(this.packagesMissedDisplayLabel);
@@ -884,6 +906,8 @@
         private System.Windows.Forms.Label packagesMissedLabel;
         private System.Windows.Forms.Label maxPackageIntervalDisplayLabel;
         private System.Windows.Forms.Label maxPackageIntervalLabel;
+        private System.Windows.Forms.Label packageIntervalUnitsLabel;
+        private System.Windows.Forms.Label maxPackageIntervalUnitsLabel;
     }
 }
 

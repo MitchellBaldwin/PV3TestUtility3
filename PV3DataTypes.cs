@@ -70,7 +70,7 @@ namespace PV3TestUtility3
         public ushort PPROXGain = 45435;
         public ushort PLEFTGain = 45435;
         public ushort PRGHTGain = 45435;
-        public ushort PHIGHGain = 1;
+        public ushort PHIGHGain = 27081;
         public ushort AUXINGain = 1;
         
         public ushort PPROXRaw;
@@ -117,7 +117,7 @@ namespace PV3TestUtility3
         public double PHIGH
         {
             get {
-                phigh = (PHIGHRaw - PHIGHZero) * PHIGHGain;
+                phigh = (PHIGHRaw - PHIGHZero) * PHIGHGain / 1000000.0;
                 return phigh; 
             }
             set { phigh = value; }
@@ -128,17 +128,17 @@ namespace PV3TestUtility3
         public double AUXIN
         {
             get {
-                auxin = (AUXINRaw - AUXINZero) * AUXINGain;
+                auxin = (AUXINRaw - AUXINZero) * AUXINGain / 1000000.0;
                 return auxin; 
             }
             set { auxin = value; }
         }
 
-        public ushort FiO2Zero = 0;
+        public ushort FiO2Zero = 10;
         public ushort TLEFTZero = 0;
         public ushort TRGHTZero = 0;
 
-        public ushort FiO2Gain = 1;
+        public ushort FiO2Gain = 11372;
         public ushort TLEFTGain = 1;
         public ushort TRGHTGain = 1;
         
@@ -151,7 +151,7 @@ namespace PV3TestUtility3
         public double FiO2
         {
             get {
-                fio2 = (FiO2Raw - FiO2Zero) * FiO2Gain;
+                fio2 = (FiO2Raw + FiO2Zero) * FiO2Gain / 1000000.0;
                 return fio2; }
             set { fio2 = value; }
         }
