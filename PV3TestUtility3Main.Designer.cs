@@ -100,6 +100,7 @@
             this.maxPackageIntervalLabel = new System.Windows.Forms.Label();
             this.packageIntervalUnitsLabel = new System.Windows.Forms.Label();
             this.maxPackageIntervalUnitsLabel = new System.Windows.Forms.Label();
+            this.ch0ZeroDetectedLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // connectionStateLabel
@@ -753,11 +754,23 @@
             this.maxPackageIntervalUnitsLabel.TabIndex = 68;
             this.maxPackageIntervalUnitsLabel.Text = "ms";
             // 
+            // ch0ZeroDetectedLabel
+            // 
+            this.ch0ZeroDetectedLabel.AutoSize = true;
+            this.ch0ZeroDetectedLabel.ForeColor = System.Drawing.Color.Red;
+            this.ch0ZeroDetectedLabel.Location = new System.Drawing.Point(187, 231);
+            this.ch0ZeroDetectedLabel.Name = "ch0ZeroDetectedLabel";
+            this.ch0ZeroDetectedLabel.Size = new System.Drawing.Size(82, 13);
+            this.ch0ZeroDetectedLabel.TabIndex = 69;
+            this.ch0ZeroDetectedLabel.Text = "ZERO detected";
+            this.ch0ZeroDetectedLabel.Visible = false;
+            // 
             // PV3TestUtility3Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 441);
+            this.Controls.Add(this.ch0ZeroDetectedLabel);
             this.Controls.Add(this.maxPackageIntervalUnitsLabel);
             this.Controls.Add(this.packageIntervalUnitsLabel);
             this.Controls.Add(this.maxPackageIntervalDisplayLabel);
@@ -908,6 +921,7 @@
         private System.Windows.Forms.Label maxPackageIntervalLabel;
         private System.Windows.Forms.Label packageIntervalUnitsLabel;
         private System.Windows.Forms.Label maxPackageIntervalUnitsLabel;
+        private System.Windows.Forms.Label ch0ZeroDetectedLabel;
     }
 }
 

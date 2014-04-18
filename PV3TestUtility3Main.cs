@@ -308,6 +308,10 @@ namespace PV3TestUtility3
                 {
                     pv3Data.PPROXRaw = (ushort)((uint)(usbConnection.InBuffer[5] << 8) + (uint)usbConnection.InBuffer[4]);
                     ch0DisplayLabel.Text = pv3Data.PPROXRaw.ToString();
+                    if (pv3Data.PPROXRaw < 500)
+                    {
+                        ch0ZeroDetectedLabel.Visible = true;
+                    }
                     pproxDisplayLabel.Text = string.Format("{0:0.00}", pv3Data.PPROX);
                     pv3Data.PLEFTRaw = (ushort)((uint)(usbConnection.InBuffer[7] << 8) + (uint)usbConnection.InBuffer[6]);
                     ch1DisplayLabel.Text = pv3Data.PLEFTRaw.ToString();

@@ -134,11 +134,11 @@ namespace PV3TestUtility3
             set { auxin = value; }
         }
 
-        public ushort FiO2Zero = 10;
+        public ushort FiO2Zero = 102;
         public ushort TLEFTZero = 0;
         public ushort TRGHTZero = 0;
 
-        public ushort FiO2Gain = 11372;
+        public ushort FiO2Gain = 1165;
         public ushort TLEFTGain = 1;
         public ushort TRGHTGain = 1;
         
@@ -151,7 +151,7 @@ namespace PV3TestUtility3
         public double FiO2
         {
             get {
-                fio2 = (FiO2Raw + FiO2Zero) * FiO2Gain / 1000000.0;
+                fio2 = (FiO2Raw + FiO2Zero) * FiO2Gain / 10000.0;
                 return fio2; }
             set { fio2 = value; }
         }
