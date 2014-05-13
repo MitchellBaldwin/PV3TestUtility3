@@ -438,9 +438,10 @@ namespace PV3TestUtility3
             Int64 ticks = 0;
             Int64 totalTicks = 0;
             
-            Debug.Write("Testing HID USB HS data rate");
+            Debug.WriteLine("Testing HID USB HS data rate");
             Console.WriteLine("Testing HID USB HS data rate:");
             Console.WriteLine("Timer Frequency: {0} ticks/second", Stopwatch.Frequency);
+            Console.WriteLine("Running test, please wait...");
 
             cmd = PV3DataTypes.PV3CommandType.RD_HSSDP;
             usbConnection.OutBuffer[1] = (byte)cmd;
