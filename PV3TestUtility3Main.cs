@@ -52,6 +52,8 @@ namespace PV3TestUtility3
         internal const uint DBT_DEVNODES_CHANGED = 0x0007;
         internal const uint DBT_CONFIGCHANGED = 0x0018;
 
+        internal const uint HSDP_SAMPLES = 10000;
+
         // Constructor
         public PV3TestUtility3Main()
         {
@@ -427,6 +429,41 @@ namespace PV3TestUtility3
             CompCalibDialog ccd = new CompCalibDialog();
             ccd.ShowDialog(this);
             
+        }
+
+        private void testHighSpeedDataRateButton_Click(object sender, EventArgs e)
+        {
+            Int64 minTicks = Int64.MaxValue;
+            Int64 maxTicks = Int64.MinValue;
+            Int64 ticks = 0;
+            Int64 totalTicks = 0;
+            
+            Debug.Write("Testing HID USB HS data rate");
+            Console.WriteLine("Testing HID USB HS data rate:");
+            Console.WriteLine("Timer Frequency: {0} ticks/second", Stopwatch.Frequency);
+
+            cmd = PV3DataTypes.PV3CommandType.RD_HSSDP;
+            usbConnection.OutBuffer[1] = (byte)cmd;
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            for (int i = 0; i < HSDP_SAMPLES; ++i)
+            {
+                stopwatch.Restart();
+                usbConnection.sendViaUSB();
+                usbConnection.receiveViaUSB();
+                ticks = stopwatch.ElapsedTicks;
+                if (ticks < minTicks)
+                {
+                    minTicks = ticks;
+                }
+                if (ticks > maxTicks)
+                {
+                    maxTicks = ticks;
+                }
+                totalTicks += ticks;
+            }
+            Console.WriteLine("Minimum interval between packets: {0:F3} us", (double)minTicks * 1000000.0 / (double)Stopwatch.Frequency);
+            Console.WriteLine("Average interval between packets: {0:F3} us", (double)totalTicks * 1000000.0 / (double)HSDP_SAMPLES / (double)Stopwatch.Frequency);
+            Console.WriteLine("Maximum interval between packets: {0:F3} us", (double)maxTicks * 1000000.0 / (double)Stopwatch.Frequency);
         }
 
     }

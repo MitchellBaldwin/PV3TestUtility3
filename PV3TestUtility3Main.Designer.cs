@@ -101,6 +101,7 @@
             this.packageIntervalUnitsLabel = new System.Windows.Forms.Label();
             this.maxPackageIntervalUnitsLabel = new System.Windows.Forms.Label();
             this.ch0ZeroDetectedLabel = new System.Windows.Forms.Label();
+            this.testHighSpeedDataRateButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // connectionStateLabel
@@ -765,11 +766,22 @@
             this.ch0ZeroDetectedLabel.Text = "ZERO detected";
             this.ch0ZeroDetectedLabel.Visible = false;
             // 
+            // testHighSpeedDataRateButton
+            // 
+            this.testHighSpeedDataRateButton.Location = new System.Drawing.Point(12, 352);
+            this.testHighSpeedDataRateButton.Name = "testHighSpeedDataRateButton";
+            this.testHighSpeedDataRateButton.Size = new System.Drawing.Size(271, 23);
+            this.testHighSpeedDataRateButton.TabIndex = 70;
+            this.testHighSpeedDataRateButton.Text = "Test High Speed Data Rate";
+            this.testHighSpeedDataRateButton.UseVisualStyleBackColor = true;
+            this.testHighSpeedDataRateButton.Click += new System.EventHandler(this.testHighSpeedDataRateButton_Click);
+            // 
             // PV3TestUtility3Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 441);
+            this.Controls.Add(this.testHighSpeedDataRateButton);
             this.Controls.Add(this.ch0ZeroDetectedLabel);
             this.Controls.Add(this.maxPackageIntervalUnitsLabel);
             this.Controls.Add(this.packageIntervalUnitsLabel);
@@ -922,6 +934,7 @@
         private System.Windows.Forms.Label packageIntervalUnitsLabel;
         private System.Windows.Forms.Label maxPackageIntervalUnitsLabel;
         private System.Windows.Forms.Label ch0ZeroDetectedLabel;
+        private System.Windows.Forms.Button testHighSpeedDataRateButton;
     }
 }
 
