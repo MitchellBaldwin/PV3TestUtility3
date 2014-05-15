@@ -188,7 +188,7 @@
             // ch0Label
             // 
             this.ch0Label.AutoSize = true;
-            this.ch0Label.Location = new System.Drawing.Point(12, 231);
+            this.ch0Label.Location = new System.Drawing.Point(9, 236);
             this.ch0Label.Name = "ch0Label";
             this.ch0Label.Size = new System.Drawing.Size(47, 13);
             this.ch0Label.TabIndex = 7;
@@ -197,7 +197,7 @@
             // ch1Label
             // 
             this.ch1Label.AutoSize = true;
-            this.ch1Label.Location = new System.Drawing.Point(12, 255);
+            this.ch1Label.Location = new System.Drawing.Point(9, 260);
             this.ch1Label.Name = "ch1Label";
             this.ch1Label.Size = new System.Drawing.Size(43, 13);
             this.ch1Label.TabIndex = 8;
@@ -206,7 +206,7 @@
             // ch2Label
             // 
             this.ch2Label.AutoSize = true;
-            this.ch2Label.Location = new System.Drawing.Point(12, 279);
+            this.ch2Label.Location = new System.Drawing.Point(9, 284);
             this.ch2Label.Name = "ch2Label";
             this.ch2Label.Size = new System.Drawing.Size(48, 13);
             this.ch2Label.TabIndex = 9;
@@ -215,7 +215,7 @@
             // ch3Label
             // 
             this.ch3Label.AutoSize = true;
-            this.ch3Label.Location = new System.Drawing.Point(12, 303);
+            this.ch3Label.Location = new System.Drawing.Point(9, 308);
             this.ch3Label.Name = "ch3Label";
             this.ch3Label.Size = new System.Drawing.Size(44, 13);
             this.ch3Label.TabIndex = 10;
@@ -224,7 +224,7 @@
             // ch4Label
             // 
             this.ch4Label.AutoSize = true;
-            this.ch4Label.Location = new System.Drawing.Point(12, 327);
+            this.ch4Label.Location = new System.Drawing.Point(9, 332);
             this.ch4Label.Name = "ch4Label";
             this.ch4Label.Size = new System.Drawing.Size(43, 13);
             this.ch4Label.TabIndex = 11;
@@ -232,45 +232,50 @@
             // 
             // ch4DisplayLabel
             // 
+            this.ch4DisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ch4DisplayLabel.Location = new System.Drawing.Point(65, 327);
             this.ch4DisplayLabel.Name = "ch4DisplayLabel";
-            this.ch4DisplayLabel.Size = new System.Drawing.Size(55, 13);
+            this.ch4DisplayLabel.Size = new System.Drawing.Size(55, 26);
             this.ch4DisplayLabel.TabIndex = 16;
             this.ch4DisplayLabel.Text = "CH4";
             this.ch4DisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // ch3DisplayLabel
             // 
+            this.ch3DisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ch3DisplayLabel.Location = new System.Drawing.Point(65, 303);
             this.ch3DisplayLabel.Name = "ch3DisplayLabel";
-            this.ch3DisplayLabel.Size = new System.Drawing.Size(55, 13);
+            this.ch3DisplayLabel.Size = new System.Drawing.Size(55, 26);
             this.ch3DisplayLabel.TabIndex = 15;
             this.ch3DisplayLabel.Text = "CH3";
             this.ch3DisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // ch2DisplayLabel
             // 
+            this.ch2DisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ch2DisplayLabel.Location = new System.Drawing.Point(65, 279);
             this.ch2DisplayLabel.Name = "ch2DisplayLabel";
-            this.ch2DisplayLabel.Size = new System.Drawing.Size(55, 13);
+            this.ch2DisplayLabel.Size = new System.Drawing.Size(55, 26);
             this.ch2DisplayLabel.TabIndex = 14;
             this.ch2DisplayLabel.Text = "CH2";
             this.ch2DisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // ch1DisplayLabel
             // 
+            this.ch1DisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ch1DisplayLabel.Location = new System.Drawing.Point(65, 255);
             this.ch1DisplayLabel.Name = "ch1DisplayLabel";
-            this.ch1DisplayLabel.Size = new System.Drawing.Size(55, 13);
+            this.ch1DisplayLabel.Size = new System.Drawing.Size(55, 26);
             this.ch1DisplayLabel.TabIndex = 13;
             this.ch1DisplayLabel.Text = "CH1";
             this.ch1DisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // ch0DisplayLabel
             // 
+            this.ch0DisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ch0DisplayLabel.Location = new System.Drawing.Point(65, 231);
             this.ch0DisplayLabel.Name = "ch0DisplayLabel";
-            this.ch0DisplayLabel.Size = new System.Drawing.Size(55, 13);
+            this.ch0DisplayLabel.Size = new System.Drawing.Size(55, 26);
             this.ch0DisplayLabel.TabIndex = 12;
             this.ch0DisplayLabel.Text = "CH0";
             this.ch0DisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -423,7 +428,7 @@
             // 
             // leftLungTemperatureLabel
             // 
-            this.leftLungTemperatureLabel.Location = new System.Drawing.Point(534, 231);
+            this.leftLungTemperatureLabel.Location = new System.Drawing.Point(534, 236);
             this.leftLungTemperatureLabel.Name = "leftLungTemperatureLabel";
             this.leftLungTemperatureLabel.Size = new System.Drawing.Size(124, 23);
             this.leftLungTemperatureLabel.TabIndex = 33;
@@ -432,7 +437,7 @@
             // 
             // rightLungTemperatureLabel
             // 
-            this.rightLungTemperatureLabel.Location = new System.Drawing.Point(534, 254);
+            this.rightLungTemperatureLabel.Location = new System.Drawing.Point(534, 259);
             this.rightLungTemperatureLabel.Name = "rightLungTemperatureLabel";
             this.rightLungTemperatureLabel.Size = new System.Drawing.Size(124, 23);
             this.rightLungTemperatureLabel.TabIndex = 34;
@@ -441,7 +446,7 @@
             // 
             // fio2Label
             // 
-            this.fio2Label.Location = new System.Drawing.Point(534, 279);
+            this.fio2Label.Location = new System.Drawing.Point(534, 284);
             this.fio2Label.Name = "fio2Label";
             this.fio2Label.Size = new System.Drawing.Size(124, 23);
             this.fio2Label.TabIndex = 35;
@@ -450,27 +455,30 @@
             // 
             // leftLungTemperatureDisplayLabel
             // 
+            this.leftLungTemperatureDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.leftLungTemperatureDisplayLabel.Location = new System.Drawing.Point(664, 231);
             this.leftLungTemperatureDisplayLabel.Name = "leftLungTemperatureDisplayLabel";
-            this.leftLungTemperatureDisplayLabel.Size = new System.Drawing.Size(57, 13);
+            this.leftLungTemperatureDisplayLabel.Size = new System.Drawing.Size(57, 18);
             this.leftLungTemperatureDisplayLabel.TabIndex = 36;
             this.leftLungTemperatureDisplayLabel.Text = "0.000";
             this.leftLungTemperatureDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // rightLungTemperatureDisplayLabel
             // 
+            this.rightLungTemperatureDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rightLungTemperatureDisplayLabel.Location = new System.Drawing.Point(664, 254);
             this.rightLungTemperatureDisplayLabel.Name = "rightLungTemperatureDisplayLabel";
-            this.rightLungTemperatureDisplayLabel.Size = new System.Drawing.Size(57, 13);
+            this.rightLungTemperatureDisplayLabel.Size = new System.Drawing.Size(57, 18);
             this.rightLungTemperatureDisplayLabel.TabIndex = 37;
             this.rightLungTemperatureDisplayLabel.Text = "0.000";
             this.rightLungTemperatureDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // fio2DisplayLabel
             // 
+            this.fio2DisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fio2DisplayLabel.Location = new System.Drawing.Point(664, 279);
             this.fio2DisplayLabel.Name = "fio2DisplayLabel";
-            this.fio2DisplayLabel.Size = new System.Drawing.Size(57, 13);
+            this.fio2DisplayLabel.Size = new System.Drawing.Size(57, 18);
             this.fio2DisplayLabel.TabIndex = 38;
             this.fio2DisplayLabel.Text = "0.0";
             this.fio2DisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -507,45 +515,50 @@
             // 
             // auxinDisplayLabel
             // 
+            this.auxinDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.auxinDisplayLabel.Location = new System.Drawing.Point(126, 327);
             this.auxinDisplayLabel.Name = "auxinDisplayLabel";
-            this.auxinDisplayLabel.Size = new System.Drawing.Size(55, 13);
+            this.auxinDisplayLabel.Size = new System.Drawing.Size(55, 26);
             this.auxinDisplayLabel.TabIndex = 46;
             this.auxinDisplayLabel.Text = "0.00";
             this.auxinDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // phighDisplayLabel
             // 
+            this.phighDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.phighDisplayLabel.Location = new System.Drawing.Point(126, 303);
             this.phighDisplayLabel.Name = "phighDisplayLabel";
-            this.phighDisplayLabel.Size = new System.Drawing.Size(55, 13);
+            this.phighDisplayLabel.Size = new System.Drawing.Size(55, 26);
             this.phighDisplayLabel.TabIndex = 45;
             this.phighDisplayLabel.Text = "0.00";
             this.phighDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // prghtDisplayLabel
             // 
+            this.prghtDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.prghtDisplayLabel.Location = new System.Drawing.Point(126, 279);
             this.prghtDisplayLabel.Name = "prghtDisplayLabel";
-            this.prghtDisplayLabel.Size = new System.Drawing.Size(55, 13);
+            this.prghtDisplayLabel.Size = new System.Drawing.Size(55, 26);
             this.prghtDisplayLabel.TabIndex = 44;
             this.prghtDisplayLabel.Text = "0.00";
             this.prghtDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // pleftDisplayLabel
             // 
+            this.pleftDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pleftDisplayLabel.Location = new System.Drawing.Point(126, 255);
             this.pleftDisplayLabel.Name = "pleftDisplayLabel";
-            this.pleftDisplayLabel.Size = new System.Drawing.Size(55, 13);
+            this.pleftDisplayLabel.Size = new System.Drawing.Size(55, 26);
             this.pleftDisplayLabel.TabIndex = 43;
             this.pleftDisplayLabel.Text = "0.00";
             this.pleftDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // pproxDisplayLabel
             // 
+            this.pproxDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pproxDisplayLabel.Location = new System.Drawing.Point(126, 231);
             this.pproxDisplayLabel.Name = "pproxDisplayLabel";
-            this.pproxDisplayLabel.Size = new System.Drawing.Size(55, 13);
+            this.pproxDisplayLabel.Size = new System.Drawing.Size(55, 26);
             this.pproxDisplayLabel.TabIndex = 42;
             this.pproxDisplayLabel.Text = "0.00";
             this.pproxDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -759,7 +772,7 @@
             // 
             this.ch0ZeroDetectedLabel.AutoSize = true;
             this.ch0ZeroDetectedLabel.ForeColor = System.Drawing.Color.Red;
-            this.ch0ZeroDetectedLabel.Location = new System.Drawing.Point(187, 231);
+            this.ch0ZeroDetectedLabel.Location = new System.Drawing.Point(187, 236);
             this.ch0ZeroDetectedLabel.Name = "ch0ZeroDetectedLabel";
             this.ch0ZeroDetectedLabel.Size = new System.Drawing.Size(82, 13);
             this.ch0ZeroDetectedLabel.TabIndex = 69;
@@ -768,7 +781,7 @@
             // 
             // testHighSpeedDataRateButton
             // 
-            this.testHighSpeedDataRateButton.Location = new System.Drawing.Point(12, 352);
+            this.testHighSpeedDataRateButton.Location = new System.Drawing.Point(12, 377);
             this.testHighSpeedDataRateButton.Name = "testHighSpeedDataRateButton";
             this.testHighSpeedDataRateButton.Size = new System.Drawing.Size(271, 23);
             this.testHighSpeedDataRateButton.TabIndex = 70;
