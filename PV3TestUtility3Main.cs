@@ -357,10 +357,13 @@ namespace PV3TestUtility3
             
             usbConnection.receiveViaUSB();
             pv3Data.TLEFTRaw = (ushort)((uint)(usbConnection.InBuffer[3] << 8) + (uint)usbConnection.InBuffer[2]);
+            lltRawDisplayLabel.Text = pv3Data.TLEFTRaw.ToString("X4");
             leftLungTemperatureDisplayLabel.Text = pv3Data.TLEFT.ToString("0.000");
             pv3Data.TRGHTRaw = (ushort)((uint)(usbConnection.InBuffer[5] << 8) + (uint)usbConnection.InBuffer[4]);
+            rltRawDisplayLabel.Text = pv3Data.TRGHTRaw.ToString("X4");
             rightLungTemperatureDisplayLabel.Text = pv3Data.TRGHT.ToString("0.000");
             pv3Data.FiO2Raw = (ushort)((uint)(usbConnection.InBuffer[7] << 8) + (uint)usbConnection.InBuffer[6]);
+            fio2RawDisplayLabel.Text = pv3Data.FiO2Raw.ToString("X4");
             fio2DisplayLabel.Text = pv3Data.FiO2.ToString("0.0");
 
 

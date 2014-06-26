@@ -102,6 +102,9 @@
             this.maxPackageIntervalUnitsLabel = new System.Windows.Forms.Label();
             this.ch0ZeroDetectedLabel = new System.Windows.Forms.Label();
             this.testHighSpeedDataRateButton = new System.Windows.Forms.Button();
+            this.fio2RawDisplayLabel = new System.Windows.Forms.Label();
+            this.rltRawDisplayLabel = new System.Windows.Forms.Label();
+            this.lltRawDisplayLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // connectionStateLabel
@@ -456,7 +459,7 @@
             // leftLungTemperatureDisplayLabel
             // 
             this.leftLungTemperatureDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.leftLungTemperatureDisplayLabel.Location = new System.Drawing.Point(664, 231);
+            this.leftLungTemperatureDisplayLabel.Location = new System.Drawing.Point(727, 231);
             this.leftLungTemperatureDisplayLabel.Name = "leftLungTemperatureDisplayLabel";
             this.leftLungTemperatureDisplayLabel.Size = new System.Drawing.Size(57, 18);
             this.leftLungTemperatureDisplayLabel.TabIndex = 36;
@@ -466,7 +469,7 @@
             // rightLungTemperatureDisplayLabel
             // 
             this.rightLungTemperatureDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rightLungTemperatureDisplayLabel.Location = new System.Drawing.Point(664, 254);
+            this.rightLungTemperatureDisplayLabel.Location = new System.Drawing.Point(727, 254);
             this.rightLungTemperatureDisplayLabel.Name = "rightLungTemperatureDisplayLabel";
             this.rightLungTemperatureDisplayLabel.Size = new System.Drawing.Size(57, 18);
             this.rightLungTemperatureDisplayLabel.TabIndex = 37;
@@ -476,7 +479,7 @@
             // fio2DisplayLabel
             // 
             this.fio2DisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fio2DisplayLabel.Location = new System.Drawing.Point(664, 279);
+            this.fio2DisplayLabel.Location = new System.Drawing.Point(727, 279);
             this.fio2DisplayLabel.Name = "fio2DisplayLabel";
             this.fio2DisplayLabel.Size = new System.Drawing.Size(57, 18);
             this.fio2DisplayLabel.TabIndex = 38;
@@ -789,11 +792,44 @@
             this.testHighSpeedDataRateButton.UseVisualStyleBackColor = true;
             this.testHighSpeedDataRateButton.Click += new System.EventHandler(this.testHighSpeedDataRateButton_Click);
             // 
+            // fio2RawDisplayLabel
+            // 
+            this.fio2RawDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fio2RawDisplayLabel.Location = new System.Drawing.Point(664, 279);
+            this.fio2RawDisplayLabel.Name = "fio2RawDisplayLabel";
+            this.fio2RawDisplayLabel.Size = new System.Drawing.Size(57, 18);
+            this.fio2RawDisplayLabel.TabIndex = 73;
+            this.fio2RawDisplayLabel.Text = "0";
+            this.fio2RawDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // rltRawDisplayLabel
+            // 
+            this.rltRawDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rltRawDisplayLabel.Location = new System.Drawing.Point(664, 254);
+            this.rltRawDisplayLabel.Name = "rltRawDisplayLabel";
+            this.rltRawDisplayLabel.Size = new System.Drawing.Size(57, 18);
+            this.rltRawDisplayLabel.TabIndex = 72;
+            this.rltRawDisplayLabel.Text = "0";
+            this.rltRawDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // lltRawDisplayLabel
+            // 
+            this.lltRawDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lltRawDisplayLabel.Location = new System.Drawing.Point(664, 231);
+            this.lltRawDisplayLabel.Name = "lltRawDisplayLabel";
+            this.lltRawDisplayLabel.Size = new System.Drawing.Size(57, 18);
+            this.lltRawDisplayLabel.TabIndex = 71;
+            this.lltRawDisplayLabel.Text = "0";
+            this.lltRawDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // PV3TestUtility3Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 441);
+            this.Controls.Add(this.fio2RawDisplayLabel);
+            this.Controls.Add(this.rltRawDisplayLabel);
+            this.Controls.Add(this.lltRawDisplayLabel);
             this.Controls.Add(this.testHighSpeedDataRateButton);
             this.Controls.Add(this.ch0ZeroDetectedLabel);
             this.Controls.Add(this.maxPackageIntervalUnitsLabel);
@@ -948,6 +984,9 @@
         private System.Windows.Forms.Label maxPackageIntervalUnitsLabel;
         private System.Windows.Forms.Label ch0ZeroDetectedLabel;
         private System.Windows.Forms.Button testHighSpeedDataRateButton;
+        private System.Windows.Forms.Label fio2RawDisplayLabel;
+        private System.Windows.Forms.Label rltRawDisplayLabel;
+        private System.Windows.Forms.Label lltRawDisplayLabel;
     }
 }
 
