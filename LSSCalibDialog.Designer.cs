@@ -55,20 +55,22 @@
             this.trghtRawDisplayLabel = new System.Windows.Forms.Label();
             this.lpsTimer = new System.Windows.Forms.Timer(this.components);
             this.connectionErrorLabel = new System.Windows.Forms.Label();
+            this.setFiO2OffsetButton = new System.Windows.Forms.Button();
+            this.fio2OffsetTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // gainTBLabel
             // 
-            this.gainTBLabel.Location = new System.Drawing.Point(181, 9);
+            this.gainTBLabel.Location = new System.Drawing.Point(296, 11);
             this.gainTBLabel.Name = "gainTBLabel";
-            this.gainTBLabel.Size = new System.Drawing.Size(70, 23);
+            this.gainTBLabel.Size = new System.Drawing.Size(52, 23);
             this.gainTBLabel.TabIndex = 43;
             this.gainTBLabel.Text = "Gain";
             this.gainTBLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // gainLabel
             // 
-            this.gainLabel.Location = new System.Drawing.Point(373, 7);
+            this.gainLabel.Location = new System.Drawing.Point(458, 9);
             this.gainLabel.Name = "gainLabel";
             this.gainLabel.Size = new System.Drawing.Size(73, 23);
             this.gainLabel.TabIndex = 42;
@@ -86,9 +88,9 @@
             // 
             // setFiO2GainButton
             // 
-            this.setFiO2GainButton.Location = new System.Drawing.Point(258, 33);
+            this.setFiO2GainButton.Location = new System.Drawing.Point(354, 35);
             this.setFiO2GainButton.Name = "setFiO2GainButton";
-            this.setFiO2GainButton.Size = new System.Drawing.Size(109, 23);
+            this.setFiO2GainButton.Size = new System.Drawing.Size(98, 23);
             this.setFiO2GainButton.TabIndex = 40;
             this.setFiO2GainButton.Text = "Set Gain FiO2";
             this.setFiO2GainButton.UseVisualStyleBackColor = true;
@@ -96,7 +98,7 @@
             // 
             // fio2GainDisplayLabel
             // 
-            this.fio2GainDisplayLabel.Location = new System.Drawing.Point(373, 38);
+            this.fio2GainDisplayLabel.Location = new System.Drawing.Point(458, 40);
             this.fio2GainDisplayLabel.Name = "fio2GainDisplayLabel";
             this.fio2GainDisplayLabel.Size = new System.Drawing.Size(73, 23);
             this.fio2GainDisplayLabel.TabIndex = 39;
@@ -105,11 +107,11 @@
             // 
             // fio2GainTextBox
             // 
-            this.fio2GainTextBox.Location = new System.Drawing.Point(181, 35);
+            this.fio2GainTextBox.Location = new System.Drawing.Point(296, 37);
             this.fio2GainTextBox.Name = "fio2GainTextBox";
-            this.fio2GainTextBox.Size = new System.Drawing.Size(70, 20);
+            this.fio2GainTextBox.Size = new System.Drawing.Size(52, 20);
             this.fio2GainTextBox.TabIndex = 38;
-            this.fio2GainTextBox.Text = "1";
+            this.fio2GainTextBox.Text = "2394";
             this.fio2GainTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // fio2RawDisplayLabel
@@ -123,7 +125,7 @@
             // 
             // fio2MeasurementDisplayLabel
             // 
-            this.fio2MeasurementDisplayLabel.Location = new System.Drawing.Point(452, 38);
+            this.fio2MeasurementDisplayLabel.Location = new System.Drawing.Point(537, 40);
             this.fio2MeasurementDisplayLabel.Name = "fio2MeasurementDisplayLabel";
             this.fio2MeasurementDisplayLabel.Size = new System.Drawing.Size(75, 23);
             this.fio2MeasurementDisplayLabel.TabIndex = 44;
@@ -132,7 +134,7 @@
             // 
             // measurementLabel
             // 
-            this.measurementLabel.Location = new System.Drawing.Point(446, 7);
+            this.measurementLabel.Location = new System.Drawing.Point(531, 9);
             this.measurementLabel.Name = "measurementLabel";
             this.measurementLabel.Size = new System.Drawing.Size(81, 23);
             this.measurementLabel.TabIndex = 45;
@@ -141,7 +143,7 @@
             // 
             // offsetDisplayBalel
             // 
-            this.offsetDisplayBalel.Location = new System.Drawing.Point(108, 7);
+            this.offsetDisplayBalel.Location = new System.Drawing.Point(223, 11);
             this.offsetDisplayBalel.Name = "offsetDisplayBalel";
             this.offsetDisplayBalel.Size = new System.Drawing.Size(67, 23);
             this.offsetDisplayBalel.TabIndex = 46;
@@ -161,16 +163,16 @@
             // 
             // fio2OffsetDisplayLabel
             // 
-            this.fio2OffsetDisplayLabel.Location = new System.Drawing.Point(108, 38);
+            this.fio2OffsetDisplayLabel.Location = new System.Drawing.Point(223, 40);
             this.fio2OffsetDisplayLabel.Name = "fio2OffsetDisplayLabel";
             this.fio2OffsetDisplayLabel.Size = new System.Drawing.Size(67, 23);
             this.fio2OffsetDisplayLabel.TabIndex = 48;
-            this.fio2OffsetDisplayLabel.Text = "0";
+            this.fio2OffsetDisplayLabel.Text = "Not set/read";
             this.fio2OffsetDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // tleftOffsetDisplayLabel
             // 
-            this.tleftOffsetDisplayLabel.Location = new System.Drawing.Point(108, 97);
+            this.tleftOffsetDisplayLabel.Location = new System.Drawing.Point(223, 99);
             this.tleftOffsetDisplayLabel.Name = "tleftOffsetDisplayLabel";
             this.tleftOffsetDisplayLabel.Size = new System.Drawing.Size(67, 23);
             this.tleftOffsetDisplayLabel.TabIndex = 54;
@@ -179,7 +181,7 @@
             // 
             // tleftMeasurementDisplayLabel
             // 
-            this.tleftMeasurementDisplayLabel.Location = new System.Drawing.Point(452, 97);
+            this.tleftMeasurementDisplayLabel.Location = new System.Drawing.Point(537, 99);
             this.tleftMeasurementDisplayLabel.Name = "tleftMeasurementDisplayLabel";
             this.tleftMeasurementDisplayLabel.Size = new System.Drawing.Size(75, 23);
             this.tleftMeasurementDisplayLabel.TabIndex = 53;
@@ -188,9 +190,9 @@
             // 
             // setTLEFTGainButton
             // 
-            this.setTLEFTGainButton.Location = new System.Drawing.Point(258, 92);
+            this.setTLEFTGainButton.Location = new System.Drawing.Point(354, 94);
             this.setTLEFTGainButton.Name = "setTLEFTGainButton";
-            this.setTLEFTGainButton.Size = new System.Drawing.Size(109, 23);
+            this.setTLEFTGainButton.Size = new System.Drawing.Size(98, 23);
             this.setTLEFTGainButton.TabIndex = 52;
             this.setTLEFTGainButton.Text = "Set Gain TLEFT";
             this.setTLEFTGainButton.UseVisualStyleBackColor = true;
@@ -198,7 +200,7 @@
             // 
             // tleftGainDisplayLabel
             // 
-            this.tleftGainDisplayLabel.Location = new System.Drawing.Point(373, 97);
+            this.tleftGainDisplayLabel.Location = new System.Drawing.Point(458, 99);
             this.tleftGainDisplayLabel.Name = "tleftGainDisplayLabel";
             this.tleftGainDisplayLabel.Size = new System.Drawing.Size(73, 23);
             this.tleftGainDisplayLabel.TabIndex = 51;
@@ -207,9 +209,9 @@
             // 
             // tleftGainTextBox
             // 
-            this.tleftGainTextBox.Location = new System.Drawing.Point(181, 94);
+            this.tleftGainTextBox.Location = new System.Drawing.Point(296, 96);
             this.tleftGainTextBox.Name = "tleftGainTextBox";
-            this.tleftGainTextBox.Size = new System.Drawing.Size(70, 20);
+            this.tleftGainTextBox.Size = new System.Drawing.Size(52, 20);
             this.tleftGainTextBox.TabIndex = 50;
             this.tleftGainTextBox.Text = "1";
             this.tleftGainTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -225,7 +227,7 @@
             // 
             // trghtOffsetDisplayLabel
             // 
-            this.trghtOffsetDisplayLabel.Location = new System.Drawing.Point(108, 123);
+            this.trghtOffsetDisplayLabel.Location = new System.Drawing.Point(223, 125);
             this.trghtOffsetDisplayLabel.Name = "trghtOffsetDisplayLabel";
             this.trghtOffsetDisplayLabel.Size = new System.Drawing.Size(67, 23);
             this.trghtOffsetDisplayLabel.TabIndex = 60;
@@ -234,7 +236,7 @@
             // 
             // trghtMeasurementDisplayLabel
             // 
-            this.trghtMeasurementDisplayLabel.Location = new System.Drawing.Point(452, 123);
+            this.trghtMeasurementDisplayLabel.Location = new System.Drawing.Point(537, 125);
             this.trghtMeasurementDisplayLabel.Name = "trghtMeasurementDisplayLabel";
             this.trghtMeasurementDisplayLabel.Size = new System.Drawing.Size(75, 23);
             this.trghtMeasurementDisplayLabel.TabIndex = 59;
@@ -243,9 +245,9 @@
             // 
             // setTRGHTGainButton
             // 
-            this.setTRGHTGainButton.Location = new System.Drawing.Point(258, 118);
+            this.setTRGHTGainButton.Location = new System.Drawing.Point(354, 120);
             this.setTRGHTGainButton.Name = "setTRGHTGainButton";
-            this.setTRGHTGainButton.Size = new System.Drawing.Size(109, 23);
+            this.setTRGHTGainButton.Size = new System.Drawing.Size(98, 23);
             this.setTRGHTGainButton.TabIndex = 58;
             this.setTRGHTGainButton.Text = "Set Gain TRGHT";
             this.setTRGHTGainButton.UseVisualStyleBackColor = true;
@@ -253,7 +255,7 @@
             // 
             // trghtGainDisplayLabel
             // 
-            this.trghtGainDisplayLabel.Location = new System.Drawing.Point(373, 123);
+            this.trghtGainDisplayLabel.Location = new System.Drawing.Point(458, 125);
             this.trghtGainDisplayLabel.Name = "trghtGainDisplayLabel";
             this.trghtGainDisplayLabel.Size = new System.Drawing.Size(73, 23);
             this.trghtGainDisplayLabel.TabIndex = 57;
@@ -262,9 +264,9 @@
             // 
             // trghtGainTextBox
             // 
-            this.trghtGainTextBox.Location = new System.Drawing.Point(181, 120);
+            this.trghtGainTextBox.Location = new System.Drawing.Point(296, 122);
             this.trghtGainTextBox.Name = "trghtGainTextBox";
-            this.trghtGainTextBox.Size = new System.Drawing.Size(70, 20);
+            this.trghtGainTextBox.Size = new System.Drawing.Size(52, 20);
             this.trghtGainTextBox.TabIndex = 56;
             this.trghtGainTextBox.Text = "1";
             this.trghtGainTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -295,11 +297,32 @@
     "t through USB to proceed.";
             this.connectionErrorLabel.Visible = false;
             // 
+            // setFiO2OffsetButton
+            // 
+            this.setFiO2OffsetButton.Location = new System.Drawing.Point(120, 33);
+            this.setFiO2OffsetButton.Name = "setFiO2OffsetButton";
+            this.setFiO2OffsetButton.Size = new System.Drawing.Size(98, 23);
+            this.setFiO2OffsetButton.TabIndex = 63;
+            this.setFiO2OffsetButton.Text = "Set Gain FiO2";
+            this.setFiO2OffsetButton.UseVisualStyleBackColor = true;
+            this.setFiO2OffsetButton.Click += new System.EventHandler(this.setFiO2OffsetButton_Click);
+            // 
+            // fio2OffsetTextBox
+            // 
+            this.fio2OffsetTextBox.Location = new System.Drawing.Point(62, 35);
+            this.fio2OffsetTextBox.Name = "fio2OffsetTextBox";
+            this.fio2OffsetTextBox.Size = new System.Drawing.Size(52, 20);
+            this.fio2OffsetTextBox.TabIndex = 62;
+            this.fio2OffsetTextBox.Text = "5";
+            this.fio2OffsetTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // LSSCalibDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 206);
+            this.Controls.Add(this.setFiO2OffsetButton);
+            this.Controls.Add(this.fio2OffsetTextBox);
             this.Controls.Add(this.connectionErrorLabel);
             this.Controls.Add(this.trghtOffsetDisplayLabel);
             this.Controls.Add(this.trghtMeasurementDisplayLabel);
@@ -364,5 +387,7 @@
         private System.Windows.Forms.Label trghtRawDisplayLabel;
         private System.Windows.Forms.Timer lpsTimer;
         private System.Windows.Forms.Label connectionErrorLabel;
+        private System.Windows.Forms.Button setFiO2OffsetButton;
+        private System.Windows.Forms.TextBox fio2OffsetTextBox;
     }
 }

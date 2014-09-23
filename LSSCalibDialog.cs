@@ -18,6 +18,7 @@ namespace PV3TestUtility3
         PV3DataTypes.PV3CommandType cmd;
 
         byte[] byteGain = new byte[2];
+        byte[] byteOffset = new byte[2];
 
         public LSSCalibDialog()
         {
@@ -95,6 +96,21 @@ namespace PV3TestUtility3
                 trghtMeasurementDisplayLabel.Text = pv3Data.TRGHT.ToString("0.000");
             }
 
+        }
+
+        private void setFiO2OffsetButton_Click(object sender, EventArgs e)
+        {
+            cmd = PV3DataTypes.PV3CommandType.SET_O2O;
+            pv3Connection.OutBuffer[1] = (byte)cmd;
+            ushort intOffset = Convert.ToUInt16(fio2OffsetTextBox.Text);
+            pv3Data.FiO2Zero = intOffset;
+            fio2OffsetDisplayLabel.Text = pv3Data.FiO2Zero.ToString();
+            byteOffset[1] = (byte)(intOffset / 256);
+            byteOffset[0] = (byte)(intOffset % 256);
+            pv3Connection.OutBuffer[2] = byteOffset[0];
+            pv3Connection.OutBuffer[3] = byteOffset[1];
+            pv3Connection.sendViaUSB();
+            pv3Connection.receiveViaUSB();
         }
 
         private void setFiO2GainButton_Click(object sender, EventArgs e)

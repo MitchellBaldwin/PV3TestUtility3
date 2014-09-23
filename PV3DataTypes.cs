@@ -134,11 +134,11 @@ namespace PV3TestUtility3
             set { auxin = value; }
         }
 
-        public ushort FiO2Zero = 43;
+        public ushort FiO2Zero = 5;
         public ushort TLEFTZero = 0;
         public ushort TRGHTZero = 0;
 
-        public ushort FiO2Gain = 2310;
+        public ushort FiO2Gain = 2394;
         public ushort TLEFTGain = 1;
         public ushort TRGHTGain = 1;
         
