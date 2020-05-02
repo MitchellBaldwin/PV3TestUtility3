@@ -303,7 +303,7 @@
             this.setFiO2OffsetButton.Name = "setFiO2OffsetButton";
             this.setFiO2OffsetButton.Size = new System.Drawing.Size(98, 23);
             this.setFiO2OffsetButton.TabIndex = 63;
-            this.setFiO2OffsetButton.Text = "Set Gain FiO2";
+            this.setFiO2OffsetButton.Text = "Set Offset FiO2";
             this.setFiO2OffsetButton.UseVisualStyleBackColor = true;
             this.setFiO2OffsetButton.Click += new System.EventHandler(this.setFiO2OffsetButton_Click);
             // 
