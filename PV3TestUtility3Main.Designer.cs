@@ -105,6 +105,7 @@
             this.fio2RawDisplayLabel = new System.Windows.Forms.Label();
             this.rltRawDisplayLabel = new System.Windows.Forms.Label();
             this.lltRawDisplayLabel = new System.Windows.Forms.Label();
+            this.displayPlotsButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // connectionStateLabel
@@ -167,7 +168,6 @@
             // 
             // usbCommTimer
             // 
-            this.usbCommTimer.Interval = 500;
             this.usbCommTimer.Tick += new System.EventHandler(this.usbCommTimer_Tick);
             // 
             // auxinLabel
@@ -822,11 +822,22 @@
             this.lltRawDisplayLabel.Text = "0";
             this.lltRawDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // displayPlotsButton
+            // 
+            this.displayPlotsButton.Location = new System.Drawing.Point(838, 196);
+            this.displayPlotsButton.Name = "displayPlotsButton";
+            this.displayPlotsButton.Size = new System.Drawing.Size(146, 23);
+            this.displayPlotsButton.TabIndex = 74;
+            this.displayPlotsButton.Text = "Display Plots";
+            this.displayPlotsButton.UseVisualStyleBackColor = true;
+            this.displayPlotsButton.Click += new System.EventHandler(this.displayPlotsButton_Click);
+            // 
             // PV3TestUtility3Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 441);
+            this.Controls.Add(this.displayPlotsButton);
             this.Controls.Add(this.fio2RawDisplayLabel);
             this.Controls.Add(this.rltRawDisplayLabel);
             this.Controls.Add(this.lltRawDisplayLabel);
@@ -987,6 +998,7 @@
         private System.Windows.Forms.Label fio2RawDisplayLabel;
         private System.Windows.Forms.Label rltRawDisplayLabel;
         private System.Windows.Forms.Label lltRawDisplayLabel;
+        private System.Windows.Forms.Button displayPlotsButton;
     }
 }
 

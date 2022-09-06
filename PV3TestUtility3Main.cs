@@ -472,5 +472,10 @@ namespace PV3TestUtility3
             Console.WriteLine("Maximum interval between packets: {0:F3} us", (double)maxTicks * 1000000.0 / (double)Stopwatch.Frequency);
         }
 
+        private void displayPlotsButton_Click(object sender, EventArgs e)
+        {
+            PlotDisplay pd = new PlotDisplay();
+            pd.Show();
+        }
     }
 }
