@@ -168,6 +168,7 @@
             // 
             // usbCommTimer
             // 
+            this.usbCommTimer.Interval = 50;
             this.usbCommTimer.Tick += new System.EventHandler(this.usbCommTimer_Tick);
             // 
             // auxinLabel

@@ -38,6 +38,7 @@ namespace PV3TestUtility3
             this.resetButton = new System.Windows.Forms.Button();
             this.showAllPressuresCheckBox = new System.Windows.Forms.CheckBox();
             this.showAllVolumesCheckBox = new System.Windows.Forms.CheckBox();
+            this.TimeBaselineDisplayLabel = new System.Windows.Forms.Label();
             this.controlPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,6 +52,7 @@ namespace PV3TestUtility3
             // 
             // controlPanel
             // 
+            this.controlPanel.Controls.Add(this.TimeBaselineDisplayLabel);
             this.controlPanel.Controls.Add(this.showAllVolumesCheckBox);
             this.controlPanel.Controls.Add(this.showAllPressuresCheckBox);
             this.controlPanel.Controls.Add(this.resetButton);
@@ -63,7 +65,7 @@ namespace PV3TestUtility3
             // 
             // testTimer
             // 
-            this.testTimer.Interval = 10;
+            this.testTimer.Interval = 500;
             this.testTimer.Tick += new System.EventHandler(this.testTimer_Tick);
             // 
             // startButton
@@ -120,6 +122,15 @@ namespace PV3TestUtility3
             this.showAllVolumesCheckBox.UseVisualStyleBackColor = true;
             this.showAllVolumesCheckBox.CheckedChanged += new System.EventHandler(this.showAllVolumesCheckBox_CheckedChanged);
             // 
+            // TimeBaselineDisplayLabel
+            // 
+            this.TimeBaselineDisplayLabel.AutoSize = true;
+            this.TimeBaselineDisplayLabel.Location = new System.Drawing.Point(174, 11);
+            this.TimeBaselineDisplayLabel.Name = "TimeBaselineDisplayLabel";
+            this.TimeBaselineDisplayLabel.Size = new System.Drawing.Size(34, 13);
+            this.TimeBaselineDisplayLabel.TabIndex = 4;
+            this.TimeBaselineDisplayLabel.Text = "0.000";
+            // 
             // PlotDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -147,5 +158,6 @@ namespace PV3TestUtility3
         private System.Windows.Forms.Button resetButton;
         private System.Windows.Forms.CheckBox showAllPressuresCheckBox;
         private System.Windows.Forms.CheckBox showAllVolumesCheckBox;
+        private System.Windows.Forms.Label TimeBaselineDisplayLabel;
     }
 }

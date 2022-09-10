@@ -7,11 +7,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace PV3TestUtility3
 {
     public partial class PlotDisplay : Form
     {
+        private const int sampleCount = 10000;
+        private const int sampleRate = 500;
+
+        private double displayUpdateInterval = 0.010;
+        public double DisplayUpdateInterval { get => displayUpdateInterval; set => displayUpdateInterval = value; }
+
+        private Stopwatch stopwatch = new Stopwatch();
+
+        double[] airwayPressureStream = new double[sampleCount];
+        double[] leftLungPressureStream = new double[sampleCount];
+        double[] rightLungPressureStream = new double[sampleCount];
+        double[] volumeStream = new double[sampleCount];
+        double[] leftVolumeStream = new double[sampleCount];
+        double[] rightVolumeStream = new double[sampleCount];
+        double[] flowStream = new double[sampleCount];
+        //double[] leftFlowStream = new double[sampleCount];
+        //double[] rightFlowStream = new double[sampleCount];
+
         double minTime = 0.0;
         double maxTime = 10.0;
 
@@ -22,8 +41,8 @@ namespace PV3TestUtility3
         ScottPlot.Plottable.SignalPlot leftVolumeSignal;
         ScottPlot.Plottable.SignalPlot rightVolumeSignal;
         ScottPlot.Plottable.SignalPlot flowSignal;
-
-
+                
+        // Default constructor
         public PlotDisplay()
         {
             InitializeComponent();
@@ -31,19 +50,18 @@ namespace PV3TestUtility3
 
         private void PlotDisplay_Load(object sender, EventArgs e)
         {
+            DisplayUpdateInterval = testTimer.Interval / 1000.0;
+            
             pressurePlot.Plot.XAxis.TickLabelFormat("0.000", false);
             pressurePlot.Plot.XAxis.LabelStyle(fontSize: 10);
-            //pressurePlot.Plot.SetAxisLimitsX(0.0, 10.0);
             pressurePlot.Plot.XLabel("Time (s)");
 
             pressurePlot.Plot.YAxis.TickLabelFormat("0.00", false);
             pressurePlot.Plot.YAxis.LabelStyle(fontSize: 10);
-            //pressurePlot.Plot.SetAxisLimitsY(0.0, 120.0);
             pressurePlot.Plot.YLabel("Airway Pressure (cmH2O)");
 
             pressurePlot.Plot.YAxis2.TickLabelFormat("0.00", false);
             pressurePlot.Plot.YAxis2.Ticks(true);
-            //pressurePlot.Plot.SetAxisLimits(yMin: 0.0, yMax: 120.0, yAxisIndex: 1);
             pressurePlot.Plot.YAxis2.LabelStyle(fontSize: 10);
             pressurePlot.Plot.YAxis2.Label("Lung Pressure (cmH2O)");
             pressurePlot.Plot.YAxis2.Edge = ScottPlot.Renderable.Edge.Right;
@@ -51,18 +69,15 @@ namespace PV3TestUtility3
 
             volumePlot.Plot.XAxis.TickLabelFormat("0.000", false);
             volumePlot.Plot.XAxis.LabelStyle(fontSize: 10);
-            //volumePlot.Plot.SetAxisLimitsX(0.0, 10.0);
             volumePlot.Plot.XLabel("Time (s)");
 
             volumePlot.Plot.YAxis.TickLabelFormat("0", false);
             volumePlot.Plot.YAxis.LabelStyle(fontSize: 10);
-            //volumePlot.Plot.SetAxisLimitsY(0, 2000);
             volumePlot.Plot.YLabel("Volume (mL)");
 
             // DONE: Second Y axis doesn't seem to appear...
             volumePlot.Plot.YAxis2.TickLabelFormat("0.0", false);
             volumePlot.Plot.YAxis2.Ticks(true);
-            //volumePlot.Plot.SetAxisLimits(yMin: -60.0, yMax: 60.0, yAxisIndex: 1);
             volumePlot.Plot.YAxis2.LabelStyle(fontSize: 10);
             volumePlot.Plot.YAxis2.Label("Flow (L/min)");
             volumePlot.Plot.YAxis2.Edge = ScottPlot.Renderable.Edge.Right;
@@ -83,28 +98,34 @@ namespace PV3TestUtility3
         private void GenerateDummyData()
         {
             // TEST: Test plot rendering using procedurally generated data:
-            double[] dummyAirwayPressureData = ScottPlot.DataGen.Sin(10000, 10, 10, 5);
-            double[] dummyLeftLungPressureData = ScottPlot.DataGen.Sin(10000, 10, 8, 5);
-            double[] dummyRightLungPressureData = ScottPlot.DataGen.Sin(10000, 10, 4, 5);
-            double[] dummyVolumeData = ScottPlot.DataGen.Cos(10000, 10, 1000, 100);
-            double[] dummyLeftVolumeData = ScottPlot.DataGen.Cos(10000, 10, 400, 50);
-            double[] dummyRightVolumeData = ScottPlot.DataGen.Cos(10000, 10, 600, 50);
-            double[] dummyFlowData = ScottPlot.DataGen.Sin(10000, 10, 0, 20);
+            airwayPressureStream = ScottPlot.DataGen.Sin(sampleCount, 10, 10, 5);
+            leftLungPressureStream = ScottPlot.DataGen.Sin(sampleCount, 10, 8, 5);
+            rightLungPressureStream = ScottPlot.DataGen.Sin(sampleCount, 10, 4, 5);
+            volumeStream = ScottPlot.DataGen.Cos(sampleCount, 10, 1000, 100);
+            leftVolumeStream = ScottPlot.DataGen.Cos(sampleCount, 10, 400, 50);
+            rightVolumeStream = ScottPlot.DataGen.Cos(sampleCount, 10, 600, 50);
+            flowStream = ScottPlot.DataGen.Sin(sampleCount, 10, 0, 20);
+            //double[] dummyAirwayPressureData = ScottPlot.DataGen.Sin(sampleCount, 10, 10, 5);
+            //double[] dummyLeftLungPressureData = ScottPlot.DataGen.Sin(sampleCount, 10, 8, 5);
+            //double[] dummyRightLungPressureData = ScottPlot.DataGen.Sin(sampleCount, 10, 4, 5);
+            //double[] dummyVolumeData = ScottPlot.DataGen.Cos(sampleCount, 10, 1000, 100);
+            //double[] dummyLeftVolumeData = ScottPlot.DataGen.Cos(sampleCount, 10, 400, 50);
+            //double[] dummyRightVolumeData = ScottPlot.DataGen.Cos(sampleCount, 10, 600, 50);
+            //double[] dummyFlowData = ScottPlot.DataGen.Sin(sampleCount, 10, 0, 20);
 
-            int sampleRate = 500;
-            airwayPressureSignal = pressurePlot.Plot.AddSignal(dummyAirwayPressureData, sampleRate, Color.Aqua, "Airway");
-            leftLungPressureSignal = pressurePlot.Plot.AddSignal(dummyLeftLungPressureData, sampleRate, Color.Green, "Left");
+            airwayPressureSignal = pressurePlot.Plot.AddSignal(airwayPressureStream, sampleRate, Color.Aqua, "Airway");
+            leftLungPressureSignal = pressurePlot.Plot.AddSignal(leftLungPressureStream, sampleRate, Color.Green, "Left");
             leftLungPressureSignal.YAxisIndex = 1;
-            rightLungPressureSignal = pressurePlot.Plot.AddSignal(dummyRightLungPressureData, sampleRate, Color.Blue, "Right");
+            rightLungPressureSignal = pressurePlot.Plot.AddSignal(rightLungPressureStream, sampleRate, Color.Blue, "Right");
             rightLungPressureSignal.YAxisIndex = 1;
 
-            volumeSignal = volumePlot.Plot.AddSignal(dummyVolumeData, sampleRate, Color.OrangeRed, "Total");
-            leftVolumeSignal = volumePlot.Plot.AddSignal(dummyLeftVolumeData, sampleRate, Color.Orange, "Left");
+            volumeSignal = volumePlot.Plot.AddSignal(volumeStream, sampleRate, Color.OrangeRed, "Total");
+            leftVolumeSignal = volumePlot.Plot.AddSignal(leftVolumeStream, sampleRate, Color.Orange, "Left");
             leftVolumeSignal.YAxisIndex = 0;
-            rightVolumeSignal = volumePlot.Plot.AddSignal(dummyRightVolumeData, sampleRate, Color.Red, "Right");
+            rightVolumeSignal = volumePlot.Plot.AddSignal(rightVolumeStream, sampleRate, Color.Red, "Right");
             rightVolumeSignal.YAxisIndex = 0;
 
-            flowSignal = volumePlot.Plot.AddSignal(dummyFlowData, sampleRate, Color.Purple, "Flow");
+            flowSignal = volumePlot.Plot.AddSignal(flowStream, sampleRate, Color.Purple, "Flow");
             flowSignal.YAxisIndex = 1;
         }
 
@@ -130,13 +151,11 @@ namespace PV3TestUtility3
 
             pressurePlot.Plot.SetAxisLimitsX(minTime, maxTime);
             volumePlot.Plot.SetAxisLimitsX(minTime, maxTime);
-            //volumeSignal.OffsetX -= interval;
-            
-            //volumeSignal.MinRenderIndex += 10;
-            //volumeSignal.MaxRenderIndex += 100;
 
-            pressurePlot.Render();
-            volumePlot.Render();
+            TimeBaselineDisplayLabel.Text = (stopwatch.ElapsedMilliseconds / 1000.0).ToString("0.000");
+
+            pressurePlot.Render(true, true);
+            volumePlot.Render(true, true);
         }
 
         private void startButton_Click(object sender, EventArgs e)
@@ -145,10 +164,12 @@ namespace PV3TestUtility3
             if (testTimer.Enabled)
             {
                 startButton.Text = "Pause";
+                stopwatch.Start();
             }
             else
             {
                 startButton.Text = "Start";
+                stopwatch.Stop();
             }
         }
 
@@ -156,13 +177,22 @@ namespace PV3TestUtility3
         {
             SetDefaultAxisLimits();
 
-            pressurePlot.Render();
-            volumePlot.Render();
+            stopwatch.Reset();
+            TimeBaselineDisplayLabel.Text = (stopwatch.ElapsedMilliseconds / 1000.0).ToString("0.000");
+            if (testTimer.Enabled)
+            {
+                testTimer.Stop();
+                testTimer.Start();
+                stopwatch.Start();
+            }
+
+            pressurePlot.Render(true, false);
+            volumePlot.Render(true, false);
         }
 
         private void testTimer_Tick(object sender, EventArgs e)
         {
-            UpdateDisplay();
+            UpdateDisplay(DisplayUpdateInterval);
         }
 
         private void showAllPressuresCheckBox_CheckedChanged(object sender, EventArgs e)

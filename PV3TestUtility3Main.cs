@@ -13,18 +13,14 @@ namespace PV3TestUtility3
 {
     public partial class PV3TestUtility3Main : Form
     {
-        // Version control test
-        
-        // Member Variables
-
-        USBClass usbConnection;
+        USBClass usbConnection;                         // Normal working connection (non-bootloader)
         public USBClass USBConnection
         {
             get { return usbConnection; }
             set { usbConnection = value; }
         }
 
-        USBClass blConnection;
+        USBClass blConnection;                          // Bootloader connection
         public USBClass BLConnection
         {
             get { return blConnection; }
@@ -66,8 +62,8 @@ namespace PV3TestUtility3
             blConnection.deviceID = "Vid_04D8&Pid_003C";
         }
 
-        //This is a callback function that gets called when a Windows message is received by the form.
-        //We will receive various different types of messages, but the ones we really want to use are the WM_DEVICECHANGE messages.
+        // This is a callback function that gets called when a Windows message is received by the form.
+        // We will receive various different types of messages, but the ones we really want to use are the WM_DEVICECHANGE messages.
         protected override void WndProc(ref Message m)
         {
             if (m.Msg == WM_DEVICECHANGE)
@@ -296,11 +292,25 @@ namespace PV3TestUtility3
             //System.Threading.Thread.Sleep(10);
 
             usbConnection.receiveViaUSB();
+            
             AUXINValue = (uint)(usbConnection.InBuffer[3] << 8) + (uint)usbConnection.InBuffer[2];
             auxinBarDisplayLabel.Text = AUXINValue.ToString();
             potProgressBar.Value = (int)AUXINValue;
 
             Stopwatch stopwatch = Stopwatch.StartNew();
+            
+            //cmd = PV3DataTypes.PV3CommandType.RD_HSSDP;
+            //usbConnection.OutBuffer[1] = (byte)cmd;
+            //usbConnection.sendViaUSB();
+            //usbConnection.receiveViaUSB();
+
+            //while (usbConnection.InBuffer[3] > 0)
+            //{
+
+            //    usbConnection.sendViaUSB();
+            //    usbConnection.receiveViaUSB();
+            //}
+
             for (int i = 0; i < 10; ++i)
             {
                 cmd = PV3DataTypes.PV3CommandType.RD_HSSDP;
@@ -337,6 +347,7 @@ namespace PV3TestUtility3
                     packagesMissedDisplayLabel.Text = (nextPacketNum - packetNum - 1).ToString();
                 }
                 long elapsedMilliseconds = stopwatch.ElapsedMilliseconds;
+                
                 if (i != 0)
                 {
                     packageCountDisplayLabel.Text = usbConnection.InBuffer[2].ToString();
