@@ -106,6 +106,9 @@
             this.rltRawDisplayLabel = new System.Windows.Forms.Label();
             this.lltRawDisplayLabel = new System.Windows.Forms.Label();
             this.displayPlotsButton = new System.Windows.Forms.Button();
+            this.cumulativeSavedDataTimeDisplayLabel = new System.Windows.Forms.Label();
+            this.cumulativeSavedDataTimeLabel = new System.Windows.Forms.Label();
+            this.cumulativeSavedDataTimeUnitsLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // connectionStateLabel
@@ -123,7 +126,7 @@
             // toggleLEDsButton
             // 
             this.toggleLEDsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.toggleLEDsButton.Location = new System.Drawing.Point(15, 406);
+            this.toggleLEDsButton.Location = new System.Drawing.Point(12, 406);
             this.toggleLEDsButton.Name = "toggleLEDsButton";
             this.toggleLEDsButton.Size = new System.Drawing.Size(105, 23);
             this.toggleLEDsButton.TabIndex = 1;
@@ -168,7 +171,7 @@
             // 
             // usbCommTimer
             // 
-            this.usbCommTimer.Interval = 50;
+            this.usbCommTimer.Interval = 10;
             this.usbCommTimer.Tick += new System.EventHandler(this.usbCommTimer_Tick);
             // 
             // auxinLabel
@@ -570,7 +573,7 @@
             // toggleBlinkStatusButton
             // 
             this.toggleBlinkStatusButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.toggleBlinkStatusButton.Location = new System.Drawing.Point(126, 406);
+            this.toggleBlinkStatusButton.Location = new System.Drawing.Point(123, 406);
             this.toggleBlinkStatusButton.Name = "toggleBlinkStatusButton";
             this.toggleBlinkStatusButton.Size = new System.Drawing.Size(114, 23);
             this.toggleBlinkStatusButton.TabIndex = 47;
@@ -833,11 +836,41 @@
             this.displayPlotsButton.UseVisualStyleBackColor = true;
             this.displayPlotsButton.Click += new System.EventHandler(this.displayPlotsButton_Click);
             // 
+            // cumulativeSavedDataTimeDisplayLabel
+            // 
+            this.cumulativeSavedDataTimeDisplayLabel.Location = new System.Drawing.Point(165, 162);
+            this.cumulativeSavedDataTimeDisplayLabel.Name = "cumulativeSavedDataTimeDisplayLabel";
+            this.cumulativeSavedDataTimeDisplayLabel.Size = new System.Drawing.Size(54, 13);
+            this.cumulativeSavedDataTimeDisplayLabel.TabIndex = 76;
+            this.cumulativeSavedDataTimeDisplayLabel.Text = "0.000";
+            this.cumulativeSavedDataTimeDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // cumulativeSavedDataTimeLabel
+            // 
+            this.cumulativeSavedDataTimeLabel.Location = new System.Drawing.Point(9, 162);
+            this.cumulativeSavedDataTimeLabel.Name = "cumulativeSavedDataTimeLabel";
+            this.cumulativeSavedDataTimeLabel.Size = new System.Drawing.Size(146, 13);
+            this.cumulativeSavedDataTimeLabel.TabIndex = 75;
+            this.cumulativeSavedDataTimeLabel.Text = "Cumulative saved data time:";
+            this.cumulativeSavedDataTimeLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // cumulativeSavedDataTimeUnitsLabel
+            // 
+            this.cumulativeSavedDataTimeUnitsLabel.AutoSize = true;
+            this.cumulativeSavedDataTimeUnitsLabel.Location = new System.Drawing.Point(225, 162);
+            this.cumulativeSavedDataTimeUnitsLabel.Name = "cumulativeSavedDataTimeUnitsLabel";
+            this.cumulativeSavedDataTimeUnitsLabel.Size = new System.Drawing.Size(12, 13);
+            this.cumulativeSavedDataTimeUnitsLabel.TabIndex = 77;
+            this.cumulativeSavedDataTimeUnitsLabel.Text = "s";
+            // 
             // PV3TestUtility3Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 441);
+            this.Controls.Add(this.cumulativeSavedDataTimeUnitsLabel);
+            this.Controls.Add(this.cumulativeSavedDataTimeDisplayLabel);
+            this.Controls.Add(this.cumulativeSavedDataTimeLabel);
             this.Controls.Add(this.displayPlotsButton);
             this.Controls.Add(this.fio2RawDisplayLabel);
             this.Controls.Add(this.rltRawDisplayLabel);
@@ -1000,6 +1033,9 @@
         private System.Windows.Forms.Label rltRawDisplayLabel;
         private System.Windows.Forms.Label lltRawDisplayLabel;
         private System.Windows.Forms.Button displayPlotsButton;
+        private System.Windows.Forms.Label cumulativeSavedDataTimeDisplayLabel;
+        private System.Windows.Forms.Label cumulativeSavedDataTimeLabel;
+        private System.Windows.Forms.Label cumulativeSavedDataTimeUnitsLabel;
     }
 }
 

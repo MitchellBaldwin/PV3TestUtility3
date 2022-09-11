@@ -27,6 +27,8 @@ namespace PV3TestUtility3
             set {blConnection = value; }
         }
 
+        Stopwatch dataStopwatch = new Stopwatch();
+        
         PV3DataTypes pv3Data = new PV3DataTypes();
 
         internal PV3DataTypes PV3Data
@@ -93,7 +95,7 @@ namespace PV3TestUtility3
             {
                 connectionStateLabel.BackColor = Color.LimeGreen;
                 connectionStateLabel.Text = "Connected to: " + usbConnection.deviceID;
-                usbCommTimer.Enabled = true;
+                usbCommTimer.Enabled = false;
 
                 // Configure the form controls for a connected device:
 
@@ -203,6 +205,8 @@ namespace PV3TestUtility3
             usbConnection.sendViaUSB();
             usbConnection.receiveViaUSB();
             DisplayUSBBufferData();
+            usbCommTimer.Enabled = true;
+            dataStopwatch.Start();
         }
 
         private void stopDataAcquisitionButton_Click(object sender, EventArgs e)
@@ -212,6 +216,8 @@ namespace PV3TestUtility3
             usbConnection.sendViaUSB();
             usbConnection.receiveViaUSB();
             DisplayUSBBufferData();
+            usbCommTimer.Enabled = false;
+            dataStopwatch.Stop();
         }
 
         private void readLungModelButton_Click(object sender, EventArgs e)
@@ -298,47 +304,51 @@ namespace PV3TestUtility3
             potProgressBar.Value = (int)AUXINValue;
 
             Stopwatch stopwatch = Stopwatch.StartNew();
-            
-            //cmd = PV3DataTypes.PV3CommandType.RD_HSSDP;
-            //usbConnection.OutBuffer[1] = (byte)cmd;
-            //usbConnection.sendViaUSB();
-            //usbConnection.receiveViaUSB();
 
-            //while (usbConnection.InBuffer[3] > 0)
-            //{
+            cmd = PV3DataTypes.PV3CommandType.RD_HSSDP;
+            usbConnection.OutBuffer[1] = (byte)cmd;
+            usbConnection.sendViaUSB();
+            usbConnection.receiveViaUSB();
 
-            //    usbConnection.sendViaUSB();
-            //    usbConnection.receiveViaUSB();
-            //}
+            int sampleSetsInPacket = usbConnection.InBuffer[3];
 
-            for (int i = 0; i < 10; ++i)
+            while (sampleSetsInPacket > 0)
             {
-                cmd = PV3DataTypes.PV3CommandType.RD_HSSDP;
-                usbConnection.OutBuffer[1] = (byte)cmd;
-                usbConnection.sendViaUSB();
-                usbConnection.receiveViaUSB();
-
-                if (i == 0)
+                for (int i = 0; i < sampleSetsInPacket; ++i)
                 {
-                    pv3Data.PPROXRaw = (ushort)((uint)(usbConnection.InBuffer[5] << 8) + (uint)usbConnection.InBuffer[4]);
-                    ch0DisplayLabel.Text = pv3Data.PPROXRaw.ToString();
-                    if (pv3Data.PPROXRaw < 500)
+                    if (i == 0)
                     {
-                        ch0ZeroDetectedLabel.Visible = true;
+                        pv3Data.PPROXRaw = (ushort)((uint)(usbConnection.InBuffer[i + 5] << 8) + (uint)usbConnection.InBuffer[i + 4]);
+                        pv3Data.PLEFTRaw = (ushort)((uint)(usbConnection.InBuffer[i + 7] << 8) + (uint)usbConnection.InBuffer[i + 6]);
+                        pv3Data.PRGHTRaw = (ushort)((uint)(usbConnection.InBuffer[i + 9] << 8) + (uint)usbConnection.InBuffer[i + 8]);
+                        pv3Data.PHIGHRaw = (ushort)((uint)(usbConnection.InBuffer[i + 11] << 8) + (uint)usbConnection.InBuffer[i + 10]);
+                        pv3Data.AUXINRaw = (ushort)((uint)(usbConnection.InBuffer[i + 13] << 8) + (uint)usbConnection.InBuffer[i + 12]);
+
+                        //if ((pv3Data.PPROX >= -20.0) && (pv3Data.PPROX <= 120.0))
+                        //{
+                        //    pv3Data.AddSampleSet();
+                        //}
+
+                        // TODO: Smooth pressure data streams
+                        // TODO: Reset missed package count when restarting data acquisition
+                        // DONE: Use stopwatch to set data sample position in data stream arrays
+                        // TODO: Interpolate missed samples - in progress
+                        // TODO: Handle first data sample
+
+                        long sampleNumber = dataStopwatch.ElapsedMilliseconds / 2;
+                        pv3Data.AddSampleSet(sampleNumber);
+
                     }
-                    pproxDisplayLabel.Text = string.Format("{0:0.00}", pv3Data.PPROX);
-                    pv3Data.PLEFTRaw = (ushort)((uint)(usbConnection.InBuffer[7] << 8) + (uint)usbConnection.InBuffer[6]);
-                    ch1DisplayLabel.Text = pv3Data.PLEFTRaw.ToString();
-                    pleftDisplayLabel.Text = pv3Data.PLEFT.ToString("0.00");
-                    pv3Data.PRGHTRaw = (ushort)((uint)(usbConnection.InBuffer[9] << 8) + (uint)usbConnection.InBuffer[8]);
-                    ch2DisplayLabel.Text = pv3Data.PRGHTRaw.ToString();
-                    prghtDisplayLabel.Text = pv3Data.PRGHT.ToString("0.00");
-                    pv3Data.PHIGHRaw = (ushort)((uint)(usbConnection.InBuffer[11] << 8) + (uint)usbConnection.InBuffer[10]);
-                    ch3DisplayLabel.Text = pv3Data.PHIGHRaw.ToString();
-                    phighDisplayLabel.Text = pv3Data.PHIGH.ToString("0.00");
-                    pv3Data.AUXINRaw = (ushort)((uint)(usbConnection.InBuffer[13] << 8) + (uint)usbConnection.InBuffer[12]);
-                    ch4DisplayLabel.Text = pv3Data.AUXINRaw.ToString();
-                    auxinDisplayLabel.Text = pv3Data.AUXIN.ToString("0.00");
+
+                    long elapsedMilliseconds = stopwatch.ElapsedMilliseconds;
+                    if (elapsedMilliseconds > maxPackageInterval)
+                    {
+                        maxPackageInterval = elapsedMilliseconds;
+                    }
+                    avgPackageInterval += elapsedMilliseconds;
+
+                    stopwatch.Restart();
+                    packetNum = nextPacketNum;
                 }
                 
                 nextPacketNum = usbConnection.InBuffer[2];
@@ -346,23 +356,88 @@ namespace PV3TestUtility3
                 {
                     packagesMissedDisplayLabel.Text = (nextPacketNum - packetNum - 1).ToString();
                 }
-                long elapsedMilliseconds = stopwatch.ElapsedMilliseconds;
-                
-                if (i != 0)
-                {
-                    packageCountDisplayLabel.Text = usbConnection.InBuffer[2].ToString();
-                    sizeDisplayLabel.Text = usbConnection.InBuffer[3].ToString();
-                    if (elapsedMilliseconds > maxPackageInterval)
-                    {
-                        maxPackageInterval = elapsedMilliseconds;
-                    }
-                    avgPackageInterval += elapsedMilliseconds;
-                }
-                stopwatch.Restart();
-                packetNum = nextPacketNum;
+
+                packageCountDisplayLabel.Text = nextPacketNum.ToString();
+                sizeDisplayLabel.Text = sampleSetsInPacket.ToString();
+
+                packageIntervalDisplayLabel.Text = ((double)avgPackageInterval / sampleSetsInPacket).ToString("0.0");
+                avgPackageInterval = 0;
+
+                usbConnection.sendViaUSB();
+                usbConnection.receiveViaUSB();
+                sampleSetsInPacket = usbConnection.InBuffer[3];
             }
-            packageIntervalDisplayLabel.Text = ((double)avgPackageInterval / 9.0).ToString("0.0");
             maxPackageIntervalDisplayLabel.Text = maxPackageInterval.ToString();
+
+            ch0DisplayLabel.Text = pv3Data.PPROXRaw.ToString();
+            if (pv3Data.PPROXRaw < 500)
+            {
+                ch0ZeroDetectedLabel.Visible = true;
+            }
+            pproxDisplayLabel.Text = string.Format("{0:0.00}", pv3Data.PPROX);
+            ch1DisplayLabel.Text = pv3Data.PLEFTRaw.ToString();
+            pleftDisplayLabel.Text = pv3Data.PLEFT.ToString("0.00");
+            ch2DisplayLabel.Text = pv3Data.PRGHTRaw.ToString();
+            prghtDisplayLabel.Text = pv3Data.PRGHT.ToString("0.00");
+            ch3DisplayLabel.Text = pv3Data.PHIGHRaw.ToString();
+            phighDisplayLabel.Text = pv3Data.PHIGH.ToString("0.00");
+            ch4DisplayLabel.Text = pv3Data.AUXINRaw.ToString();
+            auxinDisplayLabel.Text = pv3Data.AUXIN.ToString("0.00");
+
+            #region Legacy display code
+            //for (int i = 0; i < 10; ++i)
+            //{
+            //    cmd = PV3DataTypes.PV3CommandType.RD_HSSDP;
+            //    usbConnection.OutBuffer[1] = (byte)cmd;
+            //    usbConnection.sendViaUSB();
+            //    usbConnection.receiveViaUSB();
+
+            //    if (i == 0)
+            //    {
+            //        pv3Data.PPROXRaw = (ushort)((uint)(usbConnection.InBuffer[5] << 8) + (uint)usbConnection.InBuffer[4]);
+            //        ch0DisplayLabel.Text = pv3Data.PPROXRaw.ToString();
+            //        if (pv3Data.PPROXRaw < 500)
+            //        {
+            //            ch0ZeroDetectedLabel.Visible = true;
+            //        }
+            //        pproxDisplayLabel.Text = string.Format("{0:0.00}", pv3Data.PPROX);
+            //        pv3Data.PLEFTRaw = (ushort)((uint)(usbConnection.InBuffer[7] << 8) + (uint)usbConnection.InBuffer[6]);
+            //        ch1DisplayLabel.Text = pv3Data.PLEFTRaw.ToString();
+            //        pleftDisplayLabel.Text = pv3Data.PLEFT.ToString("0.00");
+            //        pv3Data.PRGHTRaw = (ushort)((uint)(usbConnection.InBuffer[9] << 8) + (uint)usbConnection.InBuffer[8]);
+            //        ch2DisplayLabel.Text = pv3Data.PRGHTRaw.ToString();
+            //        prghtDisplayLabel.Text = pv3Data.PRGHT.ToString("0.00");
+            //        pv3Data.PHIGHRaw = (ushort)((uint)(usbConnection.InBuffer[11] << 8) + (uint)usbConnection.InBuffer[10]);
+            //        ch3DisplayLabel.Text = pv3Data.PHIGHRaw.ToString();
+            //        phighDisplayLabel.Text = pv3Data.PHIGH.ToString("0.00");
+            //        pv3Data.AUXINRaw = (ushort)((uint)(usbConnection.InBuffer[13] << 8) + (uint)usbConnection.InBuffer[12]);
+            //        ch4DisplayLabel.Text = pv3Data.AUXINRaw.ToString();
+            //        auxinDisplayLabel.Text = pv3Data.AUXIN.ToString("0.00");
+            //    }
+
+            //    nextPacketNum = usbConnection.InBuffer[2];
+            //    if ((packetNum != 0) && (packetNum != 255))
+            //    {
+            //        packagesMissedDisplayLabel.Text = (nextPacketNum - packetNum - 1).ToString();
+            //    }
+            //    long elapsedMilliseconds = stopwatch.ElapsedMilliseconds;
+
+            //    if (i != 0)
+            //    {
+            //        packageCountDisplayLabel.Text = usbConnection.InBuffer[2].ToString();
+            //        sizeDisplayLabel.Text = usbConnection.InBuffer[3].ToString();
+            //        if (elapsedMilliseconds > maxPackageInterval)
+            //        {
+            //            maxPackageInterval = elapsedMilliseconds;
+            //        }
+            //        avgPackageInterval += elapsedMilliseconds;
+            //    }
+            //    stopwatch.Restart();
+            //    packetNum = nextPacketNum;
+            //}
+            //packageIntervalDisplayLabel.Text = ((double)avgPackageInterval / 9.0).ToString("0.0");
+            //maxPackageIntervalDisplayLabel.Text = maxPackageInterval.ToString();
+            #endregion Legacy display code
 
             cmd = PV3DataTypes.PV3CommandType.RD_LSSDP;
             usbConnection.OutBuffer[1] = (byte)cmd;
@@ -379,7 +454,7 @@ namespace PV3TestUtility3
             fio2RawDisplayLabel.Text = pv3Data.FiO2Raw.ToString("X4");
             fio2DisplayLabel.Text = pv3Data.FiO2.ToString("0.0");
 
-
+            cumulativeSavedDataTimeDisplayLabel.Text = (dataStopwatch.ElapsedMilliseconds / 1000.0).ToString("0.000");
         }
 
         private void setReadHSSCDButton_Click(object sender, EventArgs e)
@@ -486,7 +561,7 @@ namespace PV3TestUtility3
         private void displayPlotsButton_Click(object sender, EventArgs e)
         {
             PlotDisplay pd = new PlotDisplay();
-            pd.Show();
+            pd.Show(this);
         }
     }
 }

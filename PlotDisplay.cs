@@ -13,6 +13,11 @@ namespace PV3TestUtility3
 {
     public partial class PlotDisplay : Form
     {
+        PV3TestUtility3Main pv3tu3Main;
+        USBClass pv3Connection;
+        PV3DataTypes pv3Data;
+        PV3DataTypes.PV3CommandType cmd;
+
         private const int sampleCount = 10000;
         private const int sampleRate = 500;
 
@@ -21,15 +26,15 @@ namespace PV3TestUtility3
 
         private Stopwatch stopwatch = new Stopwatch();
 
-        double[] airwayPressureStream = new double[sampleCount];
-        double[] leftLungPressureStream = new double[sampleCount];
-        double[] rightLungPressureStream = new double[sampleCount];
-        double[] volumeStream = new double[sampleCount];
-        double[] leftVolumeStream = new double[sampleCount];
-        double[] rightVolumeStream = new double[sampleCount];
-        double[] flowStream = new double[sampleCount];
-        //double[] leftFlowStream = new double[sampleCount];
-        //double[] rightFlowStream = new double[sampleCount];
+        double[] airwayPressureStream;
+        double[] leftLungPressureStream;
+        double[] rightLungPressureStream;
+        double[] volumeStream;
+        double[] leftVolumeStream;
+        double[] rightVolumeStream;
+        double[] flowStream;
+        //double[] leftFlowStream = new double[maxSampleCount];
+        //double[] rightFlowStream = new double[maxSampleCount];
 
         double minTime = 0.0;
         double maxTime = 10.0;
@@ -50,6 +55,20 @@ namespace PV3TestUtility3
 
         private void PlotDisplay_Load(object sender, EventArgs e)
         {
+            pv3tu3Main = (PV3TestUtility3Main)Owner;
+            pv3Connection = pv3tu3Main.USBConnection;
+            pv3Data = pv3tu3Main.PV3Data;
+
+            airwayPressureStream = pv3Data.airwayPressureStream;
+            leftLungPressureStream = pv3Data.leftLungPressureStream;
+            rightLungPressureStream = pv3Data.rightLungPressureStream;
+            volumeStream = pv3Data.volumeStream;
+            leftVolumeStream = pv3Data.leftVolumeStream;
+            rightVolumeStream = pv3Data.rightVolumeStream;
+            flowStream = pv3Data.flowStream;
+            //double[] leftFlowStream = new double[maxSampleCount];
+            //double[] rightFlowStream = new double[maxSampleCount];
+
             DisplayUpdateInterval = testTimer.Interval / 1000.0;
             
             pressurePlot.Plot.XAxis.TickLabelFormat("0.000", false);
@@ -97,21 +116,14 @@ namespace PV3TestUtility3
 
         private void GenerateDummyData()
         {
-            // TEST: Test plot rendering using procedurally generated data:
-            airwayPressureStream = ScottPlot.DataGen.Sin(sampleCount, 10, 10, 5);
-            leftLungPressureStream = ScottPlot.DataGen.Sin(sampleCount, 10, 8, 5);
-            rightLungPressureStream = ScottPlot.DataGen.Sin(sampleCount, 10, 4, 5);
-            volumeStream = ScottPlot.DataGen.Cos(sampleCount, 10, 1000, 100);
-            leftVolumeStream = ScottPlot.DataGen.Cos(sampleCount, 10, 400, 50);
-            rightVolumeStream = ScottPlot.DataGen.Cos(sampleCount, 10, 600, 50);
-            flowStream = ScottPlot.DataGen.Sin(sampleCount, 10, 0, 20);
-            //double[] dummyAirwayPressureData = ScottPlot.DataGen.Sin(sampleCount, 10, 10, 5);
-            //double[] dummyLeftLungPressureData = ScottPlot.DataGen.Sin(sampleCount, 10, 8, 5);
-            //double[] dummyRightLungPressureData = ScottPlot.DataGen.Sin(sampleCount, 10, 4, 5);
-            //double[] dummyVolumeData = ScottPlot.DataGen.Cos(sampleCount, 10, 1000, 100);
-            //double[] dummyLeftVolumeData = ScottPlot.DataGen.Cos(sampleCount, 10, 400, 50);
-            //double[] dummyRightVolumeData = ScottPlot.DataGen.Cos(sampleCount, 10, 600, 50);
-            //double[] dummyFlowData = ScottPlot.DataGen.Sin(sampleCount, 10, 0, 20);
+            //// TEST: Test plot rendering using procedurally generated data:
+            //airwayPressureStream = ScottPlot.DataGen.Sin(maxSampleCount, 10, 10, 5);
+            //leftLungPressureStream = ScottPlot.DataGen.Sin(maxSampleCount, 10, 8, 5);
+            //rightLungPressureStream = ScottPlot.DataGen.Sin(maxSampleCount, 10, 4, 5);
+            //volumeStream = ScottPlot.DataGen.Cos(maxSampleCount, 10, 1000, 100);
+            //leftVolumeStream = ScottPlot.DataGen.Cos(maxSampleCount, 10, 400, 50);
+            //rightVolumeStream = ScottPlot.DataGen.Cos(maxSampleCount, 10, 600, 50);
+            //flowStream = ScottPlot.DataGen.Sin(maxSampleCount, 10, 0, 20);
 
             airwayPressureSignal = pressurePlot.Plot.AddSignal(airwayPressureStream, sampleRate, Color.Aqua, "Airway");
             leftLungPressureSignal = pressurePlot.Plot.AddSignal(leftLungPressureStream, sampleRate, Color.Green, "Left");

@@ -65,7 +65,6 @@ namespace PV3TestUtility3
             // 
             // testTimer
             // 
-            this.testTimer.Interval = 500;
             this.testTimer.Tick += new System.EventHandler(this.testTimer_Tick);
             // 
             // startButton

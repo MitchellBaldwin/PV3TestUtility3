@@ -60,7 +60,7 @@ namespace PV3TestUtility3
 
         public byte ttlModel = 0;                              //Flag indicating the TTL model attached
         public byte[] ttlSN = new byte[2];                     //Byte array for the serial number of the TTL attached
-        
+
         public ushort PPROXZero = 953;
         public ushort PLEFTZero = 953;
         public ushort PRGHTZero = 953;
@@ -72,12 +72,29 @@ namespace PV3TestUtility3
         public ushort PRGHTGain = 45435;
         public ushort PHIGHGain = 27081;
         public ushort AUXINGain = 1;
-        
+
         public ushort PPROXRaw;
         public ushort PLEFTRaw;
         public ushort PRGHTRaw;
         public ushort PHIGHRaw;
         public ushort AUXINRaw;
+
+        public double[] ccLeft = new double[] { 0.000811874809, -0.074691255175, 2.301089012738, 27.441272849990};
+        public double[] ccRight = new double[] { 0.000811874809, -0.074691255175, 2.301089012738, 27.441272849990 };
+
+        private const long maxSampleCount = 100000;
+        private long lastSampleNumber = 0;
+        private long sampleCount = 0;
+
+        public double[] airwayPressureStream = new double[maxSampleCount];
+        public double[] leftLungPressureStream = new double[maxSampleCount];
+        public double[] rightLungPressureStream = new double[maxSampleCount];
+        public double[] volumeStream = new double[maxSampleCount];
+        public double[] leftVolumeStream = new double[maxSampleCount];
+        public double[] rightVolumeStream = new double[maxSampleCount];
+        public double[] flowStream = new double[maxSampleCount];
+        //public double[] leftFlowStream = new double[maxSampleCount];
+        //public double[] rightFlowStream = new double[maxSampleCount];
 
         private double pprox;
 
@@ -110,6 +127,30 @@ namespace PV3TestUtility3
                 return prght; 
             }
             set { prght = value; }
+        }
+
+        private double vleft;
+
+        public double VLEFT
+        {
+            get
+            {
+                vleft = Math.Pow(pleft, 4) * ccLeft[0] + Math.Pow(pleft, 3) * ccLeft[1] + Math.Pow(pleft, 2) * ccLeft[2] + pleft * ccLeft[3];
+                return vleft;
+            }
+            set { vleft = value; }
+        }
+
+        private double vrght;
+
+        public double VRIGHT
+        {
+            get
+            {
+                vrght = Math.Pow(prght, 4) * ccLeft[0] + Math.Pow(prght, 3) * ccLeft[1] + Math.Pow(prght, 2) * ccLeft[2] + prght * ccLeft[3];
+                return vrght;
+            }
+            set { vrght = value; }
         }
 
         private double phigh;
@@ -178,6 +219,49 @@ namespace PV3TestUtility3
                 return trght;
             }
             set { trght = value; }
+        }
+
+        public void AddSampleSet()
+        {
+            if (sampleCount < maxSampleCount)
+            {
+                airwayPressureStream[sampleCount] = PPROX;
+                leftLungPressureStream[sampleCount] = PLEFT;
+                rightLungPressureStream[sampleCount] = PRGHT;
+
+                leftVolumeStream[sampleCount] = VLEFT;
+                rightVolumeStream[sampleCount] = VRIGHT;
+
+            }
+            sampleCount++;
+        }
+
+        public void AddSampleSet(long sampleNumber)
+        {
+            if (sampleNumber < maxSampleCount)
+            {
+                for (long sample = lastSampleNumber + 1; sample <= sampleNumber; ++sample)
+                {
+                    if ((sample < sampleNumber))
+                    {
+                        airwayPressureStream[sample] = (airwayPressureStream[lastSampleNumber] + PPROX) / 2.0;
+                        leftLungPressureStream[sample] = (leftLungPressureStream[lastSampleNumber] + PLEFT) / 2.0;
+                        rightLungPressureStream[sample] = (rightLungPressureStream[lastSampleNumber] + PRGHT) / 2.0;
+
+                        leftLungPressureStream[sample] = (leftVolumeStream[lastSampleNumber] + VLEFT) / 2.0;
+                        rightVolumeStream[sample] = (rightVolumeStream[lastSampleNumber] + VRIGHT) / 2.0;
+
+                    }
+                    airwayPressureStream[sample] = PPROX;
+                    leftLungPressureStream[sample] = PLEFT;
+                    rightLungPressureStream[sample] = PRGHT;
+
+                    leftVolumeStream[sample] = VLEFT;
+                    rightVolumeStream[sample] = VRIGHT;
+
+                }
+            }
+            lastSampleNumber = sampleNumber;
         }
 
     }
