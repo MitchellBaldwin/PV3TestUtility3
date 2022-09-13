@@ -79,10 +79,12 @@ namespace PV3TestUtility3
         public ushort PHIGHRaw;
         public ushort AUXINRaw;
 
-        public double[] ccLeft = new double[] { 0.000811874809, -0.074691255175, 2.301089012738, 27.441272849990};
+        public double[] ccLeft = new double[] { 0.000811874809, -0.074691255175, 2.301089012738, 27.441272849990 };
         public double[] ccRight = new double[] { 0.000811874809, -0.074691255175, 2.301089012738, 27.441272849990 };
 
         private const long maxSampleCount = 100000;
+        private const UInt16 pressureStreamSmoothingSampleCount = 7;
+
         private long lastSampleNumber = 0;
         private long sampleCount = 0;
 
@@ -131,11 +133,19 @@ namespace PV3TestUtility3
 
         private double vleft;
 
+        /// <summary>
+        /// Helper function to calculate volume
+        /// </summary>
+        private double CalculateVolume(double lungPressure)
+        {
+            return Math.Pow(lungPressure, 4) * ccLeft[0] + Math.Pow(lungPressure, 3) * ccLeft[1] + Math.Pow(lungPressure, 2) * ccLeft[2] + lungPressure * ccLeft[3];
+        }
+
         public double VLEFT
         {
             get
             {
-                vleft = Math.Pow(pleft, 4) * ccLeft[0] + Math.Pow(pleft, 3) * ccLeft[1] + Math.Pow(pleft, 2) * ccLeft[2] + pleft * ccLeft[3];
+                vleft = CalculateVolume(pleft);
                 return vleft;
             }
             set { vleft = value; }
@@ -147,7 +157,7 @@ namespace PV3TestUtility3
         {
             get
             {
-                vrght = Math.Pow(prght, 4) * ccLeft[0] + Math.Pow(prght, 3) * ccLeft[1] + Math.Pow(prght, 2) * ccLeft[2] + prght * ccLeft[3];
+                vrght = CalculateVolume(prght);
                 return vrght;
             }
             set { vrght = value; }
@@ -238,29 +248,70 @@ namespace PV3TestUtility3
 
         public void AddSampleSet(long sampleNumber)
         {
-            if (sampleNumber < maxSampleCount)
+            if (sampleNumber < maxSampleCount)  // Do not overrun buffer
             {
-                for (long sample = lastSampleNumber + 1; sample <= sampleNumber; ++sample)
+                // Set latest sample values equal to the latest actual measurement value:
+                airwayPressureStream[sampleNumber] = PPROX;     // Using the PPROX property getter also places offset and scaled measurement value into the pprox field
+                leftLungPressureStream[sampleNumber] = PLEFT;
+                rightLungPressureStream[sampleNumber] = PRGHT;
+
+                long saveLastSampleNumber = lastSampleNumber;
+
+                while ((sampleNumber - lastSampleNumber) > 1)
                 {
-                    if ((sample < sampleNumber))
+                    // Set missed sample values to the average of the two endpoint measurement values:
+                    for (long sample = lastSampleNumber + 1; sample < sampleNumber; ++sample)
                     {
-                        airwayPressureStream[sample] = (airwayPressureStream[lastSampleNumber] + PPROX) / 2.0;
-                        leftLungPressureStream[sample] = (leftLungPressureStream[lastSampleNumber] + PLEFT) / 2.0;
-                        rightLungPressureStream[sample] = (rightLungPressureStream[lastSampleNumber] + PRGHT) / 2.0;
+                        airwayPressureStream[sample] = (airwayPressureStream[lastSampleNumber] + pprox) / 2.0;
+                        leftLungPressureStream[sample] = (leftLungPressureStream[lastSampleNumber] + pleft) / 2.0;
+                        rightLungPressureStream[sample] = (rightLungPressureStream[lastSampleNumber] + prght) / 2.0;
 
-                        leftLungPressureStream[sample] = (leftVolumeStream[lastSampleNumber] + VLEFT) / 2.0;
-                        rightVolumeStream[sample] = (rightVolumeStream[lastSampleNumber] + VRIGHT) / 2.0;
+                        //leftVolumeStream[sample] = (leftVolumeStream[lastSampleNumber] + VLEFT) / 2.0;
+                        //rightVolumeStream[sample] = (rightVolumeStream[lastSampleNumber] + VRIGHT) / 2.0;
 
+                        ++lastSampleNumber;
                     }
-                    airwayPressureStream[sample] = PPROX;
-                    leftLungPressureStream[sample] = PLEFT;
-                    rightLungPressureStream[sample] = PRGHT;
-
-                    leftVolumeStream[sample] = VLEFT;
-                    rightVolumeStream[sample] = VRIGHT;
-
                 }
+
+                if (sampleNumber > pressureStreamSmoothingSampleCount)
+                {
+                    // Smooth the pressure data streams:
+                    double airwayPressureSum = 0;
+                    double leftLungPressureSum = 0;
+                    double rightLungPressureSum = 0;
+                    for (UInt16 i = 0; i < pressureStreamSmoothingSampleCount; ++i)
+                    {
+                        airwayPressureSum += airwayPressureStream[sampleNumber - i];
+                        leftLungPressureSum += leftLungPressureStream[sampleNumber - i];
+                        rightLungPressureSum += rightLungPressureStream[sampleNumber - i];
+                    }
+                    airwayPressureStream[sampleNumber] = airwayPressureSum / pressureStreamSmoothingSampleCount;
+                    leftLungPressureStream[sampleNumber] = leftLungPressureSum / pressureStreamSmoothingSampleCount;
+                    rightLungPressureStream[sampleNumber] = rightLungPressureSum / pressureStreamSmoothingSampleCount;
+                }
+                else
+                {
+                    // Prime the first stream element with the first measured values:
+                    // TODO: This can be improved to provide a smoother initialization
+                    for (UInt16 i = 0; i < pressureStreamSmoothingSampleCount; ++i)
+                    {
+                        airwayPressureStream[i] = pprox;
+                        leftLungPressureStream[i] = pleft;
+                        rightLungPressureStream[i] = prght;
+                    }
+                }
+
+                // Calculate volume measurements from interpolated and smoothed pressure data:
+                for (long sample = saveLastSampleNumber + 1; sample <= sampleNumber; ++sample)
+                {
+                    leftVolumeStream[sample] = CalculateVolume(leftLungPressureStream[sample]);
+                    rightVolumeStream[sample] = CalculateVolume(rightLungPressureStream[sample]);
+                }
+
+                // Calculate and smooth flow rates:
+
             }
+
             lastSampleNumber = sampleNumber;
         }
 

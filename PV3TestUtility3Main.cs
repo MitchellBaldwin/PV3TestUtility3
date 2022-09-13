@@ -309,8 +309,7 @@ namespace PV3TestUtility3
             usbConnection.OutBuffer[1] = (byte)cmd;
             usbConnection.sendViaUSB();
             usbConnection.receiveViaUSB();
-
-            int sampleSetsInPacket = usbConnection.InBuffer[3];
+                        int sampleSetsInPacket = usbConnection.InBuffer[3];
 
             while (sampleSetsInPacket > 0)
             {
@@ -318,21 +317,16 @@ namespace PV3TestUtility3
                 {
                     if (i == 0)
                     {
-                        pv3Data.PPROXRaw = (ushort)((uint)(usbConnection.InBuffer[i + 5] << 8) + (uint)usbConnection.InBuffer[i + 4]);
-                        pv3Data.PLEFTRaw = (ushort)((uint)(usbConnection.InBuffer[i + 7] << 8) + (uint)usbConnection.InBuffer[i + 6]);
-                        pv3Data.PRGHTRaw = (ushort)((uint)(usbConnection.InBuffer[i + 9] << 8) + (uint)usbConnection.InBuffer[i + 8]);
-                        pv3Data.PHIGHRaw = (ushort)((uint)(usbConnection.InBuffer[i + 11] << 8) + (uint)usbConnection.InBuffer[i + 10]);
-                        pv3Data.AUXINRaw = (ushort)((uint)(usbConnection.InBuffer[i + 13] << 8) + (uint)usbConnection.InBuffer[i + 12]);
-
-                        //if ((pv3Data.PPROX >= -20.0) && (pv3Data.PPROX <= 120.0))
-                        //{
-                        //    pv3Data.AddSampleSet();
-                        //}
+                        pv3Data.PPROXRaw = (ushort)((uint)(usbConnection.InBuffer[5] << 8) + (uint)usbConnection.InBuffer[4]);
+                        pv3Data.PLEFTRaw = (ushort)((uint)(usbConnection.InBuffer[7] << 8) + (uint)usbConnection.InBuffer[6]);
+                        pv3Data.PRGHTRaw = (ushort)((uint)(usbConnection.InBuffer[9] << 8) + (uint)usbConnection.InBuffer[8]);
+                        pv3Data.PHIGHRaw = (ushort)((uint)(usbConnection.InBuffer[11] << 8) + (uint)usbConnection.InBuffer[10]);
+                        pv3Data.AUXINRaw = (ushort)((uint)(usbConnection.InBuffer[13] << 8) + (uint)usbConnection.InBuffer[12]);
 
                         // TODO: Smooth pressure data streams
                         // TODO: Reset missed package count when restarting data acquisition
                         // DONE: Use stopwatch to set data sample position in data stream arrays
-                        // TODO: Interpolate missed samples - in progress
+                        // DONE: Interpolate missed samples - in progress
                         // TODO: Handle first data sample
 
                         long sampleNumber = dataStopwatch.ElapsedMilliseconds / 2;

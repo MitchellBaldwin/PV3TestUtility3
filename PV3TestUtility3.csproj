@@ -40,6 +40,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="RingBuffer">
+      <HintPath>..\RingBuffer.NET\RingBuffer\bin\Debug\RingBuffer.dll</HintPath>
+    </Reference>
     <Reference Include="ScottPlot, Version=4.1.57.0, Culture=neutral, PublicKeyToken=86698dc10387c39e, processorArchitecture=MSIL">
       <HintPath>packages\ScottPlot.4.1.57\lib\netstandard2.0\ScottPlot.dll</HintPath>
     </Reference>
