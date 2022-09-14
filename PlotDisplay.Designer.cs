@@ -30,25 +30,22 @@ namespace PV3TestUtility3
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.pressurePlot = new ScottPlot.FormsPlot();
             this.controlPanel = new System.Windows.Forms.Panel();
-            this.testTimer = new System.Windows.Forms.Timer(this.components);
-            this.startButton = new System.Windows.Forms.Button();
-            this.volumePlot = new ScottPlot.FormsPlot();
-            this.resetButton = new System.Windows.Forms.Button();
-            this.showAllPressuresCheckBox = new System.Windows.Forms.CheckBox();
-            this.showAllVolumesCheckBox = new System.Windows.Forms.CheckBox();
             this.TimeBaselineDisplayLabel = new System.Windows.Forms.Label();
+            this.showAllVolumesCheckBox = new System.Windows.Forms.CheckBox();
+            this.showAllPressuresCheckBox = new System.Windows.Forms.CheckBox();
+            this.resetButton = new System.Windows.Forms.Button();
+            this.startButton = new System.Windows.Forms.Button();
+            this.testTimer = new System.Windows.Forms.Timer(this.components);
+            this.PlotsSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.pressurePlot = new ScottPlot.FormsPlot();
+            this.volumePlot = new ScottPlot.FormsPlot();
             this.controlPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PlotsSplitContainer)).BeginInit();
+            this.PlotsSplitContainer.Panel1.SuspendLayout();
+            this.PlotsSplitContainer.Panel2.SuspendLayout();
+            this.PlotsSplitContainer.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // pressurePlot
-            // 
-            this.pressurePlot.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pressurePlot.Location = new System.Drawing.Point(0, 0);
-            this.pressurePlot.Name = "pressurePlot";
-            this.pressurePlot.Size = new System.Drawing.Size(1008, 300);
-            this.pressurePlot.TabIndex = 0;
             // 
             // controlPanel
             // 
@@ -63,50 +60,14 @@ namespace PV3TestUtility3
             this.controlPanel.Size = new System.Drawing.Size(1008, 35);
             this.controlPanel.TabIndex = 1;
             // 
-            // testTimer
+            // TimeBaselineDisplayLabel
             // 
-            this.testTimer.Tick += new System.EventHandler(this.testTimer_Tick);
-            // 
-            // startButton
-            // 
-            this.startButton.Location = new System.Drawing.Point(93, 6);
-            this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(75, 23);
-            this.startButton.TabIndex = 0;
-            this.startButton.Text = "Start";
-            this.startButton.UseVisualStyleBackColor = true;
-            this.startButton.Click += new System.EventHandler(this.startButton_Click);
-            // 
-            // volumePlot
-            // 
-            this.volumePlot.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.volumePlot.Location = new System.Drawing.Point(0, 300);
-            this.volumePlot.Name = "volumePlot";
-            this.volumePlot.Size = new System.Drawing.Size(1008, 394);
-            this.volumePlot.TabIndex = 2;
-            // 
-            // resetButton
-            // 
-            this.resetButton.Location = new System.Drawing.Point(12, 6);
-            this.resetButton.Name = "resetButton";
-            this.resetButton.Size = new System.Drawing.Size(75, 23);
-            this.resetButton.TabIndex = 1;
-            this.resetButton.Text = "Reset";
-            this.resetButton.UseVisualStyleBackColor = true;
-            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
-            // 
-            // showAllPressuresCheckBox
-            // 
-            this.showAllPressuresCheckBox.AutoSize = true;
-            this.showAllPressuresCheckBox.Checked = true;
-            this.showAllPressuresCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.showAllPressuresCheckBox.Location = new System.Drawing.Point(255, 11);
-            this.showAllPressuresCheckBox.Name = "showAllPressuresCheckBox";
-            this.showAllPressuresCheckBox.Size = new System.Drawing.Size(171, 17);
-            this.showAllPressuresCheckBox.TabIndex = 2;
-            this.showAllPressuresCheckBox.Text = "Show individual lung pressures";
-            this.showAllPressuresCheckBox.UseVisualStyleBackColor = true;
-            this.showAllPressuresCheckBox.CheckedChanged += new System.EventHandler(this.showAllPressuresCheckBox_CheckedChanged);
+            this.TimeBaselineDisplayLabel.AutoSize = true;
+            this.TimeBaselineDisplayLabel.Location = new System.Drawing.Point(174, 11);
+            this.TimeBaselineDisplayLabel.Name = "TimeBaselineDisplayLabel";
+            this.TimeBaselineDisplayLabel.Size = new System.Drawing.Size(34, 13);
+            this.TimeBaselineDisplayLabel.TabIndex = 4;
+            this.TimeBaselineDisplayLabel.Text = "0.000";
             // 
             // showAllVolumesCheckBox
             // 
@@ -121,42 +82,107 @@ namespace PV3TestUtility3
             this.showAllVolumesCheckBox.UseVisualStyleBackColor = true;
             this.showAllVolumesCheckBox.CheckedChanged += new System.EventHandler(this.showAllVolumesCheckBox_CheckedChanged);
             // 
-            // TimeBaselineDisplayLabel
+            // showAllPressuresCheckBox
             // 
-            this.TimeBaselineDisplayLabel.AutoSize = true;
-            this.TimeBaselineDisplayLabel.Location = new System.Drawing.Point(174, 11);
-            this.TimeBaselineDisplayLabel.Name = "TimeBaselineDisplayLabel";
-            this.TimeBaselineDisplayLabel.Size = new System.Drawing.Size(34, 13);
-            this.TimeBaselineDisplayLabel.TabIndex = 4;
-            this.TimeBaselineDisplayLabel.Text = "0.000";
+            this.showAllPressuresCheckBox.AutoSize = true;
+            this.showAllPressuresCheckBox.Checked = true;
+            this.showAllPressuresCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showAllPressuresCheckBox.Location = new System.Drawing.Point(255, 11);
+            this.showAllPressuresCheckBox.Name = "showAllPressuresCheckBox";
+            this.showAllPressuresCheckBox.Size = new System.Drawing.Size(171, 17);
+            this.showAllPressuresCheckBox.TabIndex = 2;
+            this.showAllPressuresCheckBox.Text = "Show individual lung pressures";
+            this.showAllPressuresCheckBox.UseVisualStyleBackColor = true;
+            this.showAllPressuresCheckBox.CheckedChanged += new System.EventHandler(this.showAllPressuresCheckBox_CheckedChanged);
+            // 
+            // resetButton
+            // 
+            this.resetButton.Location = new System.Drawing.Point(12, 6);
+            this.resetButton.Name = "resetButton";
+            this.resetButton.Size = new System.Drawing.Size(75, 23);
+            this.resetButton.TabIndex = 1;
+            this.resetButton.Text = "Reset";
+            this.resetButton.UseVisualStyleBackColor = true;
+            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
+            // 
+            // startButton
+            // 
+            this.startButton.Location = new System.Drawing.Point(93, 6);
+            this.startButton.Name = "startButton";
+            this.startButton.Size = new System.Drawing.Size(75, 23);
+            this.startButton.TabIndex = 0;
+            this.startButton.Text = "Start";
+            this.startButton.UseVisualStyleBackColor = true;
+            this.startButton.Click += new System.EventHandler(this.startButton_Click);
+            // 
+            // testTimer
+            // 
+            this.testTimer.Tick += new System.EventHandler(this.testTimer_Tick);
+            // 
+            // PlotsSplitContainer
+            // 
+            this.PlotsSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PlotsSplitContainer.Location = new System.Drawing.Point(0, 0);
+            this.PlotsSplitContainer.Name = "PlotsSplitContainer";
+            this.PlotsSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // PlotsSplitContainer.Panel1
+            // 
+            this.PlotsSplitContainer.Panel1.Controls.Add(this.pressurePlot);
+            // 
+            // PlotsSplitContainer.Panel2
+            // 
+            this.PlotsSplitContainer.Panel2.Controls.Add(this.volumePlot);
+            this.PlotsSplitContainer.Size = new System.Drawing.Size(1008, 694);
+            this.PlotsSplitContainer.SplitterDistance = 348;
+            this.PlotsSplitContainer.TabIndex = 3;
+            // 
+            // pressurePlot
+            // 
+            this.pressurePlot.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pressurePlot.Location = new System.Drawing.Point(0, 0);
+            this.pressurePlot.Name = "pressurePlot";
+            this.pressurePlot.Size = new System.Drawing.Size(1008, 348);
+            this.pressurePlot.TabIndex = 1;
+            // 
+            // volumePlot
+            // 
+            this.volumePlot.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.volumePlot.Location = new System.Drawing.Point(0, 0);
+            this.volumePlot.Name = "volumePlot";
+            this.volumePlot.Size = new System.Drawing.Size(1008, 342);
+            this.volumePlot.TabIndex = 3;
             // 
             // PlotDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 729);
-            this.Controls.Add(this.volumePlot);
-            this.Controls.Add(this.pressurePlot);
+            this.Controls.Add(this.PlotsSplitContainer);
             this.Controls.Add(this.controlPanel);
             this.Name = "PlotDisplay";
             this.Text = "Data Streams Display";
             this.Load += new System.EventHandler(this.PlotDisplay_Load);
             this.controlPanel.ResumeLayout(false);
             this.controlPanel.PerformLayout();
+            this.PlotsSplitContainer.Panel1.ResumeLayout(false);
+            this.PlotsSplitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PlotsSplitContainer)).EndInit();
+            this.PlotsSplitContainer.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private ScottPlot.FormsPlot pressurePlot;
         private System.Windows.Forms.Panel controlPanel;
         private System.Windows.Forms.Timer testTimer;
         private System.Windows.Forms.Button startButton;
-        private ScottPlot.FormsPlot volumePlot;
         private System.Windows.Forms.Button resetButton;
         private System.Windows.Forms.CheckBox showAllPressuresCheckBox;
         private System.Windows.Forms.CheckBox showAllVolumesCheckBox;
         private System.Windows.Forms.Label TimeBaselineDisplayLabel;
+        private System.Windows.Forms.SplitContainer PlotsSplitContainer;
+        private ScottPlot.FormsPlot pressurePlot;
+        private ScottPlot.FormsPlot volumePlot;
     }
 }

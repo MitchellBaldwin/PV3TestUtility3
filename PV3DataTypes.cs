@@ -266,9 +266,6 @@ namespace PV3TestUtility3
                         leftLungPressureStream[sample] = (leftLungPressureStream[lastSampleNumber] + pleft) / 2.0;
                         rightLungPressureStream[sample] = (rightLungPressureStream[lastSampleNumber] + prght) / 2.0;
 
-                        //leftVolumeStream[sample] = (leftVolumeStream[lastSampleNumber] + VLEFT) / 2.0;
-                        //rightVolumeStream[sample] = (rightVolumeStream[lastSampleNumber] + VRIGHT) / 2.0;
-
                         ++lastSampleNumber;
                     }
                 }

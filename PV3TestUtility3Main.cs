@@ -200,24 +200,42 @@ namespace PV3TestUtility3
 
         private void startDataAcquisitionButton_Click(object sender, EventArgs e)
         {
-            cmd = PV3DataTypes.PV3CommandType.START_DATA_ACQ;
-            usbConnection.OutBuffer[1] = (byte)cmd;
-            usbConnection.sendViaUSB();
-            usbConnection.receiveViaUSB();
-            DisplayUSBBufferData();
-            usbCommTimer.Enabled = true;
-            dataStopwatch.Start();
+            if (usbCommTimer.Enabled == false)
+            {
+                // Start data acquisition:
+                cmd = PV3DataTypes.PV3CommandType.START_DATA_ACQ;
+                usbConnection.OutBuffer[1] = (byte)cmd;
+                usbConnection.sendViaUSB();
+                usbConnection.receiveViaUSB();
+                DisplayUSBBufferData();
+                usbCommTimer.Enabled = true;
+                dataStopwatch.Start();
+
+                // Change button text & appearence to indicate data acquisition is in progress:
+                StartStopDataAcquisitionButton.Text = "End Data Acquisition";
+
+            }
+            else
+            {
+                // End data acquisition:
+                cmd = PV3DataTypes.PV3CommandType.STOP_DATA_ACQ;
+                usbConnection.OutBuffer[1] = (byte)cmd;
+                usbConnection.sendViaUSB();
+                usbConnection.receiveViaUSB();
+                DisplayUSBBufferData();
+                usbCommTimer.Enabled = false;
+                dataStopwatch.Stop();
+
+                // Change button text & appearence to indicate data acquisition can be started:
+                StartStopDataAcquisitionButton.Text = "Start Data Acquisition";
+
+                // Prompt user to save captured data:
+
+            }
         }
 
         private void stopDataAcquisitionButton_Click(object sender, EventArgs e)
         {
-            cmd = PV3DataTypes.PV3CommandType.STOP_DATA_ACQ;
-            usbConnection.OutBuffer[1] = (byte)cmd;
-            usbConnection.sendViaUSB();
-            usbConnection.receiveViaUSB();
-            DisplayUSBBufferData();
-            usbCommTimer.Enabled = false;
-            dataStopwatch.Stop();
         }
 
         private void readLungModelButton_Click(object sender, EventArgs e)
