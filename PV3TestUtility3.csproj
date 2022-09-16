@@ -32,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>PV.ico</ApplicationIcon>
@@ -74,6 +75,7 @@
     <Compile Include="CompCalibDialog.Designer.cs">
       <DependentUpon>CompCalibDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="CSVFileStream.cs" />
     <Compile Include="HSSCalibDialog.cs">
       <SubType>Form</SubType>
     </Compile>

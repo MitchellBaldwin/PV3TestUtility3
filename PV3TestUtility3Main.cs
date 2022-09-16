@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.IO;
 
 namespace PV3TestUtility3
 {
@@ -54,6 +55,21 @@ namespace PV3TestUtility3
 
         internal const uint HSDP_SAMPLES = 10000;
 
+        double minTime = 0.0;
+        double maxTime = 10.0;
+
+        ScottPlot.Plottable.SignalPlot airwayPressureSignal;
+        ScottPlot.Plottable.SignalPlot leftLungPressureSignal;
+        ScottPlot.Plottable.SignalPlot rightLungPressureSignal;
+        ScottPlot.Plottable.SignalPlot volumeSignal;
+        ScottPlot.Plottable.SignalPlot leftVolumeSignal;
+        ScottPlot.Plottable.SignalPlot rightVolumeSignal;
+        ScottPlot.Plottable.SignalPlot flowSignal;
+
+        private double displayUpdateInterval = 0.010;
+        public double DisplayUpdateInterval { get => displayUpdateInterval; set => displayUpdateInterval = value; }
+
+
         // Constructor
         public PV3TestUtility3Main()
         {
@@ -98,6 +114,9 @@ namespace PV3TestUtility3
                 usbCommTimer.Enabled = false;
 
                 // Configure the form controls for a connected device:
+
+                //TODO: Read lung information (Model, SN, calibration data, compliance coefficient tables):
+
 
 
                 return true;
@@ -147,6 +166,78 @@ namespace PV3TestUtility3
             {
                 ConnectToUSB();
             }
+
+            DisplayUpdateInterval = usbCommTimer.Interval / 1000.0;
+
+            PressuresPlot.Plot.XAxis.TickLabelFormat("0.000", false);
+            PressuresPlot.Plot.XAxis.LabelStyle(fontSize: 10);
+            PressuresPlot.Plot.XLabel("Time (s)");
+
+            PressuresPlot.Plot.YAxis.TickLabelFormat("0.00", false);
+            PressuresPlot.Plot.YAxis.LabelStyle(fontSize: 10);
+            PressuresPlot.Plot.YLabel("Airway Pressure (cmH2O)");
+
+            PressuresPlot.Plot.YAxis2.TickLabelFormat("0.00", false);
+            PressuresPlot.Plot.YAxis2.Ticks(true);
+            PressuresPlot.Plot.YAxis2.LabelStyle(fontSize: 10);
+            PressuresPlot.Plot.YAxis2.Label("Lung Pressure (cmH2O)");
+            PressuresPlot.Plot.YAxis2.Edge = ScottPlot.Renderable.Edge.Right;
+            PressuresPlot.Plot.YAxis2.IsVisible = true;
+
+            VolumeFlowPlot.Plot.XAxis.TickLabelFormat("0.000", false);
+            VolumeFlowPlot.Plot.XAxis.LabelStyle(fontSize: 10);
+            VolumeFlowPlot.Plot.XLabel("Time (s)");
+
+            VolumeFlowPlot.Plot.YAxis.TickLabelFormat("0", false);
+            VolumeFlowPlot.Plot.YAxis.LabelStyle(fontSize: 10);
+            VolumeFlowPlot.Plot.YLabel("Volume (mL)");
+
+            // DONE: Second Y axis doesn't seem to appear...
+            VolumeFlowPlot.Plot.YAxis2.TickLabelFormat("0.0", false);
+            VolumeFlowPlot.Plot.YAxis2.Ticks(true);
+            VolumeFlowPlot.Plot.YAxis2.LabelStyle(fontSize: 10);
+            VolumeFlowPlot.Plot.YAxis2.Label("Flow (L/min)");
+            VolumeFlowPlot.Plot.YAxis2.Edge = ScottPlot.Renderable.Edge.Right;
+            VolumeFlowPlot.Plot.YAxis2.IsVisible = true;
+
+            SetDefaultAxisLimits();
+
+            airwayPressureSignal = PressuresPlot.Plot.AddSignal(pv3Data.airwayPressureStream, PV3DataTypes.SampleRate, Color.Aqua, "Airway");
+            leftLungPressureSignal = PressuresPlot.Plot.AddSignal(pv3Data.leftLungPressureStream, PV3DataTypes.SampleRate, Color.Green, "Left");
+            leftLungPressureSignal.YAxisIndex = 1;
+            rightLungPressureSignal = PressuresPlot.Plot.AddSignal(pv3Data.rightLungPressureStream, PV3DataTypes.SampleRate, Color.Blue, "Right");
+            rightLungPressureSignal.YAxisIndex = 1;
+
+            volumeSignal = VolumeFlowPlot.Plot.AddSignal(pv3Data.volumeStream, PV3DataTypes.SampleRate, Color.OrangeRed, "Total");
+            leftVolumeSignal = VolumeFlowPlot.Plot.AddSignal(pv3Data.leftVolumeStream, PV3DataTypes.SampleRate, Color.Orange, "Left");
+            leftVolumeSignal.YAxisIndex = 0;
+            rightVolumeSignal = VolumeFlowPlot.Plot.AddSignal(pv3Data.rightVolumeStream, PV3DataTypes.SampleRate, Color.Red, "Right");
+            rightVolumeSignal.YAxisIndex = 0;
+
+            flowSignal = VolumeFlowPlot.Plot.AddSignal(pv3Data.flowStream, PV3DataTypes.SampleRate, Color.Purple, "Flow");
+            flowSignal.YAxisIndex = 1;
+
+            PressuresPlot.Plot.Legend(location: ScottPlot.Alignment.UpperRight);
+            VolumeFlowPlot.Plot.Legend(location: ScottPlot.Alignment.UpperRight);
+
+            PressuresPlot.Render();
+            VolumeFlowPlot.Render();
+
+        }
+
+        private void SetDefaultAxisLimits()
+        {
+            minTime = 0.0;
+            maxTime = 10.0;
+
+            PressuresPlot.Plot.SetAxisLimitsX(minTime, maxTime);
+            PressuresPlot.Plot.SetAxisLimitsY(0.0, 120.0);
+            PressuresPlot.Plot.SetAxisLimits(yMin: 0.0, yMax: 120.0, yAxisIndex: 1);
+
+            VolumeFlowPlot.Plot.SetAxisLimitsX(minTime, maxTime);
+            VolumeFlowPlot.Plot.SetAxisLimitsY(0, 2000);
+            VolumeFlowPlot.Plot.SetAxisLimits(yMin: -60.0, yMax: 60.0, yAxisIndex: 1);
+
         }
 
         private void connectionStateLabel_Click(object sender, EventArgs e)
@@ -209,6 +300,7 @@ namespace PV3TestUtility3
                 usbConnection.receiveViaUSB();
                 DisplayUSBBufferData();
                 usbCommTimer.Enabled = true;
+                PlotTimer.Enabled = true;
                 dataStopwatch.Start();
 
                 // Change button text & appearence to indicate data acquisition is in progress:
@@ -224,6 +316,7 @@ namespace PV3TestUtility3
                 usbConnection.receiveViaUSB();
                 DisplayUSBBufferData();
                 usbCommTimer.Enabled = false;
+                PlotTimer.Enabled = false;
                 dataStopwatch.Stop();
 
                 // Change button text & appearence to indicate data acquisition can be started:
@@ -232,10 +325,6 @@ namespace PV3TestUtility3
                 // Prompt user to save captured data:
 
             }
-        }
-
-        private void stopDataAcquisitionButton_Click(object sender, EventArgs e)
-        {
         }
 
         private void readLungModelButton_Click(object sender, EventArgs e)
@@ -313,13 +402,14 @@ namespace PV3TestUtility3
             cmd = PV3DataTypes.PV3CommandType.RD_POT;
             usbConnection.OutBuffer[1] = (byte)cmd;
             usbConnection.sendViaUSB();
-            //System.Threading.Thread.Sleep(10);
-
             usbConnection.receiveViaUSB();
-            
-            AUXINValue = (uint)(usbConnection.InBuffer[3] << 8) + (uint)usbConnection.InBuffer[2];
-            auxinBarDisplayLabel.Text = AUXINValue.ToString();
-            potProgressBar.Value = (int)AUXINValue;
+
+            if (FactoryControlPanel.Visible == true)
+            {
+                AUXINValue = (uint)(usbConnection.InBuffer[3] << 8) + (uint)usbConnection.InBuffer[2];
+                auxinBarDisplayLabel.Text = AUXINValue.ToString();
+                potProgressBar.Value = (int)AUXINValue;
+            }
 
             Stopwatch stopwatch = Stopwatch.StartNew();
 
@@ -327,7 +417,8 @@ namespace PV3TestUtility3
             usbConnection.OutBuffer[1] = (byte)cmd;
             usbConnection.sendViaUSB();
             usbConnection.receiveViaUSB();
-                        int sampleSetsInPacket = usbConnection.InBuffer[3];
+            
+            int sampleSetsInPacket = usbConnection.InBuffer[3];
 
             while (sampleSetsInPacket > 0)
             {
@@ -364,37 +455,51 @@ namespace PV3TestUtility3
                 }
                 
                 nextPacketNum = usbConnection.InBuffer[2];
-                if ((packetNum != 0) && (packetNum != 255))
+                
+                if (FactoryControlPanel.Visible == true)
                 {
-                    packagesMissedDisplayLabel.Text = (nextPacketNum - packetNum - 1).ToString();
+                    if ((packetNum != 0) && (packetNum != 255))
+                    {
+                        packagesMissedDisplayLabel.Text = (nextPacketNum - packetNum - 1).ToString();
+                    }
+                    else
+                    {
+                        packagesMissedDisplayLabel.Text = "0";
+                    }
+
+                    packageCountDisplayLabel.Text = nextPacketNum.ToString();
+                    sizeDisplayLabel.Text = sampleSetsInPacket.ToString();
+
+                    packageIntervalDisplayLabel.Text = ((double)avgPackageInterval / sampleSetsInPacket).ToString("0.0");
+                    avgPackageInterval = 0;
+
                 }
-
-                packageCountDisplayLabel.Text = nextPacketNum.ToString();
-                sizeDisplayLabel.Text = sampleSetsInPacket.ToString();
-
-                packageIntervalDisplayLabel.Text = ((double)avgPackageInterval / sampleSetsInPacket).ToString("0.0");
-                avgPackageInterval = 0;
 
                 usbConnection.sendViaUSB();
                 usbConnection.receiveViaUSB();
                 sampleSetsInPacket = usbConnection.InBuffer[3];
             }
-            maxPackageIntervalDisplayLabel.Text = maxPackageInterval.ToString();
 
-            ch0DisplayLabel.Text = pv3Data.PPROXRaw.ToString();
-            if (pv3Data.PPROXRaw < 500)
+            if (FactoryControlPanel.Visible == true)
             {
-                ch0ZeroDetectedLabel.Visible = true;
+                maxPackageIntervalDisplayLabel.Text = maxPackageInterval.ToString();
+
+                ch0DisplayLabel.Text = pv3Data.PPROXRaw.ToString();
+                if (pv3Data.PPROXRaw < 500)
+                {
+                    ch0ZeroDetectedLabel.Visible = true;
+                }
+                pproxDisplayLabel.Text = string.Format("{0:0.00}", pv3Data.PPROX);
+                ch1DisplayLabel.Text = pv3Data.PLEFTRaw.ToString();
+                pleftDisplayLabel.Text = pv3Data.PLEFT.ToString("0.00");
+                ch2DisplayLabel.Text = pv3Data.PRGHTRaw.ToString();
+                prghtDisplayLabel.Text = pv3Data.PRGHT.ToString("0.00");
+                ch3DisplayLabel.Text = pv3Data.PHIGHRaw.ToString();
+                phighDisplayLabel.Text = pv3Data.PHIGH.ToString("0.00");
+                ch4DisplayLabel.Text = pv3Data.AUXINRaw.ToString();
+                auxinDisplayLabel.Text = pv3Data.AUXIN.ToString("0.00");
             }
-            pproxDisplayLabel.Text = string.Format("{0:0.00}", pv3Data.PPROX);
-            ch1DisplayLabel.Text = pv3Data.PLEFTRaw.ToString();
-            pleftDisplayLabel.Text = pv3Data.PLEFT.ToString("0.00");
-            ch2DisplayLabel.Text = pv3Data.PRGHTRaw.ToString();
-            prghtDisplayLabel.Text = pv3Data.PRGHT.ToString("0.00");
-            ch3DisplayLabel.Text = pv3Data.PHIGHRaw.ToString();
-            phighDisplayLabel.Text = pv3Data.PHIGH.ToString("0.00");
-            ch4DisplayLabel.Text = pv3Data.AUXINRaw.ToString();
-            auxinDisplayLabel.Text = pv3Data.AUXIN.ToString("0.00");
+
 
             #region Legacy display code
             //for (int i = 0; i < 10; ++i)
@@ -454,19 +559,31 @@ namespace PV3TestUtility3
             cmd = PV3DataTypes.PV3CommandType.RD_LSSDP;
             usbConnection.OutBuffer[1] = (byte)cmd;
             usbConnection.sendViaUSB();
-            
             usbConnection.receiveViaUSB();
+
             pv3Data.TLEFTRaw = (ushort)((uint)(usbConnection.InBuffer[3] << 8) + (uint)usbConnection.InBuffer[2]);
-            lltRawDisplayLabel.Text = pv3Data.TLEFTRaw.ToString("X4");
-            leftLungTemperatureDisplayLabel.Text = pv3Data.TLEFT.ToString("0.000");
             pv3Data.TRGHTRaw = (ushort)((uint)(usbConnection.InBuffer[5] << 8) + (uint)usbConnection.InBuffer[4]);
-            rltRawDisplayLabel.Text = pv3Data.TRGHTRaw.ToString("X4");
-            rightLungTemperatureDisplayLabel.Text = pv3Data.TRGHT.ToString("0.000");
             pv3Data.FiO2Raw = (ushort)((uint)(usbConnection.InBuffer[7] << 8) + (uint)usbConnection.InBuffer[6]);
-            fio2RawDisplayLabel.Text = pv3Data.FiO2Raw.ToString("X4");
-            fio2DisplayLabel.Text = pv3Data.FiO2.ToString("0.0");
+
+            if (FactoryControlPanel.Visible == true)
+            {
+                lltRawDisplayLabel.Text = pv3Data.TLEFTRaw.ToString("X4");
+                leftLungTemperatureDisplayLabel.Text = pv3Data.TLEFT.ToString("0.000");
+                rltRawDisplayLabel.Text = pv3Data.TRGHTRaw.ToString("X4");
+                rightLungTemperatureDisplayLabel.Text = pv3Data.TRGHT.ToString("0.000");
+                fio2RawDisplayLabel.Text = pv3Data.FiO2Raw.ToString("X4");
+                fio2DisplayLabel.Text = pv3Data.FiO2.ToString("0.0");
+            }
 
             cumulativeSavedDataTimeDisplayLabel.Text = (dataStopwatch.ElapsedMilliseconds / 1000.0).ToString("0.000");
+
+            // Update plots:
+            if ((dataStopwatch.ElapsedMilliseconds % 100L) == 0)
+            {
+                PressuresPlot.Render();
+                VolumeFlowPlot.Render();
+            }
+
         }
 
         private void setReadHSSCDButton_Click(object sender, EventArgs e)
@@ -574,6 +691,99 @@ namespace PV3TestUtility3
         {
             PlotDisplay pd = new PlotDisplay();
             pd.Show(this);
+        }
+
+        private void PV3TestUtility3Main_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.F)
+            {
+                if (FactoryControlPanel.Dock == DockStyle.None)
+                {
+                    FactoryControlPanel.Dock = DockStyle.Bottom;
+                }
+                else
+                {
+                    FactoryControlPanel.Dock = DockStyle.None;
+                }
+            }
+        }
+
+        private void SaveDataSegmentButton_Click(object sender, EventArgs e)
+        {
+            String filename = "";
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Title = "Save data segment",
+                FileName = filename,
+                DefaultExt = "csv",
+                Filter = "Comma-separated values (*.csv)|*.csv",
+                //CheckPathExists = true,
+                CheckFileExists = false,
+                OverwritePrompt = true,
+                
+            };
+            
+            DialogResult dlgResult = saveFileDialog.ShowDialog();
+            if (dlgResult == DialogResult.OK)
+            {
+                // Create file and save data:
+                try
+                {
+                    double dataTime = 0;
+                    using (CSVFileWriter writer = new CSVFileWriter(saveFileDialog.FileName))
+                    {
+                        CSVRow header = new CSVRow();
+                        header.Add("Time");
+                        header.Add("PProx");
+                        header.Add("PLeft");
+                        header.Add("PRight");
+                        header.Add("Volume");
+                        header.Add("Flow");
+                        header.Add("LVolume");
+                        header.Add("RVolume");
+                        header.Add("LFlow");
+                        header.Add("RFlow");
+
+                        writer.WriteRow(header);
+
+                        for (UInt32 i = 0; i < pv3Data.airwayPressureStream.Length; ++i)
+                        {
+                            CSVRow row = new CSVRow();
+                            row.Add(dataTime.ToString("0.000"));
+                            row.Add(pv3Data.airwayPressureStream[i].ToString());
+                            row.Add(pv3Data.leftLungPressureStream[i].ToString());
+                            row.Add(pv3Data.rightLungPressureStream[i].ToString());
+                            row.Add(pv3Data.volumeStream[i].ToString());
+                            row.Add(pv3Data.flowStream[i].ToString());
+                            row.Add(pv3Data.leftVolumeStream[i].ToString());
+                            row.Add(pv3Data.rightVolumeStream[i].ToString());
+                            row.Add(pv3Data.leftFlowStream[i].ToString());
+                            row.Add(pv3Data.rightFlowStream[i].ToString());
+
+                            writer.WriteRow(row);
+                            dataTime += 0.002;
+                        }
+                        writer.Flush();
+                    };
+                    filename = saveFileDialog.FileName;
+                    Console.WriteLine("Data saved to: {0}", filename);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: Could not save file to disk; original error: " + ex.Message);
+                }
+            }
+            else
+            {
+                filename = "";
+            }
+
+        }
+
+        private void PlotTimer_Tick(object sender, EventArgs e)
+        {
+            PressuresPlot.Render();
+            VolumeFlowPlot.Render();
         }
     }
 }

@@ -31,20 +31,38 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PV3TestUtility3Main));
             this.usbCommTimer = new System.Windows.Forms.Timer(this.components);
-            this.FactoryControlsPanel = new System.Windows.Forms.Panel();
-            this.toggleLEDsButton = new System.Windows.Forms.Button();
-            this.toggleBlinkStatusButton = new System.Windows.Forms.Button();
-            this.testHighSpeedDataRateButton = new System.Windows.Forms.Button();
-            this.auxinBarDisplayLabel = new System.Windows.Forms.Label();
-            this.auxinLabel = new System.Windows.Forms.Label();
-            this.potProgressBar = new System.Windows.Forms.ProgressBar();
-            this.enterBootloaderButton = new System.Windows.Forms.Button();
-            this.resetMCUButton = new System.Windows.Forms.Button();
-            this.usbInDisplayLabel = new System.Windows.Forms.Label();
-            this.usbOutDisplayLabel = new System.Windows.Forms.Label();
-            this.usbInLabel = new System.Windows.Forms.Label();
-            this.usbOutLabel = new System.Windows.Forms.Label();
+            this.FactoryControlPanel = new System.Windows.Forms.Panel();
             this.connectionStateLabel = new System.Windows.Forms.Label();
+            this.fio2RawDisplayLabel = new System.Windows.Forms.Label();
+            this.rltRawDisplayLabel = new System.Windows.Forms.Label();
+            this.lltRawDisplayLabel = new System.Windows.Forms.Label();
+            this.setReadLSSCDButton = new System.Windows.Forms.Button();
+            this.fio2DisplayLabel = new System.Windows.Forms.Label();
+            this.rightLungTemperatureDisplayLabel = new System.Windows.Forms.Label();
+            this.leftLungTemperatureDisplayLabel = new System.Windows.Forms.Label();
+            this.fio2Label = new System.Windows.Forms.Label();
+            this.rightLungTemperatureLabel = new System.Windows.Forms.Label();
+            this.leftLungTemperatureLabel = new System.Windows.Forms.Label();
+            this.readSWVersionButton = new System.Windows.Forms.Button();
+            this.swVersionDisplayLabel = new System.Windows.Forms.Label();
+            this.hwVerMinTextBox = new System.Windows.Forms.TextBox();
+            this.hwVerMinLabel = new System.Windows.Forms.Label();
+            this.readHWVersionButton = new System.Windows.Forms.Button();
+            this.hwVersionDisplayLabel = new System.Windows.Forms.Label();
+            this.setHWVersionButton = new System.Windows.Forms.Button();
+            this.hwVerMajTextBox = new System.Windows.Forms.TextBox();
+            this.hwVerMajLabel = new System.Windows.Forms.Label();
+            this.readLungSerialNumberButton = new System.Windows.Forms.Button();
+            this.readLungModelButton = new System.Windows.Forms.Button();
+            this.lungSerialNumberDisplayLabel = new System.Windows.Forms.Label();
+            this.lungModelDisplayLabel = new System.Windows.Forms.Label();
+            this.writeLungSerialNumberButton = new System.Windows.Forms.Button();
+            this.writeLungModelButton = new System.Windows.Forms.Button();
+            this.lungSerialNumberTextBox = new System.Windows.Forms.TextBox();
+            this.lungModelTextBox = new System.Windows.Forms.TextBox();
+            this.lungSerialNumberLabel = new System.Windows.Forms.Label();
+            this.lungModelLabel = new System.Windows.Forms.Label();
+            this.setReadComplianceCalibrationDataButton = new System.Windows.Forms.Button();
             this.ch0ZeroDetectedLabel = new System.Windows.Forms.Label();
             this.maxPackageIntervalUnitsLabel = new System.Windows.Forms.Label();
             this.packageIntervalUnitsLabel = new System.Windows.Forms.Label();
@@ -74,46 +92,31 @@
             this.ch2Label = new System.Windows.Forms.Label();
             this.ch1Label = new System.Windows.Forms.Label();
             this.ch0Label = new System.Windows.Forms.Label();
+            this.usbInDisplayLabel = new System.Windows.Forms.Label();
+            this.usbOutDisplayLabel = new System.Windows.Forms.Label();
+            this.usbInLabel = new System.Windows.Forms.Label();
+            this.usbOutLabel = new System.Windows.Forms.Label();
+            this.resetMCUButton = new System.Windows.Forms.Button();
+            this.enterBootloaderButton = new System.Windows.Forms.Button();
+            this.potProgressBar = new System.Windows.Forms.ProgressBar();
+            this.auxinBarDisplayLabel = new System.Windows.Forms.Label();
+            this.auxinLabel = new System.Windows.Forms.Label();
+            this.testHighSpeedDataRateButton = new System.Windows.Forms.Button();
+            this.toggleBlinkStatusButton = new System.Windows.Forms.Button();
+            this.toggleLEDsButton = new System.Windows.Forms.Button();
             this.UserControlPanel = new System.Windows.Forms.Panel();
+            this.displayPlotsButton = new System.Windows.Forms.Button();
             this.cumulativeSavedDataTimeUnitsLabel = new System.Windows.Forms.Label();
             this.cumulativeSavedDataTimeDisplayLabel = new System.Windows.Forms.Label();
             this.cumulativeSavedDataTimeLabel = new System.Windows.Forms.Label();
             this.StartStopDataAcquisitionButton = new System.Windows.Forms.Button();
-            this.setReadComplianceCalibrationDataButton = new System.Windows.Forms.Button();
-            this.readSWVersionButton = new System.Windows.Forms.Button();
-            this.swVersionDisplayLabel = new System.Windows.Forms.Label();
-            this.hwVerMinTextBox = new System.Windows.Forms.TextBox();
-            this.hwVerMinLabel = new System.Windows.Forms.Label();
-            this.readHWVersionButton = new System.Windows.Forms.Button();
-            this.hwVersionDisplayLabel = new System.Windows.Forms.Label();
-            this.setHWVersionButton = new System.Windows.Forms.Button();
-            this.hwVerMajTextBox = new System.Windows.Forms.TextBox();
-            this.hwVerMajLabel = new System.Windows.Forms.Label();
-            this.readLungSerialNumberButton = new System.Windows.Forms.Button();
-            this.readLungModelButton = new System.Windows.Forms.Button();
-            this.lungSerialNumberDisplayLabel = new System.Windows.Forms.Label();
-            this.lungModelDisplayLabel = new System.Windows.Forms.Label();
-            this.writeLungSerialNumberButton = new System.Windows.Forms.Button();
-            this.writeLungModelButton = new System.Windows.Forms.Button();
-            this.lungSerialNumberTextBox = new System.Windows.Forms.TextBox();
-            this.lungModelTextBox = new System.Windows.Forms.TextBox();
-            this.lungSerialNumberLabel = new System.Windows.Forms.Label();
-            this.lungModelLabel = new System.Windows.Forms.Label();
-            this.fio2RawDisplayLabel = new System.Windows.Forms.Label();
-            this.rltRawDisplayLabel = new System.Windows.Forms.Label();
-            this.lltRawDisplayLabel = new System.Windows.Forms.Label();
-            this.setReadLSSCDButton = new System.Windows.Forms.Button();
-            this.fio2DisplayLabel = new System.Windows.Forms.Label();
-            this.rightLungTemperatureDisplayLabel = new System.Windows.Forms.Label();
-            this.leftLungTemperatureDisplayLabel = new System.Windows.Forms.Label();
-            this.fio2Label = new System.Windows.Forms.Label();
-            this.rightLungTemperatureLabel = new System.Windows.Forms.Label();
-            this.leftLungTemperatureLabel = new System.Windows.Forms.Label();
             this.PlotsSplitContainer = new System.Windows.Forms.SplitContainer();
             this.PressuresPlot = new ScottPlot.FormsPlot();
             this.VolumeFlowPlot = new ScottPlot.FormsPlot();
-            this.displayPlotsButton = new System.Windows.Forms.Button();
-            this.FactoryControlsPanel.SuspendLayout();
+            this.SaveDataSegmentButton = new System.Windows.Forms.Button();
+            this.LoadDataSegmentButton = new System.Windows.Forms.Button();
+            this.PlotTimer = new System.Windows.Forms.Timer(this.components);
+            this.FactoryControlPanel.SuspendLayout();
             this.UserControlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PlotsSplitContainer)).BeginInit();
             this.PlotsSplitContainer.Panel1.SuspendLayout();
@@ -126,212 +129,85 @@
             this.usbCommTimer.Interval = 10;
             this.usbCommTimer.Tick += new System.EventHandler(this.usbCommTimer_Tick);
             // 
-            // FactoryControlsPanel
+            // FactoryControlPanel
             // 
-            this.FactoryControlsPanel.Controls.Add(this.fio2RawDisplayLabel);
-            this.FactoryControlsPanel.Controls.Add(this.rltRawDisplayLabel);
-            this.FactoryControlsPanel.Controls.Add(this.lltRawDisplayLabel);
-            this.FactoryControlsPanel.Controls.Add(this.setReadLSSCDButton);
-            this.FactoryControlsPanel.Controls.Add(this.fio2DisplayLabel);
-            this.FactoryControlsPanel.Controls.Add(this.rightLungTemperatureDisplayLabel);
-            this.FactoryControlsPanel.Controls.Add(this.leftLungTemperatureDisplayLabel);
-            this.FactoryControlsPanel.Controls.Add(this.fio2Label);
-            this.FactoryControlsPanel.Controls.Add(this.rightLungTemperatureLabel);
-            this.FactoryControlsPanel.Controls.Add(this.leftLungTemperatureLabel);
-            this.FactoryControlsPanel.Controls.Add(this.readSWVersionButton);
-            this.FactoryControlsPanel.Controls.Add(this.swVersionDisplayLabel);
-            this.FactoryControlsPanel.Controls.Add(this.hwVerMinTextBox);
-            this.FactoryControlsPanel.Controls.Add(this.hwVerMinLabel);
-            this.FactoryControlsPanel.Controls.Add(this.readHWVersionButton);
-            this.FactoryControlsPanel.Controls.Add(this.hwVersionDisplayLabel);
-            this.FactoryControlsPanel.Controls.Add(this.setHWVersionButton);
-            this.FactoryControlsPanel.Controls.Add(this.hwVerMajTextBox);
-            this.FactoryControlsPanel.Controls.Add(this.hwVerMajLabel);
-            this.FactoryControlsPanel.Controls.Add(this.readLungSerialNumberButton);
-            this.FactoryControlsPanel.Controls.Add(this.readLungModelButton);
-            this.FactoryControlsPanel.Controls.Add(this.lungSerialNumberDisplayLabel);
-            this.FactoryControlsPanel.Controls.Add(this.lungModelDisplayLabel);
-            this.FactoryControlsPanel.Controls.Add(this.writeLungSerialNumberButton);
-            this.FactoryControlsPanel.Controls.Add(this.writeLungModelButton);
-            this.FactoryControlsPanel.Controls.Add(this.lungSerialNumberTextBox);
-            this.FactoryControlsPanel.Controls.Add(this.lungModelTextBox);
-            this.FactoryControlsPanel.Controls.Add(this.lungSerialNumberLabel);
-            this.FactoryControlsPanel.Controls.Add(this.lungModelLabel);
-            this.FactoryControlsPanel.Controls.Add(this.setReadComplianceCalibrationDataButton);
-            this.FactoryControlsPanel.Controls.Add(this.ch0ZeroDetectedLabel);
-            this.FactoryControlsPanel.Controls.Add(this.maxPackageIntervalUnitsLabel);
-            this.FactoryControlsPanel.Controls.Add(this.packageIntervalUnitsLabel);
-            this.FactoryControlsPanel.Controls.Add(this.maxPackageIntervalDisplayLabel);
-            this.FactoryControlsPanel.Controls.Add(this.maxPackageIntervalLabel);
-            this.FactoryControlsPanel.Controls.Add(this.packagesMissedDisplayLabel);
-            this.FactoryControlsPanel.Controls.Add(this.packagesMissedLabel);
-            this.FactoryControlsPanel.Controls.Add(this.packageIntervalDisplayLabel);
-            this.FactoryControlsPanel.Controls.Add(this.packageIntervalLabel);
-            this.FactoryControlsPanel.Controls.Add(this.auxinDisplayLabel);
-            this.FactoryControlsPanel.Controls.Add(this.phighDisplayLabel);
-            this.FactoryControlsPanel.Controls.Add(this.prghtDisplayLabel);
-            this.FactoryControlsPanel.Controls.Add(this.pleftDisplayLabel);
-            this.FactoryControlsPanel.Controls.Add(this.pproxDisplayLabel);
-            this.FactoryControlsPanel.Controls.Add(this.setReadHSSCDButton);
-            this.FactoryControlsPanel.Controls.Add(this.packageCountDisplayLabel);
-            this.FactoryControlsPanel.Controls.Add(this.sizeDisplayLabel);
-            this.FactoryControlsPanel.Controls.Add(this.packageCountLabel);
-            this.FactoryControlsPanel.Controls.Add(this.sizeLabel);
-            this.FactoryControlsPanel.Controls.Add(this.ch4DisplayLabel);
-            this.FactoryControlsPanel.Controls.Add(this.ch3DisplayLabel);
-            this.FactoryControlsPanel.Controls.Add(this.ch2DisplayLabel);
-            this.FactoryControlsPanel.Controls.Add(this.ch1DisplayLabel);
-            this.FactoryControlsPanel.Controls.Add(this.ch0DisplayLabel);
-            this.FactoryControlsPanel.Controls.Add(this.ch4Label);
-            this.FactoryControlsPanel.Controls.Add(this.ch3Label);
-            this.FactoryControlsPanel.Controls.Add(this.ch2Label);
-            this.FactoryControlsPanel.Controls.Add(this.ch1Label);
-            this.FactoryControlsPanel.Controls.Add(this.ch0Label);
-            this.FactoryControlsPanel.Controls.Add(this.usbInDisplayLabel);
-            this.FactoryControlsPanel.Controls.Add(this.usbOutDisplayLabel);
-            this.FactoryControlsPanel.Controls.Add(this.usbInLabel);
-            this.FactoryControlsPanel.Controls.Add(this.usbOutLabel);
-            this.FactoryControlsPanel.Controls.Add(this.connectionStateLabel);
-            this.FactoryControlsPanel.Controls.Add(this.resetMCUButton);
-            this.FactoryControlsPanel.Controls.Add(this.enterBootloaderButton);
-            this.FactoryControlsPanel.Controls.Add(this.potProgressBar);
-            this.FactoryControlsPanel.Controls.Add(this.auxinBarDisplayLabel);
-            this.FactoryControlsPanel.Controls.Add(this.auxinLabel);
-            this.FactoryControlsPanel.Controls.Add(this.testHighSpeedDataRateButton);
-            this.FactoryControlsPanel.Controls.Add(this.toggleBlinkStatusButton);
-            this.FactoryControlsPanel.Controls.Add(this.toggleLEDsButton);
-            this.FactoryControlsPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.FactoryControlsPanel.Location = new System.Drawing.Point(0, 429);
-            this.FactoryControlsPanel.Name = "FactoryControlsPanel";
-            this.FactoryControlsPanel.Size = new System.Drawing.Size(1008, 300);
-            this.FactoryControlsPanel.TabIndex = 78;
-            this.FactoryControlsPanel.Click += new System.EventHandler(this.toggleBlinkStatusButton_Click);
-            // 
-            // toggleLEDsButton
-            // 
-            this.toggleLEDsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.toggleLEDsButton.Location = new System.Drawing.Point(12, 274);
-            this.toggleLEDsButton.Name = "toggleLEDsButton";
-            this.toggleLEDsButton.Size = new System.Drawing.Size(105, 23);
-            this.toggleLEDsButton.TabIndex = 2;
-            this.toggleLEDsButton.Text = "Toggle LEDs";
-            this.toggleLEDsButton.UseVisualStyleBackColor = true;
-            this.toggleLEDsButton.Click += new System.EventHandler(this.toggleLEDsButton_Click);
-            // 
-            // toggleBlinkStatusButton
-            // 
-            this.toggleBlinkStatusButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.toggleBlinkStatusButton.Location = new System.Drawing.Point(123, 274);
-            this.toggleBlinkStatusButton.Name = "toggleBlinkStatusButton";
-            this.toggleBlinkStatusButton.Size = new System.Drawing.Size(114, 23);
-            this.toggleBlinkStatusButton.TabIndex = 48;
-            this.toggleBlinkStatusButton.Text = "Toggle Blink Status";
-            this.toggleBlinkStatusButton.UseVisualStyleBackColor = true;
-            this.toggleBlinkStatusButton.Click += new System.EventHandler(this.toggleBlinkStatusButton_Click);
-            // 
-            // testHighSpeedDataRateButton
-            // 
-            this.testHighSpeedDataRateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.testHighSpeedDataRateButton.Location = new System.Drawing.Point(12, 245);
-            this.testHighSpeedDataRateButton.Name = "testHighSpeedDataRateButton";
-            this.testHighSpeedDataRateButton.Size = new System.Drawing.Size(225, 23);
-            this.testHighSpeedDataRateButton.TabIndex = 71;
-            this.testHighSpeedDataRateButton.Text = "Test High Speed Data Rate";
-            this.testHighSpeedDataRateButton.UseVisualStyleBackColor = true;
-            this.testHighSpeedDataRateButton.Click += new System.EventHandler(this.testHighSpeedDataRateButton_Click);
-            // 
-            // auxinBarDisplayLabel
-            // 
-            this.auxinBarDisplayLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.auxinBarDisplayLabel.Location = new System.Drawing.Point(295, 279);
-            this.auxinBarDisplayLabel.Name = "auxinBarDisplayLabel";
-            this.auxinBarDisplayLabel.Size = new System.Drawing.Size(45, 13);
-            this.auxinBarDisplayLabel.TabIndex = 73;
-            this.auxinBarDisplayLabel.Text = "0";
-            this.auxinBarDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // auxinLabel
-            // 
-            this.auxinLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.auxinLabel.AutoSize = true;
-            this.auxinLabel.Location = new System.Drawing.Point(243, 279);
-            this.auxinLabel.Name = "auxinLabel";
-            this.auxinLabel.Size = new System.Drawing.Size(46, 13);
-            this.auxinLabel.TabIndex = 72;
-            this.auxinLabel.Text = "AUX IN:";
-            // 
-            // potProgressBar
-            // 
-            this.potProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.potProgressBar.BackColor = System.Drawing.Color.Black;
-            this.potProgressBar.ForeColor = System.Drawing.Color.Lime;
-            this.potProgressBar.Location = new System.Drawing.Point(346, 281);
-            this.potProgressBar.Maximum = 4095;
-            this.potProgressBar.Name = "potProgressBar";
-            this.potProgressBar.Size = new System.Drawing.Size(393, 10);
-            this.potProgressBar.Step = 1;
-            this.potProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.potProgressBar.TabIndex = 74;
-            // 
-            // enterBootloaderButton
-            // 
-            this.enterBootloaderButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.enterBootloaderButton.Location = new System.Drawing.Point(781, 274);
-            this.enterBootloaderButton.Name = "enterBootloaderButton";
-            this.enterBootloaderButton.Size = new System.Drawing.Size(105, 23);
-            this.enterBootloaderButton.TabIndex = 75;
-            this.enterBootloaderButton.Text = "Enter Bootloader";
-            this.enterBootloaderButton.UseVisualStyleBackColor = true;
-            this.enterBootloaderButton.Click += new System.EventHandler(this.enterBootloaderButton_Click);
-            // 
-            // resetMCUButton
-            // 
-            this.resetMCUButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.resetMCUButton.Location = new System.Drawing.Point(892, 274);
-            this.resetMCUButton.Name = "resetMCUButton";
-            this.resetMCUButton.Size = new System.Drawing.Size(105, 23);
-            this.resetMCUButton.TabIndex = 76;
-            this.resetMCUButton.Text = "Reset MCU";
-            this.resetMCUButton.UseVisualStyleBackColor = true;
-            this.resetMCUButton.Click += new System.EventHandler(this.resetMCUButton_Click);
-            // 
-            // usbInDisplayLabel
-            // 
-            this.usbInDisplayLabel.AutoSize = true;
-            this.usbInDisplayLabel.Location = new System.Drawing.Point(70, 60);
-            this.usbInDisplayLabel.Name = "usbInDisplayLabel";
-            this.usbInDisplayLabel.Size = new System.Drawing.Size(19, 13);
-            this.usbInDisplayLabel.TabIndex = 81;
-            this.usbInDisplayLabel.Text = "00";
-            // 
-            // usbOutDisplayLabel
-            // 
-            this.usbOutDisplayLabel.AutoSize = true;
-            this.usbOutDisplayLabel.Location = new System.Drawing.Point(70, 38);
-            this.usbOutDisplayLabel.Name = "usbOutDisplayLabel";
-            this.usbOutDisplayLabel.Size = new System.Drawing.Size(19, 13);
-            this.usbOutDisplayLabel.TabIndex = 80;
-            this.usbOutDisplayLabel.Text = "00";
-            // 
-            // usbInLabel
-            // 
-            this.usbInLabel.AutoSize = true;
-            this.usbInLabel.Location = new System.Drawing.Point(20, 60);
-            this.usbInLabel.Name = "usbInLabel";
-            this.usbInLabel.Size = new System.Drawing.Size(44, 13);
-            this.usbInLabel.TabIndex = 79;
-            this.usbInLabel.Text = "USB In:";
-            this.usbInLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // usbOutLabel
-            // 
-            this.usbOutLabel.AutoSize = true;
-            this.usbOutLabel.Location = new System.Drawing.Point(12, 38);
-            this.usbOutLabel.Name = "usbOutLabel";
-            this.usbOutLabel.Size = new System.Drawing.Size(52, 13);
-            this.usbOutLabel.TabIndex = 78;
-            this.usbOutLabel.Text = "USB Out:";
-            this.usbOutLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.FactoryControlPanel.Controls.Add(this.connectionStateLabel);
+            this.FactoryControlPanel.Controls.Add(this.fio2RawDisplayLabel);
+            this.FactoryControlPanel.Controls.Add(this.rltRawDisplayLabel);
+            this.FactoryControlPanel.Controls.Add(this.lltRawDisplayLabel);
+            this.FactoryControlPanel.Controls.Add(this.setReadLSSCDButton);
+            this.FactoryControlPanel.Controls.Add(this.fio2DisplayLabel);
+            this.FactoryControlPanel.Controls.Add(this.rightLungTemperatureDisplayLabel);
+            this.FactoryControlPanel.Controls.Add(this.leftLungTemperatureDisplayLabel);
+            this.FactoryControlPanel.Controls.Add(this.fio2Label);
+            this.FactoryControlPanel.Controls.Add(this.rightLungTemperatureLabel);
+            this.FactoryControlPanel.Controls.Add(this.leftLungTemperatureLabel);
+            this.FactoryControlPanel.Controls.Add(this.readSWVersionButton);
+            this.FactoryControlPanel.Controls.Add(this.swVersionDisplayLabel);
+            this.FactoryControlPanel.Controls.Add(this.hwVerMinTextBox);
+            this.FactoryControlPanel.Controls.Add(this.hwVerMinLabel);
+            this.FactoryControlPanel.Controls.Add(this.readHWVersionButton);
+            this.FactoryControlPanel.Controls.Add(this.hwVersionDisplayLabel);
+            this.FactoryControlPanel.Controls.Add(this.setHWVersionButton);
+            this.FactoryControlPanel.Controls.Add(this.hwVerMajTextBox);
+            this.FactoryControlPanel.Controls.Add(this.hwVerMajLabel);
+            this.FactoryControlPanel.Controls.Add(this.readLungSerialNumberButton);
+            this.FactoryControlPanel.Controls.Add(this.readLungModelButton);
+            this.FactoryControlPanel.Controls.Add(this.lungSerialNumberDisplayLabel);
+            this.FactoryControlPanel.Controls.Add(this.lungModelDisplayLabel);
+            this.FactoryControlPanel.Controls.Add(this.writeLungSerialNumberButton);
+            this.FactoryControlPanel.Controls.Add(this.writeLungModelButton);
+            this.FactoryControlPanel.Controls.Add(this.lungSerialNumberTextBox);
+            this.FactoryControlPanel.Controls.Add(this.lungModelTextBox);
+            this.FactoryControlPanel.Controls.Add(this.lungSerialNumberLabel);
+            this.FactoryControlPanel.Controls.Add(this.lungModelLabel);
+            this.FactoryControlPanel.Controls.Add(this.setReadComplianceCalibrationDataButton);
+            this.FactoryControlPanel.Controls.Add(this.ch0ZeroDetectedLabel);
+            this.FactoryControlPanel.Controls.Add(this.maxPackageIntervalUnitsLabel);
+            this.FactoryControlPanel.Controls.Add(this.packageIntervalUnitsLabel);
+            this.FactoryControlPanel.Controls.Add(this.maxPackageIntervalDisplayLabel);
+            this.FactoryControlPanel.Controls.Add(this.maxPackageIntervalLabel);
+            this.FactoryControlPanel.Controls.Add(this.packagesMissedDisplayLabel);
+            this.FactoryControlPanel.Controls.Add(this.packagesMissedLabel);
+            this.FactoryControlPanel.Controls.Add(this.packageIntervalDisplayLabel);
+            this.FactoryControlPanel.Controls.Add(this.packageIntervalLabel);
+            this.FactoryControlPanel.Controls.Add(this.auxinDisplayLabel);
+            this.FactoryControlPanel.Controls.Add(this.phighDisplayLabel);
+            this.FactoryControlPanel.Controls.Add(this.prghtDisplayLabel);
+            this.FactoryControlPanel.Controls.Add(this.pleftDisplayLabel);
+            this.FactoryControlPanel.Controls.Add(this.pproxDisplayLabel);
+            this.FactoryControlPanel.Controls.Add(this.setReadHSSCDButton);
+            this.FactoryControlPanel.Controls.Add(this.packageCountDisplayLabel);
+            this.FactoryControlPanel.Controls.Add(this.sizeDisplayLabel);
+            this.FactoryControlPanel.Controls.Add(this.packageCountLabel);
+            this.FactoryControlPanel.Controls.Add(this.sizeLabel);
+            this.FactoryControlPanel.Controls.Add(this.ch4DisplayLabel);
+            this.FactoryControlPanel.Controls.Add(this.ch3DisplayLabel);
+            this.FactoryControlPanel.Controls.Add(this.ch2DisplayLabel);
+            this.FactoryControlPanel.Controls.Add(this.ch1DisplayLabel);
+            this.FactoryControlPanel.Controls.Add(this.ch0DisplayLabel);
+            this.FactoryControlPanel.Controls.Add(this.ch4Label);
+            this.FactoryControlPanel.Controls.Add(this.ch3Label);
+            this.FactoryControlPanel.Controls.Add(this.ch2Label);
+            this.FactoryControlPanel.Controls.Add(this.ch1Label);
+            this.FactoryControlPanel.Controls.Add(this.ch0Label);
+            this.FactoryControlPanel.Controls.Add(this.usbInDisplayLabel);
+            this.FactoryControlPanel.Controls.Add(this.usbOutDisplayLabel);
+            this.FactoryControlPanel.Controls.Add(this.usbInLabel);
+            this.FactoryControlPanel.Controls.Add(this.usbOutLabel);
+            this.FactoryControlPanel.Controls.Add(this.resetMCUButton);
+            this.FactoryControlPanel.Controls.Add(this.enterBootloaderButton);
+            this.FactoryControlPanel.Controls.Add(this.potProgressBar);
+            this.FactoryControlPanel.Controls.Add(this.auxinBarDisplayLabel);
+            this.FactoryControlPanel.Controls.Add(this.auxinLabel);
+            this.FactoryControlPanel.Controls.Add(this.testHighSpeedDataRateButton);
+            this.FactoryControlPanel.Controls.Add(this.toggleBlinkStatusButton);
+            this.FactoryControlPanel.Controls.Add(this.toggleLEDsButton);
+            this.FactoryControlPanel.Location = new System.Drawing.Point(0, 429);
+            this.FactoryControlPanel.Name = "FactoryControlPanel";
+            this.FactoryControlPanel.Size = new System.Drawing.Size(1008, 300);
+            this.FactoryControlPanel.TabIndex = 78;
+            this.FactoryControlPanel.Click += new System.EventHandler(this.toggleBlinkStatusButton_Click);
             // 
             // connectionStateLabel
             // 
@@ -340,10 +216,291 @@
             this.connectionStateLabel.Location = new System.Drawing.Point(12, 9);
             this.connectionStateLabel.Name = "connectionStateLabel";
             this.connectionStateLabel.Size = new System.Drawing.Size(225, 23);
-            this.connectionStateLabel.TabIndex = 77;
+            this.connectionStateLabel.TabIndex = 142;
             this.connectionStateLabel.Text = "connection state";
             this.connectionStateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.connectionStateLabel.Click += new System.EventHandler(this.connectionStateLabel_Click);
+            // 
+            // fio2RawDisplayLabel
+            // 
+            this.fio2RawDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fio2RawDisplayLabel.Location = new System.Drawing.Point(660, 57);
+            this.fio2RawDisplayLabel.Name = "fio2RawDisplayLabel";
+            this.fio2RawDisplayLabel.Size = new System.Drawing.Size(57, 18);
+            this.fio2RawDisplayLabel.TabIndex = 141;
+            this.fio2RawDisplayLabel.Text = "0";
+            this.fio2RawDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // rltRawDisplayLabel
+            // 
+            this.rltRawDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rltRawDisplayLabel.Location = new System.Drawing.Point(660, 32);
+            this.rltRawDisplayLabel.Name = "rltRawDisplayLabel";
+            this.rltRawDisplayLabel.Size = new System.Drawing.Size(57, 18);
+            this.rltRawDisplayLabel.TabIndex = 140;
+            this.rltRawDisplayLabel.Text = "0";
+            this.rltRawDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // lltRawDisplayLabel
+            // 
+            this.lltRawDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lltRawDisplayLabel.Location = new System.Drawing.Point(660, 9);
+            this.lltRawDisplayLabel.Name = "lltRawDisplayLabel";
+            this.lltRawDisplayLabel.Size = new System.Drawing.Size(57, 18);
+            this.lltRawDisplayLabel.TabIndex = 139;
+            this.lltRawDisplayLabel.Text = "0";
+            this.lltRawDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // setReadLSSCDButton
+            // 
+            this.setReadLSSCDButton.Location = new System.Drawing.Point(533, 86);
+            this.setReadLSSCDButton.Name = "setReadLSSCDButton";
+            this.setReadLSSCDButton.Size = new System.Drawing.Size(247, 23);
+            this.setReadLSSCDButton.TabIndex = 138;
+            this.setReadLSSCDButton.Text = "Set / Read Low Speed Calibration Data";
+            this.setReadLSSCDButton.UseVisualStyleBackColor = true;
+            this.setReadLSSCDButton.Click += new System.EventHandler(this.setReadLSSCDButton_Click);
+            // 
+            // fio2DisplayLabel
+            // 
+            this.fio2DisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fio2DisplayLabel.Location = new System.Drawing.Point(723, 57);
+            this.fio2DisplayLabel.Name = "fio2DisplayLabel";
+            this.fio2DisplayLabel.Size = new System.Drawing.Size(57, 18);
+            this.fio2DisplayLabel.TabIndex = 137;
+            this.fio2DisplayLabel.Text = "0.0";
+            this.fio2DisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // rightLungTemperatureDisplayLabel
+            // 
+            this.rightLungTemperatureDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rightLungTemperatureDisplayLabel.Location = new System.Drawing.Point(723, 32);
+            this.rightLungTemperatureDisplayLabel.Name = "rightLungTemperatureDisplayLabel";
+            this.rightLungTemperatureDisplayLabel.Size = new System.Drawing.Size(57, 18);
+            this.rightLungTemperatureDisplayLabel.TabIndex = 136;
+            this.rightLungTemperatureDisplayLabel.Text = "0.000";
+            this.rightLungTemperatureDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // leftLungTemperatureDisplayLabel
+            // 
+            this.leftLungTemperatureDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leftLungTemperatureDisplayLabel.Location = new System.Drawing.Point(723, 9);
+            this.leftLungTemperatureDisplayLabel.Name = "leftLungTemperatureDisplayLabel";
+            this.leftLungTemperatureDisplayLabel.Size = new System.Drawing.Size(57, 18);
+            this.leftLungTemperatureDisplayLabel.TabIndex = 135;
+            this.leftLungTemperatureDisplayLabel.Text = "0.000";
+            this.leftLungTemperatureDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // fio2Label
+            // 
+            this.fio2Label.Location = new System.Drawing.Point(530, 62);
+            this.fio2Label.Name = "fio2Label";
+            this.fio2Label.Size = new System.Drawing.Size(124, 23);
+            this.fio2Label.TabIndex = 134;
+            this.fio2Label.Text = "FiO2";
+            this.fio2Label.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // rightLungTemperatureLabel
+            // 
+            this.rightLungTemperatureLabel.Location = new System.Drawing.Point(530, 37);
+            this.rightLungTemperatureLabel.Name = "rightLungTemperatureLabel";
+            this.rightLungTemperatureLabel.Size = new System.Drawing.Size(124, 23);
+            this.rightLungTemperatureLabel.TabIndex = 133;
+            this.rightLungTemperatureLabel.Text = "Right Lung Temperature";
+            this.rightLungTemperatureLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // leftLungTemperatureLabel
+            // 
+            this.leftLungTemperatureLabel.Location = new System.Drawing.Point(530, 14);
+            this.leftLungTemperatureLabel.Name = "leftLungTemperatureLabel";
+            this.leftLungTemperatureLabel.Size = new System.Drawing.Size(124, 23);
+            this.leftLungTemperatureLabel.TabIndex = 132;
+            this.leftLungTemperatureLabel.Text = "Left Lung Temperature";
+            this.leftLungTemperatureLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // readSWVersionButton
+            // 
+            this.readSWVersionButton.Location = new System.Drawing.Point(545, 223);
+            this.readSWVersionButton.Name = "readSWVersionButton";
+            this.readSWVersionButton.Size = new System.Drawing.Size(114, 23);
+            this.readSWVersionButton.TabIndex = 131;
+            this.readSWVersionButton.Text = "Read FW Version";
+            this.readSWVersionButton.UseVisualStyleBackColor = true;
+            this.readSWVersionButton.Click += new System.EventHandler(this.readSWVersionButton_Click);
+            // 
+            // swVersionDisplayLabel
+            // 
+            this.swVersionDisplayLabel.AutoSize = true;
+            this.swVersionDisplayLabel.Location = new System.Drawing.Point(665, 228);
+            this.swVersionDisplayLabel.Name = "swVersionDisplayLabel";
+            this.swVersionDisplayLabel.Size = new System.Drawing.Size(136, 13);
+            this.swVersionDisplayLabel.TabIndex = 130;
+            this.swVersionDisplayLabel.Text = "Invalid FW Version Number";
+            // 
+            // hwVerMinTextBox
+            // 
+            this.hwVerMinTextBox.Location = new System.Drawing.Point(387, 196);
+            this.hwVerMinTextBox.Name = "hwVerMinTextBox";
+            this.hwVerMinTextBox.Size = new System.Drawing.Size(32, 20);
+            this.hwVerMinTextBox.TabIndex = 129;
+            this.hwVerMinTextBox.Text = "3";
+            this.hwVerMinTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // hwVerMinLabel
+            // 
+            this.hwVerMinLabel.Location = new System.Drawing.Point(306, 199);
+            this.hwVerMinLabel.Name = "hwVerMinLabel";
+            this.hwVerMinLabel.Size = new System.Drawing.Size(75, 13);
+            this.hwVerMinLabel.TabIndex = 128;
+            this.hwVerMinLabel.Text = "HW Ver Min:";
+            this.hwVerMinLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // readHWVersionButton
+            // 
+            this.readHWVersionButton.Location = new System.Drawing.Point(545, 194);
+            this.readHWVersionButton.Name = "readHWVersionButton";
+            this.readHWVersionButton.Size = new System.Drawing.Size(114, 23);
+            this.readHWVersionButton.TabIndex = 127;
+            this.readHWVersionButton.Text = "Read HW Version";
+            this.readHWVersionButton.UseVisualStyleBackColor = true;
+            this.readHWVersionButton.Click += new System.EventHandler(this.readHWVersionButton_Click);
+            // 
+            // hwVersionDisplayLabel
+            // 
+            this.hwVersionDisplayLabel.AutoSize = true;
+            this.hwVersionDisplayLabel.Location = new System.Drawing.Point(665, 199);
+            this.hwVersionDisplayLabel.Name = "hwVersionDisplayLabel";
+            this.hwVersionDisplayLabel.Size = new System.Drawing.Size(138, 13);
+            this.hwVersionDisplayLabel.TabIndex = 126;
+            this.hwVersionDisplayLabel.Text = "Invalid HW Version Number";
+            // 
+            // setHWVersionButton
+            // 
+            this.setHWVersionButton.Location = new System.Drawing.Point(425, 194);
+            this.setHWVersionButton.Name = "setHWVersionButton";
+            this.setHWVersionButton.Size = new System.Drawing.Size(114, 23);
+            this.setHWVersionButton.TabIndex = 125;
+            this.setHWVersionButton.Text = "Set HW Version";
+            this.setHWVersionButton.UseVisualStyleBackColor = true;
+            this.setHWVersionButton.Click += new System.EventHandler(this.setHWVersionButton_Click);
+            // 
+            // hwVerMajTextBox
+            // 
+            this.hwVerMajTextBox.Location = new System.Drawing.Point(268, 196);
+            this.hwVerMajTextBox.Name = "hwVerMajTextBox";
+            this.hwVerMajTextBox.Size = new System.Drawing.Size(32, 20);
+            this.hwVerMajTextBox.TabIndex = 124;
+            this.hwVerMajTextBox.Text = "3";
+            this.hwVerMajTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // hwVerMajLabel
+            // 
+            this.hwVerMajLabel.Location = new System.Drawing.Point(187, 199);
+            this.hwVerMajLabel.Name = "hwVerMajLabel";
+            this.hwVerMajLabel.Size = new System.Drawing.Size(75, 13);
+            this.hwVerMajLabel.TabIndex = 123;
+            this.hwVerMajLabel.Text = "HW Ver Maj:";
+            this.hwVerMajLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // readLungSerialNumberButton
+            // 
+            this.readLungSerialNumberButton.Location = new System.Drawing.Point(513, 165);
+            this.readLungSerialNumberButton.Name = "readLungSerialNumberButton";
+            this.readLungSerialNumberButton.Size = new System.Drawing.Size(146, 23);
+            this.readLungSerialNumberButton.TabIndex = 122;
+            this.readLungSerialNumberButton.Text = "Read Lung Serial Number";
+            this.readLungSerialNumberButton.UseVisualStyleBackColor = true;
+            this.readLungSerialNumberButton.Click += new System.EventHandler(this.readLungSerialNumberButton_Click);
+            // 
+            // readLungModelButton
+            // 
+            this.readLungModelButton.Location = new System.Drawing.Point(513, 136);
+            this.readLungModelButton.Name = "readLungModelButton";
+            this.readLungModelButton.Size = new System.Drawing.Size(146, 23);
+            this.readLungModelButton.TabIndex = 121;
+            this.readLungModelButton.Text = "Read Lung Model";
+            this.readLungModelButton.UseVisualStyleBackColor = true;
+            this.readLungModelButton.Click += new System.EventHandler(this.readLungModelButton_Click);
+            // 
+            // lungSerialNumberDisplayLabel
+            // 
+            this.lungSerialNumberDisplayLabel.AutoSize = true;
+            this.lungSerialNumberDisplayLabel.Location = new System.Drawing.Point(665, 170);
+            this.lungSerialNumberDisplayLabel.Name = "lungSerialNumberDisplayLabel";
+            this.lungSerialNumberDisplayLabel.Size = new System.Drawing.Size(134, 13);
+            this.lungSerialNumberDisplayLabel.TabIndex = 120;
+            this.lungSerialNumberDisplayLabel.Text = "Invalid Lung Serial Number";
+            // 
+            // lungModelDisplayLabel
+            // 
+            this.lungModelDisplayLabel.AutoSize = true;
+            this.lungModelDisplayLabel.Location = new System.Drawing.Point(665, 141);
+            this.lungModelDisplayLabel.Name = "lungModelDisplayLabel";
+            this.lungModelDisplayLabel.Size = new System.Drawing.Size(97, 13);
+            this.lungModelDisplayLabel.TabIndex = 119;
+            this.lungModelDisplayLabel.Text = "Invalid Lung Model";
+            // 
+            // writeLungSerialNumberButton
+            // 
+            this.writeLungSerialNumberButton.Location = new System.Drawing.Point(361, 165);
+            this.writeLungSerialNumberButton.Name = "writeLungSerialNumberButton";
+            this.writeLungSerialNumberButton.Size = new System.Drawing.Size(146, 23);
+            this.writeLungSerialNumberButton.TabIndex = 118;
+            this.writeLungSerialNumberButton.Text = "Set Lung Serial Number";
+            this.writeLungSerialNumberButton.UseVisualStyleBackColor = true;
+            this.writeLungSerialNumberButton.Click += new System.EventHandler(this.writeLungSerialNumberButton_Click);
+            // 
+            // writeLungModelButton
+            // 
+            this.writeLungModelButton.Location = new System.Drawing.Point(361, 136);
+            this.writeLungModelButton.Name = "writeLungModelButton";
+            this.writeLungModelButton.Size = new System.Drawing.Size(146, 23);
+            this.writeLungModelButton.TabIndex = 117;
+            this.writeLungModelButton.Text = "Set Lung Model";
+            this.writeLungModelButton.UseVisualStyleBackColor = true;
+            this.writeLungModelButton.Click += new System.EventHandler(this.writeLungModelButton_Click);
+            // 
+            // lungSerialNumberTextBox
+            // 
+            this.lungSerialNumberTextBox.Location = new System.Drawing.Point(298, 167);
+            this.lungSerialNumberTextBox.Name = "lungSerialNumberTextBox";
+            this.lungSerialNumberTextBox.Size = new System.Drawing.Size(57, 20);
+            this.lungSerialNumberTextBox.TabIndex = 116;
+            // 
+            // lungModelTextBox
+            // 
+            this.lungModelTextBox.Location = new System.Drawing.Point(298, 138);
+            this.lungModelTextBox.Name = "lungModelTextBox";
+            this.lungModelTextBox.Size = new System.Drawing.Size(57, 20);
+            this.lungModelTextBox.TabIndex = 115;
+            // 
+            // lungSerialNumberLabel
+            // 
+            this.lungSerialNumberLabel.Location = new System.Drawing.Point(187, 170);
+            this.lungSerialNumberLabel.Name = "lungSerialNumberLabel";
+            this.lungSerialNumberLabel.Size = new System.Drawing.Size(105, 13);
+            this.lungSerialNumberLabel.TabIndex = 114;
+            this.lungSerialNumberLabel.Text = "Lung Serial Number:";
+            this.lungSerialNumberLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // lungModelLabel
+            // 
+            this.lungModelLabel.Location = new System.Drawing.Point(187, 141);
+            this.lungModelLabel.Name = "lungModelLabel";
+            this.lungModelLabel.Size = new System.Drawing.Size(105, 13);
+            this.lungModelLabel.TabIndex = 113;
+            this.lungModelLabel.Text = "Lung Model:";
+            this.lungModelLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // setReadComplianceCalibrationDataButton
+            // 
+            this.setReadComplianceCalibrationDataButton.Location = new System.Drawing.Point(243, 86);
+            this.setReadComplianceCalibrationDataButton.Name = "setReadComplianceCalibrationDataButton";
+            this.setReadComplianceCalibrationDataButton.Size = new System.Drawing.Size(229, 23);
+            this.setReadComplianceCalibrationDataButton.TabIndex = 112;
+            this.setReadComplianceCalibrationDataButton.Text = "Set / Read Compliance Calibration Data";
+            this.setReadComplianceCalibrationDataButton.UseVisualStyleBackColor = true;
+            this.setReadComplianceCalibrationDataButton.Click += new System.EventHandler(this.setReadComplianceCalibrationDataButton_Click);
             // 
             // ch0ZeroDetectedLabel
             // 
@@ -620,18 +777,157 @@
             this.ch0Label.TabIndex = 82;
             this.ch0Label.Text = "PPROX:";
             // 
+            // usbInDisplayLabel
+            // 
+            this.usbInDisplayLabel.AutoSize = true;
+            this.usbInDisplayLabel.Location = new System.Drawing.Point(70, 60);
+            this.usbInDisplayLabel.Name = "usbInDisplayLabel";
+            this.usbInDisplayLabel.Size = new System.Drawing.Size(19, 13);
+            this.usbInDisplayLabel.TabIndex = 81;
+            this.usbInDisplayLabel.Text = "00";
+            // 
+            // usbOutDisplayLabel
+            // 
+            this.usbOutDisplayLabel.AutoSize = true;
+            this.usbOutDisplayLabel.Location = new System.Drawing.Point(70, 38);
+            this.usbOutDisplayLabel.Name = "usbOutDisplayLabel";
+            this.usbOutDisplayLabel.Size = new System.Drawing.Size(19, 13);
+            this.usbOutDisplayLabel.TabIndex = 80;
+            this.usbOutDisplayLabel.Text = "00";
+            // 
+            // usbInLabel
+            // 
+            this.usbInLabel.AutoSize = true;
+            this.usbInLabel.Location = new System.Drawing.Point(20, 60);
+            this.usbInLabel.Name = "usbInLabel";
+            this.usbInLabel.Size = new System.Drawing.Size(44, 13);
+            this.usbInLabel.TabIndex = 79;
+            this.usbInLabel.Text = "USB In:";
+            this.usbInLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // usbOutLabel
+            // 
+            this.usbOutLabel.AutoSize = true;
+            this.usbOutLabel.Location = new System.Drawing.Point(12, 38);
+            this.usbOutLabel.Name = "usbOutLabel";
+            this.usbOutLabel.Size = new System.Drawing.Size(52, 13);
+            this.usbOutLabel.TabIndex = 78;
+            this.usbOutLabel.Text = "USB Out:";
+            this.usbOutLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // resetMCUButton
+            // 
+            this.resetMCUButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.resetMCUButton.Location = new System.Drawing.Point(892, 274);
+            this.resetMCUButton.Name = "resetMCUButton";
+            this.resetMCUButton.Size = new System.Drawing.Size(105, 23);
+            this.resetMCUButton.TabIndex = 76;
+            this.resetMCUButton.Text = "Reset MCU";
+            this.resetMCUButton.UseVisualStyleBackColor = true;
+            this.resetMCUButton.Click += new System.EventHandler(this.resetMCUButton_Click);
+            // 
+            // enterBootloaderButton
+            // 
+            this.enterBootloaderButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.enterBootloaderButton.Location = new System.Drawing.Point(781, 274);
+            this.enterBootloaderButton.Name = "enterBootloaderButton";
+            this.enterBootloaderButton.Size = new System.Drawing.Size(105, 23);
+            this.enterBootloaderButton.TabIndex = 75;
+            this.enterBootloaderButton.Text = "Enter Bootloader";
+            this.enterBootloaderButton.UseVisualStyleBackColor = true;
+            this.enterBootloaderButton.Click += new System.EventHandler(this.enterBootloaderButton_Click);
+            // 
+            // potProgressBar
+            // 
+            this.potProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.potProgressBar.BackColor = System.Drawing.Color.Black;
+            this.potProgressBar.ForeColor = System.Drawing.Color.Lime;
+            this.potProgressBar.Location = new System.Drawing.Point(346, 281);
+            this.potProgressBar.Maximum = 4095;
+            this.potProgressBar.Name = "potProgressBar";
+            this.potProgressBar.Size = new System.Drawing.Size(393, 10);
+            this.potProgressBar.Step = 1;
+            this.potProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.potProgressBar.TabIndex = 74;
+            // 
+            // auxinBarDisplayLabel
+            // 
+            this.auxinBarDisplayLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.auxinBarDisplayLabel.Location = new System.Drawing.Point(295, 279);
+            this.auxinBarDisplayLabel.Name = "auxinBarDisplayLabel";
+            this.auxinBarDisplayLabel.Size = new System.Drawing.Size(45, 13);
+            this.auxinBarDisplayLabel.TabIndex = 73;
+            this.auxinBarDisplayLabel.Text = "0";
+            this.auxinBarDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // auxinLabel
+            // 
+            this.auxinLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.auxinLabel.AutoSize = true;
+            this.auxinLabel.Location = new System.Drawing.Point(243, 279);
+            this.auxinLabel.Name = "auxinLabel";
+            this.auxinLabel.Size = new System.Drawing.Size(46, 13);
+            this.auxinLabel.TabIndex = 72;
+            this.auxinLabel.Text = "AUX IN:";
+            // 
+            // testHighSpeedDataRateButton
+            // 
+            this.testHighSpeedDataRateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.testHighSpeedDataRateButton.Location = new System.Drawing.Point(12, 245);
+            this.testHighSpeedDataRateButton.Name = "testHighSpeedDataRateButton";
+            this.testHighSpeedDataRateButton.Size = new System.Drawing.Size(225, 23);
+            this.testHighSpeedDataRateButton.TabIndex = 71;
+            this.testHighSpeedDataRateButton.Text = "Test High Speed Data Rate";
+            this.testHighSpeedDataRateButton.UseVisualStyleBackColor = true;
+            this.testHighSpeedDataRateButton.Click += new System.EventHandler(this.testHighSpeedDataRateButton_Click);
+            // 
+            // toggleBlinkStatusButton
+            // 
+            this.toggleBlinkStatusButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.toggleBlinkStatusButton.Location = new System.Drawing.Point(123, 274);
+            this.toggleBlinkStatusButton.Name = "toggleBlinkStatusButton";
+            this.toggleBlinkStatusButton.Size = new System.Drawing.Size(114, 23);
+            this.toggleBlinkStatusButton.TabIndex = 48;
+            this.toggleBlinkStatusButton.Text = "Toggle Blink Status";
+            this.toggleBlinkStatusButton.UseVisualStyleBackColor = true;
+            this.toggleBlinkStatusButton.Click += new System.EventHandler(this.toggleBlinkStatusButton_Click);
+            // 
+            // toggleLEDsButton
+            // 
+            this.toggleLEDsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.toggleLEDsButton.Location = new System.Drawing.Point(12, 274);
+            this.toggleLEDsButton.Name = "toggleLEDsButton";
+            this.toggleLEDsButton.Size = new System.Drawing.Size(105, 23);
+            this.toggleLEDsButton.TabIndex = 2;
+            this.toggleLEDsButton.Text = "Toggle LEDs";
+            this.toggleLEDsButton.UseVisualStyleBackColor = true;
+            this.toggleLEDsButton.Click += new System.EventHandler(this.toggleLEDsButton_Click);
+            // 
             // UserControlPanel
             // 
+            this.UserControlPanel.Controls.Add(this.LoadDataSegmentButton);
+            this.UserControlPanel.Controls.Add(this.SaveDataSegmentButton);
             this.UserControlPanel.Controls.Add(this.displayPlotsButton);
             this.UserControlPanel.Controls.Add(this.cumulativeSavedDataTimeUnitsLabel);
             this.UserControlPanel.Controls.Add(this.cumulativeSavedDataTimeDisplayLabel);
             this.UserControlPanel.Controls.Add(this.cumulativeSavedDataTimeLabel);
             this.UserControlPanel.Controls.Add(this.StartStopDataAcquisitionButton);
             this.UserControlPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.UserControlPanel.Location = new System.Drawing.Point(0, 350);
+            this.UserControlPanel.Location = new System.Drawing.Point(0, 628);
             this.UserControlPanel.Name = "UserControlPanel";
-            this.UserControlPanel.Size = new System.Drawing.Size(1008, 79);
+            this.UserControlPanel.Size = new System.Drawing.Size(1008, 101);
             this.UserControlPanel.TabIndex = 79;
+            // 
+            // displayPlotsButton
+            // 
+            this.displayPlotsButton.Location = new System.Drawing.Point(851, 69);
+            this.displayPlotsButton.Name = "displayPlotsButton";
+            this.displayPlotsButton.Size = new System.Drawing.Size(146, 23);
+            this.displayPlotsButton.TabIndex = 112;
+            this.displayPlotsButton.Text = "Display Plots";
+            this.displayPlotsButton.UseVisualStyleBackColor = true;
+            this.displayPlotsButton.Visible = false;
+            this.displayPlotsButton.Click += new System.EventHandler(this.displayPlotsButton_Click);
             // 
             // cumulativeSavedDataTimeUnitsLabel
             // 
@@ -644,7 +940,7 @@
             // 
             // cumulativeSavedDataTimeDisplayLabel
             // 
-            this.cumulativeSavedDataTimeDisplayLabel.Location = new System.Drawing.Point(165, 58);
+            this.cumulativeSavedDataTimeDisplayLabel.Location = new System.Drawing.Point(162, 45);
             this.cumulativeSavedDataTimeDisplayLabel.Name = "cumulativeSavedDataTimeDisplayLabel";
             this.cumulativeSavedDataTimeDisplayLabel.Size = new System.Drawing.Size(54, 13);
             this.cumulativeSavedDataTimeDisplayLabel.TabIndex = 81;
@@ -653,7 +949,7 @@
             // 
             // cumulativeSavedDataTimeLabel
             // 
-            this.cumulativeSavedDataTimeLabel.Location = new System.Drawing.Point(9, 58);
+            this.cumulativeSavedDataTimeLabel.Location = new System.Drawing.Point(6, 45);
             this.cumulativeSavedDataTimeLabel.Name = "cumulativeSavedDataTimeLabel";
             this.cumulativeSavedDataTimeLabel.Size = new System.Drawing.Size(146, 13);
             this.cumulativeSavedDataTimeLabel.TabIndex = 80;
@@ -662,294 +958,13 @@
             // 
             // StartStopDataAcquisitionButton
             // 
-            this.StartStopDataAcquisitionButton.Location = new System.Drawing.Point(12, 3);
+            this.StartStopDataAcquisitionButton.Location = new System.Drawing.Point(9, 9);
             this.StartStopDataAcquisitionButton.Name = "StartStopDataAcquisitionButton";
-            this.StartStopDataAcquisitionButton.Size = new System.Drawing.Size(146, 23);
+            this.StartStopDataAcquisitionButton.Size = new System.Drawing.Size(207, 23);
             this.StartStopDataAcquisitionButton.TabIndex = 78;
             this.StartStopDataAcquisitionButton.Text = "Start Data Acquisition";
             this.StartStopDataAcquisitionButton.UseVisualStyleBackColor = true;
             this.StartStopDataAcquisitionButton.Click += new System.EventHandler(this.startDataAcquisitionButton_Click);
-            // 
-            // setReadComplianceCalibrationDataButton
-            // 
-            this.setReadComplianceCalibrationDataButton.Location = new System.Drawing.Point(243, 86);
-            this.setReadComplianceCalibrationDataButton.Name = "setReadComplianceCalibrationDataButton";
-            this.setReadComplianceCalibrationDataButton.Size = new System.Drawing.Size(229, 23);
-            this.setReadComplianceCalibrationDataButton.TabIndex = 112;
-            this.setReadComplianceCalibrationDataButton.Text = "Set / Read Compliance Calibration Data";
-            this.setReadComplianceCalibrationDataButton.UseVisualStyleBackColor = true;
-            this.setReadComplianceCalibrationDataButton.Click += new System.EventHandler(this.setReadComplianceCalibrationDataButton_Click);
-            // 
-            // readSWVersionButton
-            // 
-            this.readSWVersionButton.Location = new System.Drawing.Point(545, 223);
-            this.readSWVersionButton.Name = "readSWVersionButton";
-            this.readSWVersionButton.Size = new System.Drawing.Size(114, 23);
-            this.readSWVersionButton.TabIndex = 131;
-            this.readSWVersionButton.Text = "Read FW Version";
-            this.readSWVersionButton.UseVisualStyleBackColor = true;
-            this.readSWVersionButton.Click += new System.EventHandler(this.readSWVersionButton_Click);
-            // 
-            // swVersionDisplayLabel
-            // 
-            this.swVersionDisplayLabel.AutoSize = true;
-            this.swVersionDisplayLabel.Location = new System.Drawing.Point(665, 228);
-            this.swVersionDisplayLabel.Name = "swVersionDisplayLabel";
-            this.swVersionDisplayLabel.Size = new System.Drawing.Size(136, 13);
-            this.swVersionDisplayLabel.TabIndex = 130;
-            this.swVersionDisplayLabel.Text = "Invalid FW Version Number";
-            // 
-            // hwVerMinTextBox
-            // 
-            this.hwVerMinTextBox.Location = new System.Drawing.Point(387, 196);
-            this.hwVerMinTextBox.Name = "hwVerMinTextBox";
-            this.hwVerMinTextBox.Size = new System.Drawing.Size(32, 20);
-            this.hwVerMinTextBox.TabIndex = 129;
-            this.hwVerMinTextBox.Text = "3";
-            this.hwVerMinTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // hwVerMinLabel
-            // 
-            this.hwVerMinLabel.Location = new System.Drawing.Point(306, 199);
-            this.hwVerMinLabel.Name = "hwVerMinLabel";
-            this.hwVerMinLabel.Size = new System.Drawing.Size(75, 13);
-            this.hwVerMinLabel.TabIndex = 128;
-            this.hwVerMinLabel.Text = "HW Ver Min:";
-            this.hwVerMinLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // readHWVersionButton
-            // 
-            this.readHWVersionButton.Location = new System.Drawing.Point(545, 194);
-            this.readHWVersionButton.Name = "readHWVersionButton";
-            this.readHWVersionButton.Size = new System.Drawing.Size(114, 23);
-            this.readHWVersionButton.TabIndex = 127;
-            this.readHWVersionButton.Text = "Read HW Version";
-            this.readHWVersionButton.UseVisualStyleBackColor = true;
-            this.readHWVersionButton.Click += new System.EventHandler(this.readHWVersionButton_Click);
-            // 
-            // hwVersionDisplayLabel
-            // 
-            this.hwVersionDisplayLabel.AutoSize = true;
-            this.hwVersionDisplayLabel.Location = new System.Drawing.Point(665, 199);
-            this.hwVersionDisplayLabel.Name = "hwVersionDisplayLabel";
-            this.hwVersionDisplayLabel.Size = new System.Drawing.Size(138, 13);
-            this.hwVersionDisplayLabel.TabIndex = 126;
-            this.hwVersionDisplayLabel.Text = "Invalid HW Version Number";
-            // 
-            // setHWVersionButton
-            // 
-            this.setHWVersionButton.Location = new System.Drawing.Point(425, 194);
-            this.setHWVersionButton.Name = "setHWVersionButton";
-            this.setHWVersionButton.Size = new System.Drawing.Size(114, 23);
-            this.setHWVersionButton.TabIndex = 125;
-            this.setHWVersionButton.Text = "Set HW Version";
-            this.setHWVersionButton.UseVisualStyleBackColor = true;
-            this.setHWVersionButton.Click += new System.EventHandler(this.setHWVersionButton_Click);
-            // 
-            // hwVerMajTextBox
-            // 
-            this.hwVerMajTextBox.Location = new System.Drawing.Point(268, 196);
-            this.hwVerMajTextBox.Name = "hwVerMajTextBox";
-            this.hwVerMajTextBox.Size = new System.Drawing.Size(32, 20);
-            this.hwVerMajTextBox.TabIndex = 124;
-            this.hwVerMajTextBox.Text = "3";
-            this.hwVerMajTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // hwVerMajLabel
-            // 
-            this.hwVerMajLabel.Location = new System.Drawing.Point(187, 199);
-            this.hwVerMajLabel.Name = "hwVerMajLabel";
-            this.hwVerMajLabel.Size = new System.Drawing.Size(75, 13);
-            this.hwVerMajLabel.TabIndex = 123;
-            this.hwVerMajLabel.Text = "HW Ver Maj:";
-            this.hwVerMajLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // readLungSerialNumberButton
-            // 
-            this.readLungSerialNumberButton.Location = new System.Drawing.Point(513, 165);
-            this.readLungSerialNumberButton.Name = "readLungSerialNumberButton";
-            this.readLungSerialNumberButton.Size = new System.Drawing.Size(146, 23);
-            this.readLungSerialNumberButton.TabIndex = 122;
-            this.readLungSerialNumberButton.Text = "Read Lung Serial Number";
-            this.readLungSerialNumberButton.UseVisualStyleBackColor = true;
-            this.readLungSerialNumberButton.Click += new System.EventHandler(this.readLungSerialNumberButton_Click);
-            // 
-            // readLungModelButton
-            // 
-            this.readLungModelButton.Location = new System.Drawing.Point(513, 136);
-            this.readLungModelButton.Name = "readLungModelButton";
-            this.readLungModelButton.Size = new System.Drawing.Size(146, 23);
-            this.readLungModelButton.TabIndex = 121;
-            this.readLungModelButton.Text = "Read Lung Model";
-            this.readLungModelButton.UseVisualStyleBackColor = true;
-            this.readLungModelButton.Click += new System.EventHandler(this.readLungModelButton_Click);
-            // 
-            // lungSerialNumberDisplayLabel
-            // 
-            this.lungSerialNumberDisplayLabel.AutoSize = true;
-            this.lungSerialNumberDisplayLabel.Location = new System.Drawing.Point(665, 170);
-            this.lungSerialNumberDisplayLabel.Name = "lungSerialNumberDisplayLabel";
-            this.lungSerialNumberDisplayLabel.Size = new System.Drawing.Size(134, 13);
-            this.lungSerialNumberDisplayLabel.TabIndex = 120;
-            this.lungSerialNumberDisplayLabel.Text = "Invalid Lung Serial Number";
-            // 
-            // lungModelDisplayLabel
-            // 
-            this.lungModelDisplayLabel.AutoSize = true;
-            this.lungModelDisplayLabel.Location = new System.Drawing.Point(665, 141);
-            this.lungModelDisplayLabel.Name = "lungModelDisplayLabel";
-            this.lungModelDisplayLabel.Size = new System.Drawing.Size(97, 13);
-            this.lungModelDisplayLabel.TabIndex = 119;
-            this.lungModelDisplayLabel.Text = "Invalid Lung Model";
-            // 
-            // writeLungSerialNumberButton
-            // 
-            this.writeLungSerialNumberButton.Location = new System.Drawing.Point(361, 165);
-            this.writeLungSerialNumberButton.Name = "writeLungSerialNumberButton";
-            this.writeLungSerialNumberButton.Size = new System.Drawing.Size(146, 23);
-            this.writeLungSerialNumberButton.TabIndex = 118;
-            this.writeLungSerialNumberButton.Text = "Set Lung Serial Number";
-            this.writeLungSerialNumberButton.UseVisualStyleBackColor = true;
-            this.writeLungSerialNumberButton.Click += new System.EventHandler(this.writeLungSerialNumberButton_Click);
-            // 
-            // writeLungModelButton
-            // 
-            this.writeLungModelButton.Location = new System.Drawing.Point(361, 136);
-            this.writeLungModelButton.Name = "writeLungModelButton";
-            this.writeLungModelButton.Size = new System.Drawing.Size(146, 23);
-            this.writeLungModelButton.TabIndex = 117;
-            this.writeLungModelButton.Text = "Set Lung Model";
-            this.writeLungModelButton.UseVisualStyleBackColor = true;
-            this.writeLungModelButton.Click += new System.EventHandler(this.writeLungModelButton_Click);
-            // 
-            // lungSerialNumberTextBox
-            // 
-            this.lungSerialNumberTextBox.Location = new System.Drawing.Point(298, 167);
-            this.lungSerialNumberTextBox.Name = "lungSerialNumberTextBox";
-            this.lungSerialNumberTextBox.Size = new System.Drawing.Size(57, 20);
-            this.lungSerialNumberTextBox.TabIndex = 116;
-            // 
-            // lungModelTextBox
-            // 
-            this.lungModelTextBox.Location = new System.Drawing.Point(298, 138);
-            this.lungModelTextBox.Name = "lungModelTextBox";
-            this.lungModelTextBox.Size = new System.Drawing.Size(57, 20);
-            this.lungModelTextBox.TabIndex = 115;
-            // 
-            // lungSerialNumberLabel
-            // 
-            this.lungSerialNumberLabel.Location = new System.Drawing.Point(187, 170);
-            this.lungSerialNumberLabel.Name = "lungSerialNumberLabel";
-            this.lungSerialNumberLabel.Size = new System.Drawing.Size(105, 13);
-            this.lungSerialNumberLabel.TabIndex = 114;
-            this.lungSerialNumberLabel.Text = "Lung Serial Number:";
-            this.lungSerialNumberLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // lungModelLabel
-            // 
-            this.lungModelLabel.Location = new System.Drawing.Point(187, 141);
-            this.lungModelLabel.Name = "lungModelLabel";
-            this.lungModelLabel.Size = new System.Drawing.Size(105, 13);
-            this.lungModelLabel.TabIndex = 113;
-            this.lungModelLabel.Text = "Lung Model:";
-            this.lungModelLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // fio2RawDisplayLabel
-            // 
-            this.fio2RawDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fio2RawDisplayLabel.Location = new System.Drawing.Point(660, 57);
-            this.fio2RawDisplayLabel.Name = "fio2RawDisplayLabel";
-            this.fio2RawDisplayLabel.Size = new System.Drawing.Size(57, 18);
-            this.fio2RawDisplayLabel.TabIndex = 141;
-            this.fio2RawDisplayLabel.Text = "0";
-            this.fio2RawDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // rltRawDisplayLabel
-            // 
-            this.rltRawDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rltRawDisplayLabel.Location = new System.Drawing.Point(660, 32);
-            this.rltRawDisplayLabel.Name = "rltRawDisplayLabel";
-            this.rltRawDisplayLabel.Size = new System.Drawing.Size(57, 18);
-            this.rltRawDisplayLabel.TabIndex = 140;
-            this.rltRawDisplayLabel.Text = "0";
-            this.rltRawDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // lltRawDisplayLabel
-            // 
-            this.lltRawDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lltRawDisplayLabel.Location = new System.Drawing.Point(660, 9);
-            this.lltRawDisplayLabel.Name = "lltRawDisplayLabel";
-            this.lltRawDisplayLabel.Size = new System.Drawing.Size(57, 18);
-            this.lltRawDisplayLabel.TabIndex = 139;
-            this.lltRawDisplayLabel.Text = "0";
-            this.lltRawDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // setReadLSSCDButton
-            // 
-            this.setReadLSSCDButton.Location = new System.Drawing.Point(533, 86);
-            this.setReadLSSCDButton.Name = "setReadLSSCDButton";
-            this.setReadLSSCDButton.Size = new System.Drawing.Size(247, 23);
-            this.setReadLSSCDButton.TabIndex = 138;
-            this.setReadLSSCDButton.Text = "Set / Read Low Speed Calibration Data";
-            this.setReadLSSCDButton.UseVisualStyleBackColor = true;
-            this.setReadLSSCDButton.Click += new System.EventHandler(this.setReadLSSCDButton_Click);
-            // 
-            // fio2DisplayLabel
-            // 
-            this.fio2DisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fio2DisplayLabel.Location = new System.Drawing.Point(723, 57);
-            this.fio2DisplayLabel.Name = "fio2DisplayLabel";
-            this.fio2DisplayLabel.Size = new System.Drawing.Size(57, 18);
-            this.fio2DisplayLabel.TabIndex = 137;
-            this.fio2DisplayLabel.Text = "0.0";
-            this.fio2DisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // rightLungTemperatureDisplayLabel
-            // 
-            this.rightLungTemperatureDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rightLungTemperatureDisplayLabel.Location = new System.Drawing.Point(723, 32);
-            this.rightLungTemperatureDisplayLabel.Name = "rightLungTemperatureDisplayLabel";
-            this.rightLungTemperatureDisplayLabel.Size = new System.Drawing.Size(57, 18);
-            this.rightLungTemperatureDisplayLabel.TabIndex = 136;
-            this.rightLungTemperatureDisplayLabel.Text = "0.000";
-            this.rightLungTemperatureDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // leftLungTemperatureDisplayLabel
-            // 
-            this.leftLungTemperatureDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.leftLungTemperatureDisplayLabel.Location = new System.Drawing.Point(723, 9);
-            this.leftLungTemperatureDisplayLabel.Name = "leftLungTemperatureDisplayLabel";
-            this.leftLungTemperatureDisplayLabel.Size = new System.Drawing.Size(57, 18);
-            this.leftLungTemperatureDisplayLabel.TabIndex = 135;
-            this.leftLungTemperatureDisplayLabel.Text = "0.000";
-            this.leftLungTemperatureDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // fio2Label
-            // 
-            this.fio2Label.Location = new System.Drawing.Point(530, 62);
-            this.fio2Label.Name = "fio2Label";
-            this.fio2Label.Size = new System.Drawing.Size(124, 23);
-            this.fio2Label.TabIndex = 134;
-            this.fio2Label.Text = "FiO2";
-            this.fio2Label.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // rightLungTemperatureLabel
-            // 
-            this.rightLungTemperatureLabel.Location = new System.Drawing.Point(530, 37);
-            this.rightLungTemperatureLabel.Name = "rightLungTemperatureLabel";
-            this.rightLungTemperatureLabel.Size = new System.Drawing.Size(124, 23);
-            this.rightLungTemperatureLabel.TabIndex = 133;
-            this.rightLungTemperatureLabel.Text = "Right Lung Temperature";
-            this.rightLungTemperatureLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // leftLungTemperatureLabel
-            // 
-            this.leftLungTemperatureLabel.Location = new System.Drawing.Point(530, 14);
-            this.leftLungTemperatureLabel.Name = "leftLungTemperatureLabel";
-            this.leftLungTemperatureLabel.Size = new System.Drawing.Size(124, 23);
-            this.leftLungTemperatureLabel.TabIndex = 132;
-            this.leftLungTemperatureLabel.Text = "Left Lung Temperature";
-            this.leftLungTemperatureLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // PlotsSplitContainer
             // 
@@ -965,8 +980,8 @@
             // PlotsSplitContainer.Panel2
             // 
             this.PlotsSplitContainer.Panel2.Controls.Add(this.VolumeFlowPlot);
-            this.PlotsSplitContainer.Size = new System.Drawing.Size(1008, 350);
-            this.PlotsSplitContainer.SplitterDistance = 176;
+            this.PlotsSplitContainer.Size = new System.Drawing.Size(1008, 628);
+            this.PlotsSplitContainer.SplitterDistance = 314;
             this.PlotsSplitContainer.TabIndex = 80;
             // 
             // PressuresPlot
@@ -974,7 +989,7 @@
             this.PressuresPlot.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PressuresPlot.Location = new System.Drawing.Point(0, 0);
             this.PressuresPlot.Name = "PressuresPlot";
-            this.PressuresPlot.Size = new System.Drawing.Size(1008, 176);
+            this.PressuresPlot.Size = new System.Drawing.Size(1008, 314);
             this.PressuresPlot.TabIndex = 0;
             // 
             // VolumeFlowPlot
@@ -982,18 +997,31 @@
             this.VolumeFlowPlot.Dock = System.Windows.Forms.DockStyle.Fill;
             this.VolumeFlowPlot.Location = new System.Drawing.Point(0, 0);
             this.VolumeFlowPlot.Name = "VolumeFlowPlot";
-            this.VolumeFlowPlot.Size = new System.Drawing.Size(1008, 170);
+            this.VolumeFlowPlot.Size = new System.Drawing.Size(1008, 310);
             this.VolumeFlowPlot.TabIndex = 0;
             // 
-            // displayPlotsButton
+            // SaveDataSegmentButton
             // 
-            this.displayPlotsButton.Location = new System.Drawing.Point(857, 6);
-            this.displayPlotsButton.Name = "displayPlotsButton";
-            this.displayPlotsButton.Size = new System.Drawing.Size(146, 23);
-            this.displayPlotsButton.TabIndex = 112;
-            this.displayPlotsButton.Text = "Display Plots";
-            this.displayPlotsButton.UseVisualStyleBackColor = true;
-            this.displayPlotsButton.Click += new System.EventHandler(this.displayPlotsButton_Click);
+            this.SaveDataSegmentButton.Location = new System.Drawing.Point(851, 11);
+            this.SaveDataSegmentButton.Name = "SaveDataSegmentButton";
+            this.SaveDataSegmentButton.Size = new System.Drawing.Size(146, 23);
+            this.SaveDataSegmentButton.TabIndex = 113;
+            this.SaveDataSegmentButton.Text = "Save Data Segment";
+            this.SaveDataSegmentButton.UseVisualStyleBackColor = true;
+            this.SaveDataSegmentButton.Click += new System.EventHandler(this.SaveDataSegmentButton_Click);
+            // 
+            // LoadDataSegmentButton
+            // 
+            this.LoadDataSegmentButton.Location = new System.Drawing.Point(851, 40);
+            this.LoadDataSegmentButton.Name = "LoadDataSegmentButton";
+            this.LoadDataSegmentButton.Size = new System.Drawing.Size(146, 23);
+            this.LoadDataSegmentButton.TabIndex = 114;
+            this.LoadDataSegmentButton.Text = "Load Data Segment";
+            this.LoadDataSegmentButton.UseVisualStyleBackColor = true;
+            // 
+            // PlotTimer
+            // 
+            this.PlotTimer.Tick += new System.EventHandler(this.PlotTimer_Tick);
             // 
             // PV3TestUtility3Main
             // 
@@ -1002,13 +1030,15 @@
             this.ClientSize = new System.Drawing.Size(1008, 729);
             this.Controls.Add(this.PlotsSplitContainer);
             this.Controls.Add(this.UserControlPanel);
-            this.Controls.Add(this.FactoryControlsPanel);
+            this.Controls.Add(this.FactoryControlPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Name = "PV3TestUtility3Main";
             this.Text = "PneuView 3 Test Utility v3.0";
             this.Load += new System.EventHandler(this.PV3TestUtility3Main_Load);
-            this.FactoryControlsPanel.ResumeLayout(false);
-            this.FactoryControlsPanel.PerformLayout();
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PV3TestUtility3Main_KeyDown);
+            this.FactoryControlPanel.ResumeLayout(false);
+            this.FactoryControlPanel.PerformLayout();
             this.UserControlPanel.ResumeLayout(false);
             this.UserControlPanel.PerformLayout();
             this.PlotsSplitContainer.Panel1.ResumeLayout(false);
@@ -1021,7 +1051,7 @@
 
         #endregion
         private System.Windows.Forms.Timer usbCommTimer;
-        private System.Windows.Forms.Panel FactoryControlsPanel;
+        private System.Windows.Forms.Panel FactoryControlPanel;
         private System.Windows.Forms.Button toggleLEDsButton;
         private System.Windows.Forms.Button toggleBlinkStatusButton;
         private System.Windows.Forms.Button testHighSpeedDataRateButton;
@@ -1063,7 +1093,6 @@
         private System.Windows.Forms.Label usbOutDisplayLabel;
         private System.Windows.Forms.Label usbInLabel;
         private System.Windows.Forms.Label usbOutLabel;
-        private System.Windows.Forms.Label connectionStateLabel;
         private System.Windows.Forms.Button readSWVersionButton;
         private System.Windows.Forms.Label swVersionDisplayLabel;
         private System.Windows.Forms.TextBox hwVerMinTextBox;
@@ -1103,6 +1132,10 @@
         private ScottPlot.FormsPlot PressuresPlot;
         private ScottPlot.FormsPlot VolumeFlowPlot;
         private System.Windows.Forms.Button displayPlotsButton;
+        private System.Windows.Forms.Label connectionStateLabel;
+        private System.Windows.Forms.Button LoadDataSegmentButton;
+        private System.Windows.Forms.Button SaveDataSegmentButton;
+        private System.Windows.Forms.Timer PlotTimer;
     }
 }
 

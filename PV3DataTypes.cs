@@ -82,8 +82,14 @@ namespace PV3TestUtility3
         public double[] ccLeft = new double[] { 0.000811874809, -0.074691255175, 2.301089012738, 27.441272849990 };
         public double[] ccRight = new double[] { 0.000811874809, -0.074691255175, 2.301089012738, 27.441272849990 };
 
-        private const long maxSampleCount = 100000;
-        private const UInt16 pressureStreamSmoothingSampleCount = 7;
+        private const long maxSampleCount = 10000;
+        public static long MaxSampleCount => maxSampleCount;
+
+        private const int sampleRate = 500;
+        public static int SampleRate => sampleRate;
+
+
+        private const ushort pressureStreamSmoothingSampleCount = 7;
 
         private long lastSampleNumber = 0;
         private long sampleCount = 0;
@@ -95,8 +101,8 @@ namespace PV3TestUtility3
         public double[] leftVolumeStream = new double[maxSampleCount];
         public double[] rightVolumeStream = new double[maxSampleCount];
         public double[] flowStream = new double[maxSampleCount];
-        //public double[] leftFlowStream = new double[maxSampleCount];
-        //public double[] rightFlowStream = new double[maxSampleCount];
+        public double[] leftFlowStream = new double[maxSampleCount];
+        public double[] rightFlowStream = new double[maxSampleCount];
 
         private double pprox;
 
@@ -303,6 +309,7 @@ namespace PV3TestUtility3
                 {
                     leftVolumeStream[sample] = CalculateVolume(leftLungPressureStream[sample]);
                     rightVolumeStream[sample] = CalculateVolume(rightLungPressureStream[sample]);
+                    volumeStream[sample] = leftVolumeStream[sample] + rightVolumeStream[sample];
                 }
 
                 // Calculate and smooth flow rates:
