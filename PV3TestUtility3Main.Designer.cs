@@ -105,6 +105,8 @@
             this.toggleBlinkStatusButton = new System.Windows.Forms.Button();
             this.toggleLEDsButton = new System.Windows.Forms.Button();
             this.UserControlPanel = new System.Windows.Forms.Panel();
+            this.LoadDataSegmentButton = new System.Windows.Forms.Button();
+            this.SaveDataSegmentButton = new System.Windows.Forms.Button();
             this.displayPlotsButton = new System.Windows.Forms.Button();
             this.cumulativeSavedDataTimeUnitsLabel = new System.Windows.Forms.Label();
             this.cumulativeSavedDataTimeDisplayLabel = new System.Windows.Forms.Label();
@@ -113,9 +115,11 @@
             this.PlotsSplitContainer = new System.Windows.Forms.SplitContainer();
             this.PressuresPlot = new ScottPlot.FormsPlot();
             this.VolumeFlowPlot = new ScottPlot.FormsPlot();
-            this.SaveDataSegmentButton = new System.Windows.Forms.Button();
-            this.LoadDataSegmentButton = new System.Windows.Forms.Button();
             this.PlotTimer = new System.Windows.Forms.Timer(this.components);
+            this.showAllVolumesCheckBox = new System.Windows.Forms.CheckBox();
+            this.showAllPressuresCheckBox = new System.Windows.Forms.CheckBox();
+            this.ZeroAllButton = new System.Windows.Forms.Button();
+            this.ClearAllButton = new System.Windows.Forms.Button();
             this.FactoryControlPanel.SuspendLayout();
             this.UserControlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PlotsSplitContainer)).BeginInit();
@@ -905,6 +909,10 @@
             // 
             // UserControlPanel
             // 
+            this.UserControlPanel.Controls.Add(this.ClearAllButton);
+            this.UserControlPanel.Controls.Add(this.ZeroAllButton);
+            this.UserControlPanel.Controls.Add(this.showAllVolumesCheckBox);
+            this.UserControlPanel.Controls.Add(this.showAllPressuresCheckBox);
             this.UserControlPanel.Controls.Add(this.LoadDataSegmentButton);
             this.UserControlPanel.Controls.Add(this.SaveDataSegmentButton);
             this.UserControlPanel.Controls.Add(this.displayPlotsButton);
@@ -917,6 +925,25 @@
             this.UserControlPanel.Name = "UserControlPanel";
             this.UserControlPanel.Size = new System.Drawing.Size(1008, 101);
             this.UserControlPanel.TabIndex = 79;
+            // 
+            // LoadDataSegmentButton
+            // 
+            this.LoadDataSegmentButton.Location = new System.Drawing.Point(851, 40);
+            this.LoadDataSegmentButton.Name = "LoadDataSegmentButton";
+            this.LoadDataSegmentButton.Size = new System.Drawing.Size(146, 23);
+            this.LoadDataSegmentButton.TabIndex = 114;
+            this.LoadDataSegmentButton.Text = "Load Data Segment";
+            this.LoadDataSegmentButton.UseVisualStyleBackColor = true;
+            // 
+            // SaveDataSegmentButton
+            // 
+            this.SaveDataSegmentButton.Location = new System.Drawing.Point(851, 11);
+            this.SaveDataSegmentButton.Name = "SaveDataSegmentButton";
+            this.SaveDataSegmentButton.Size = new System.Drawing.Size(146, 23);
+            this.SaveDataSegmentButton.TabIndex = 113;
+            this.SaveDataSegmentButton.Text = "Save Data Segment";
+            this.SaveDataSegmentButton.UseVisualStyleBackColor = true;
+            this.SaveDataSegmentButton.Click += new System.EventHandler(this.SaveDataSegmentButton_Click);
             // 
             // displayPlotsButton
             // 
@@ -940,7 +967,7 @@
             // 
             // cumulativeSavedDataTimeDisplayLabel
             // 
-            this.cumulativeSavedDataTimeDisplayLabel.Location = new System.Drawing.Point(162, 45);
+            this.cumulativeSavedDataTimeDisplayLabel.Location = new System.Drawing.Point(246, 47);
             this.cumulativeSavedDataTimeDisplayLabel.Name = "cumulativeSavedDataTimeDisplayLabel";
             this.cumulativeSavedDataTimeDisplayLabel.Size = new System.Drawing.Size(54, 13);
             this.cumulativeSavedDataTimeDisplayLabel.TabIndex = 81;
@@ -949,7 +976,7 @@
             // 
             // cumulativeSavedDataTimeLabel
             // 
-            this.cumulativeSavedDataTimeLabel.Location = new System.Drawing.Point(6, 45);
+            this.cumulativeSavedDataTimeLabel.Location = new System.Drawing.Point(90, 47);
             this.cumulativeSavedDataTimeLabel.Name = "cumulativeSavedDataTimeLabel";
             this.cumulativeSavedDataTimeLabel.Size = new System.Drawing.Size(146, 13);
             this.cumulativeSavedDataTimeLabel.TabIndex = 80;
@@ -958,7 +985,7 @@
             // 
             // StartStopDataAcquisitionButton
             // 
-            this.StartStopDataAcquisitionButton.Location = new System.Drawing.Point(9, 9);
+            this.StartStopDataAcquisitionButton.Location = new System.Drawing.Point(93, 11);
             this.StartStopDataAcquisitionButton.Name = "StartStopDataAcquisitionButton";
             this.StartStopDataAcquisitionButton.Size = new System.Drawing.Size(207, 23);
             this.StartStopDataAcquisitionButton.TabIndex = 78;
@@ -1000,28 +1027,55 @@
             this.VolumeFlowPlot.Size = new System.Drawing.Size(1008, 310);
             this.VolumeFlowPlot.TabIndex = 0;
             // 
-            // SaveDataSegmentButton
-            // 
-            this.SaveDataSegmentButton.Location = new System.Drawing.Point(851, 11);
-            this.SaveDataSegmentButton.Name = "SaveDataSegmentButton";
-            this.SaveDataSegmentButton.Size = new System.Drawing.Size(146, 23);
-            this.SaveDataSegmentButton.TabIndex = 113;
-            this.SaveDataSegmentButton.Text = "Save Data Segment";
-            this.SaveDataSegmentButton.UseVisualStyleBackColor = true;
-            this.SaveDataSegmentButton.Click += new System.EventHandler(this.SaveDataSegmentButton_Click);
-            // 
-            // LoadDataSegmentButton
-            // 
-            this.LoadDataSegmentButton.Location = new System.Drawing.Point(851, 40);
-            this.LoadDataSegmentButton.Name = "LoadDataSegmentButton";
-            this.LoadDataSegmentButton.Size = new System.Drawing.Size(146, 23);
-            this.LoadDataSegmentButton.TabIndex = 114;
-            this.LoadDataSegmentButton.Text = "Load Data Segment";
-            this.LoadDataSegmentButton.UseVisualStyleBackColor = true;
-            // 
             // PlotTimer
             // 
             this.PlotTimer.Tick += new System.EventHandler(this.PlotTimer_Tick);
+            // 
+            // showAllVolumesCheckBox
+            // 
+            this.showAllVolumesCheckBox.AutoSize = true;
+            this.showAllVolumesCheckBox.Checked = true;
+            this.showAllVolumesCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showAllVolumesCheckBox.Location = new System.Drawing.Point(509, 46);
+            this.showAllVolumesCheckBox.Name = "showAllVolumesCheckBox";
+            this.showAllVolumesCheckBox.Size = new System.Drawing.Size(165, 17);
+            this.showAllVolumesCheckBox.TabIndex = 116;
+            this.showAllVolumesCheckBox.Text = "Show individual lung volumes";
+            this.showAllVolumesCheckBox.UseVisualStyleBackColor = true;
+            this.showAllVolumesCheckBox.CheckedChanged += new System.EventHandler(this.showAllVolumesCheckBox_CheckedChanged);
+            // 
+            // showAllPressuresCheckBox
+            // 
+            this.showAllPressuresCheckBox.AutoSize = true;
+            this.showAllPressuresCheckBox.Checked = true;
+            this.showAllPressuresCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showAllPressuresCheckBox.Location = new System.Drawing.Point(332, 46);
+            this.showAllPressuresCheckBox.Name = "showAllPressuresCheckBox";
+            this.showAllPressuresCheckBox.Size = new System.Drawing.Size(171, 17);
+            this.showAllPressuresCheckBox.TabIndex = 115;
+            this.showAllPressuresCheckBox.Text = "Show individual lung pressures";
+            this.showAllPressuresCheckBox.UseVisualStyleBackColor = true;
+            this.showAllPressuresCheckBox.CheckedChanged += new System.EventHandler(this.showAllPressuresCheckBox_CheckedChanged);
+            // 
+            // ZeroAllButton
+            // 
+            this.ZeroAllButton.Location = new System.Drawing.Point(10, 11);
+            this.ZeroAllButton.Name = "ZeroAllButton";
+            this.ZeroAllButton.Size = new System.Drawing.Size(77, 23);
+            this.ZeroAllButton.TabIndex = 117;
+            this.ZeroAllButton.Text = "Zero all";
+            this.ZeroAllButton.UseVisualStyleBackColor = true;
+            this.ZeroAllButton.Click += new System.EventHandler(this.ZeroAllButton_Click);
+            // 
+            // ClearAllButton
+            // 
+            this.ClearAllButton.Location = new System.Drawing.Point(10, 69);
+            this.ClearAllButton.Name = "ClearAllButton";
+            this.ClearAllButton.Size = new System.Drawing.Size(77, 23);
+            this.ClearAllButton.TabIndex = 118;
+            this.ClearAllButton.Text = "Clear all";
+            this.ClearAllButton.UseVisualStyleBackColor = true;
+            this.ClearAllButton.Click += new System.EventHandler(this.ClearAllButton_Click);
             // 
             // PV3TestUtility3Main
             // 
@@ -1034,7 +1088,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "PV3TestUtility3Main";
-            this.Text = "PneuView 3 Test Utility v3.0";
+            this.Text = "PneuView 3 Data Capture";
             this.Load += new System.EventHandler(this.PV3TestUtility3Main_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PV3TestUtility3Main_KeyDown);
             this.FactoryControlPanel.ResumeLayout(false);
@@ -1136,6 +1190,10 @@
         private System.Windows.Forms.Button LoadDataSegmentButton;
         private System.Windows.Forms.Button SaveDataSegmentButton;
         private System.Windows.Forms.Timer PlotTimer;
+        private System.Windows.Forms.CheckBox showAllVolumesCheckBox;
+        private System.Windows.Forms.CheckBox showAllPressuresCheckBox;
+        private System.Windows.Forms.Button ZeroAllButton;
+        private System.Windows.Forms.Button ClearAllButton;
     }
 }
 

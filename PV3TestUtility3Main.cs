@@ -80,6 +80,8 @@ namespace PV3TestUtility3
             blConnection.deviceID = "Vid_04D8&Pid_003C";
         }
 
+        #region Main form event handlers
+
         // This is a callback function that gets called when a Windows message is received by the form.
         // We will receive various different types of messages, but the ones we really want to use are the WM_DEVICECHANGE messages.
         protected override void WndProc(ref Message m)
@@ -101,64 +103,6 @@ namespace PV3TestUtility3
             } //end of: if(m.Msg == WM_DEVICECHANGE)
             base.WndProc(ref m);
         } //end of: WndProc() function
-
-        // Connect to PV3 embedded system over USB
-        public bool ConnectToUSB()
-        {
-            System.Threading.Thread.Sleep(500);
-            usbConnection.connectionState = usbConnection.attemptUSBConnection();
-            if (usbConnection.connectionState == USBClass.CONNECTION_SUCCESSFUL)
-            {
-                connectionStateLabel.BackColor = Color.LimeGreen;
-                connectionStateLabel.Text = "Connected to: " + usbConnection.deviceID;
-                usbCommTimer.Enabled = false;
-
-                // Configure the form controls for a connected device:
-
-                //TODO: Read lung information (Model, SN, calibration data, compliance coefficient tables):
-
-
-
-                return true;
-            }
-            blConnection.connectionState = blConnection.attemptUSBConnection();
-            if (blConnection.connectionState == USBClass.CONNECTION_SUCCESSFUL)
-            {
-                connectionStateLabel.BackColor = Color.LightBlue;
-                connectionStateLabel.Text = "Connected to: " + blConnection.blDeviceID;
-                usbCommTimer.Enabled = false;
-
-                // Configure the form controls as appropriate for being connected to the HID Bootloader:
-
-
-                return true;
-            } else
-            {
-                connectionStateLabel.BackColor = Color.Red;
-                connectionStateLabel.Text = "NOT Connected - click to retry...";
-                usbCommTimer.Enabled = false;
-                
-                // Configure the form controls as appropriate while waqiting for device to connect:
-
-
-                return false;
-            }
-
-        }
-
-        public void DisplayUSBBufferData()
-        {
-            string usbOutString = "";
-            string usbInString = "";
-
-            for (int i = 1; i < 17; ++i)
-            {
-                usbOutString += string.Format("{0:X2} ", usbConnection.OutBuffer[i]);
-                usbInString += string.Format("{0:X2} ", usbConnection.InBuffer[i]);
-            }
-            usbOutDisplayLabel.Text = usbOutString;
-            usbInDisplayLabel.Text = usbInString;
-        }
 
         private void PV3TestUtility3Main_Load(object sender, EventArgs e)
         {
@@ -225,6 +169,83 @@ namespace PV3TestUtility3
 
         }
 
+        private void PV3TestUtility3Main_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.F)
+            {
+                if (FactoryControlPanel.Dock == DockStyle.None)
+                {
+                    FactoryControlPanel.Dock = DockStyle.Bottom;
+                }
+                else
+                {
+                    FactoryControlPanel.Dock = DockStyle.None;
+                }
+            }
+        }
+
+        #endregion Main form event handlers
+
+        // Connect to PV3 embedded system over USB
+        public bool ConnectToUSB()
+        {
+            System.Threading.Thread.Sleep(500);
+            usbConnection.connectionState = usbConnection.attemptUSBConnection();
+            if (usbConnection.connectionState == USBClass.CONNECTION_SUCCESSFUL)
+            {
+                connectionStateLabel.BackColor = Color.LimeGreen;
+                connectionStateLabel.Text = "Connected to: " + usbConnection.deviceID;
+                usbCommTimer.Enabled = false;
+
+                // Configure the form controls for a connected device:
+
+                //TODO: Read lung information (Model, SN, calibration data, compliance coefficient tables):
+
+
+
+                return true;
+            }
+            blConnection.connectionState = blConnection.attemptUSBConnection();
+            if (blConnection.connectionState == USBClass.CONNECTION_SUCCESSFUL)
+            {
+                connectionStateLabel.BackColor = Color.LightBlue;
+                connectionStateLabel.Text = "Connected to: " + blConnection.blDeviceID;
+                usbCommTimer.Enabled = false;
+
+                // Configure the form controls as appropriate for being connected to the HID Bootloader:
+
+
+                return true;
+            } else
+            {
+                connectionStateLabel.BackColor = Color.Red;
+                connectionStateLabel.Text = "NOT Connected - click to retry...";
+                usbCommTimer.Enabled = false;
+                
+                // Configure the form controls as appropriate while waqiting for device to connect:
+
+
+                return false;
+            }
+
+        }
+
+        #region Factory panel event handlers
+
+        public void DisplayUSBBufferData()
+        {
+            string usbOutString = "";
+            string usbInString = "";
+
+            for (int i = 1; i < 17; ++i)
+            {
+                usbOutString += string.Format("{0:X2} ", usbConnection.OutBuffer[i]);
+                usbInString += string.Format("{0:X2} ", usbConnection.InBuffer[i]);
+            }
+            usbOutDisplayLabel.Text = usbOutString;
+            usbInDisplayLabel.Text = usbInString;
+        }
+
         private void SetDefaultAxisLimits()
         {
             minTime = 0.0;
@@ -287,44 +308,6 @@ namespace PV3TestUtility3
                 DisplayUSBBufferData();
             }
             ConnectToUSB();
-        }
-
-        private void startDataAcquisitionButton_Click(object sender, EventArgs e)
-        {
-            if (usbCommTimer.Enabled == false)
-            {
-                // Start data acquisition:
-                cmd = PV3DataTypes.PV3CommandType.START_DATA_ACQ;
-                usbConnection.OutBuffer[1] = (byte)cmd;
-                usbConnection.sendViaUSB();
-                usbConnection.receiveViaUSB();
-                DisplayUSBBufferData();
-                usbCommTimer.Enabled = true;
-                PlotTimer.Enabled = true;
-                dataStopwatch.Start();
-
-                // Change button text & appearence to indicate data acquisition is in progress:
-                StartStopDataAcquisitionButton.Text = "End Data Acquisition";
-
-            }
-            else
-            {
-                // End data acquisition:
-                cmd = PV3DataTypes.PV3CommandType.STOP_DATA_ACQ;
-                usbConnection.OutBuffer[1] = (byte)cmd;
-                usbConnection.sendViaUSB();
-                usbConnection.receiveViaUSB();
-                DisplayUSBBufferData();
-                usbCommTimer.Enabled = false;
-                PlotTimer.Enabled = false;
-                dataStopwatch.Stop();
-
-                // Change button text & appearence to indicate data acquisition can be started:
-                StartStopDataAcquisitionButton.Text = "Start Data Acquisition";
-
-                // Prompt user to save captured data:
-
-            }
         }
 
         private void readLungModelButton_Click(object sender, EventArgs e)
@@ -391,6 +374,110 @@ namespace PV3TestUtility3
             lungSerialNumberDisplayLabel.Text = "S/N not read";
             DisplayUSBBufferData();
         }
+
+        private void setReadHSSCDButton_Click(object sender, EventArgs e)
+        {
+            HSSCalibDialog hsscd = new HSSCalibDialog();
+            hsscd.ShowDialog(this);
+
+        }
+
+        private void setReadLSSCDButton_Click(object sender, EventArgs e)
+        {
+            LSSCalibDialog lsscd = new LSSCalibDialog();
+            lsscd.ShowDialog(this);
+
+        }
+
+        private void setHWVersionButton_Click(object sender, EventArgs e)
+        {
+            cmd = PV3DataTypes.PV3CommandType.SET_HARDWARE_VERSION;
+            usbConnection.OutBuffer[1] = (byte)cmd;
+            byte hwVerMaj = Convert.ToByte(hwVerMajTextBox.Text);
+            byte hwVerMin = Convert.ToByte(hwVerMinTextBox.Text);
+            usbConnection.OutBuffer[2] = hwVerMaj;
+            usbConnection.OutBuffer[3] = hwVerMin;
+            usbConnection.sendViaUSB();
+            usbConnection.receiveViaUSB();
+            hwVersionDisplayLabel.Text = string.Format("v{0:X3}.{1:X3}", hwVerMaj, hwVerMin);
+            DisplayUSBBufferData();
+
+        }
+
+        private void readHWVersionButton_Click(object sender, EventArgs e)
+        {
+            cmd = PV3DataTypes.PV3CommandType.RD_HARDWARE_VERSION;
+            usbConnection.OutBuffer[1] = (byte)cmd;
+            usbConnection.sendViaUSB();
+            usbConnection.receiveViaUSB();
+            byte hwVerMaj = usbConnection.InBuffer[2];
+            byte hwVerMin = usbConnection.InBuffer[3];
+            hwVersionDisplayLabel.Text = string.Format("v{0:X3}.{1:X3}", hwVerMaj, hwVerMin);
+            hwVerMajTextBox.Text = hwVerMaj.ToString();
+            hwVerMinTextBox.Text = hwVerMin.ToString();
+            DisplayUSBBufferData();
+
+        }
+
+        private void readSWVersionButton_Click(object sender, EventArgs e)
+        {
+            cmd = PV3DataTypes.PV3CommandType.RD_FIRMWARE_VERSION;
+            usbConnection.OutBuffer[1] = (byte)cmd;
+            usbConnection.sendViaUSB();
+            usbConnection.receiveViaUSB();
+            byte swVerMaj = usbConnection.InBuffer[2];
+            byte swVerMin = usbConnection.InBuffer[3];
+            swVersionDisplayLabel.Text = string.Format("v{0:X3}.{1:X3}", swVerMaj, swVerMin);
+            DisplayUSBBufferData();
+
+        }
+
+        private void setReadComplianceCalibrationDataButton_Click(object sender, EventArgs e)
+        {
+
+            CompCalibDialog ccd = new CompCalibDialog();
+            ccd.ShowDialog(this);
+
+        }
+
+        private void testHighSpeedDataRateButton_Click(object sender, EventArgs e)
+        {
+            Int64 minTicks = Int64.MaxValue;
+            Int64 maxTicks = Int64.MinValue;
+            Int64 ticks = 0;
+            Int64 totalTicks = 0;
+
+            Debug.WriteLine("Testing HID USB HS data rate");
+            Console.WriteLine("Testing HID USB HS data rate:");
+            Console.WriteLine("Timer Frequency: {0} ticks/second", Stopwatch.Frequency);
+            Console.WriteLine("Running test, please wait...");
+
+            cmd = PV3DataTypes.PV3CommandType.RD_HSSDP;
+            usbConnection.OutBuffer[1] = (byte)cmd;
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            for (int i = 0; i < HSDP_SAMPLES; ++i)
+            {
+                stopwatch.Restart();
+                usbConnection.sendViaUSB();
+                usbConnection.receiveViaUSB();
+                ticks = stopwatch.ElapsedTicks;
+                if (ticks < minTicks)
+                {
+                    minTicks = ticks;
+                }
+                if (ticks > maxTicks)
+                {
+                    maxTicks = ticks;
+                }
+                totalTicks += ticks;
+            }
+            Console.WriteLine("Minimum interval between packets: {0:F3} us", (double)minTicks * 1000000.0 / (double)Stopwatch.Frequency);
+            Console.WriteLine("Average interval between packets: {0:F3} us", (double)totalTicks * 1000000.0 / (double)HSDP_SAMPLES / (double)Stopwatch.Frequency);
+            Console.WriteLine("Maximum interval between packets: {0:F3} us", (double)maxTicks * 1000000.0 / (double)Stopwatch.Frequency);
+        }
+
+        #endregion Factory panel event handlers
+
 
         private void usbCommTimer_Tick(object sender, EventArgs e)
         {
@@ -586,126 +673,104 @@ namespace PV3TestUtility3
 
         }
 
-        private void setReadHSSCDButton_Click(object sender, EventArgs e)
+        #region Data capture and plotting event handlers
+
+        private void ZeroAllButton_Click(object sender, EventArgs e)
         {
-            HSSCalibDialog hsscd = new HSSCalibDialog();
-            hsscd.ShowDialog(this);
-
-        }
-
-        private void setReadLSSCDButton_Click(object sender, EventArgs e)
-        {
-            LSSCalibDialog lsscd = new LSSCalibDialog();
-            lsscd.ShowDialog(this);
-
-        }
-
-        private void setHWVersionButton_Click(object sender, EventArgs e)
-        {
-            cmd = PV3DataTypes.PV3CommandType.SET_HARDWARE_VERSION;
-            usbConnection.OutBuffer[1] = (byte)cmd;
-            byte hwVerMaj = Convert.ToByte(hwVerMajTextBox.Text);
-            byte hwVerMin = Convert.ToByte(hwVerMinTextBox.Text);
-            usbConnection.OutBuffer[2] = hwVerMaj;
-            usbConnection.OutBuffer[3] = hwVerMin;
-            usbConnection.sendViaUSB();
-            usbConnection.receiveViaUSB();
-            hwVersionDisplayLabel.Text = string.Format("v{0:X3}.{1:X3}", hwVerMaj, hwVerMin);
-            DisplayUSBBufferData();
-
-        }
-
-        private void readHWVersionButton_Click(object sender, EventArgs e)
-        {
-            cmd = PV3DataTypes.PV3CommandType.RD_HARDWARE_VERSION;
-            usbConnection.OutBuffer[1] = (byte)cmd;
-            usbConnection.sendViaUSB();
-            usbConnection.receiveViaUSB();
-            byte hwVerMaj = usbConnection.InBuffer[2];
-            byte hwVerMin = usbConnection.InBuffer[3];
-            hwVersionDisplayLabel.Text = string.Format("v{0:X3}.{1:X3}", hwVerMaj, hwVerMin);
-            hwVerMajTextBox.Text = hwVerMaj.ToString();
-            hwVerMinTextBox.Text = hwVerMin.ToString();
-            DisplayUSBBufferData();
-
-        }
-
-        private void readSWVersionButton_Click(object sender, EventArgs e)
-        {
-            cmd = PV3DataTypes.PV3CommandType.RD_FIRMWARE_VERSION;
-            usbConnection.OutBuffer[1] = (byte)cmd;
-            usbConnection.sendViaUSB();
-            usbConnection.receiveViaUSB();
-            byte swVerMaj = usbConnection.InBuffer[2];
-            byte swVerMin = usbConnection.InBuffer[3];
-            swVersionDisplayLabel.Text = string.Format("v{0:X3}.{1:X3}", swVerMaj, swVerMin);
-            DisplayUSBBufferData();
-
-        }
-
-        private void setReadComplianceCalibrationDataButton_Click(object sender, EventArgs e)
-        {
-
-            CompCalibDialog ccd = new CompCalibDialog();
-            ccd.ShowDialog(this);
-            
-        }
-
-        private void testHighSpeedDataRateButton_Click(object sender, EventArgs e)
-        {
-            Int64 minTicks = Int64.MaxValue;
-            Int64 maxTicks = Int64.MinValue;
-            Int64 ticks = 0;
-            Int64 totalTicks = 0;
-            
-            Debug.WriteLine("Testing HID USB HS data rate");
-            Console.WriteLine("Testing HID USB HS data rate:");
-            Console.WriteLine("Timer Frequency: {0} ticks/second", Stopwatch.Frequency);
-            Console.WriteLine("Running test, please wait...");
-
             cmd = PV3DataTypes.PV3CommandType.RD_HSSDP;
             usbConnection.OutBuffer[1] = (byte)cmd;
-            Stopwatch stopwatch = Stopwatch.StartNew();
-            for (int i = 0; i < HSDP_SAMPLES; ++i)
+            usbConnection.sendViaUSB();
+
+            usbConnection.receiveViaUSB();
+            pv3Data.PPROXRaw = (ushort)((uint)(usbConnection.InBuffer[5] << 8) + (uint)usbConnection.InBuffer[4]);
+            pv3Data.PPROXZero = pv3Data.PPROXRaw;
+            pv3Data.PLEFTRaw = (ushort)((uint)(usbConnection.InBuffer[7] << 8) + (uint)usbConnection.InBuffer[6]);
+            pv3Data.PLEFTZero = pv3Data.PLEFTRaw;
+            pv3Data.PRGHTRaw = (ushort)((uint)(usbConnection.InBuffer[9] << 8) + (uint)usbConnection.InBuffer[8]);
+            pv3Data.PRGHTZero = pv3Data.PRGHTRaw;
+            pv3Data.PHIGHRaw = (ushort)((uint)(usbConnection.InBuffer[11] << 8) + (uint)usbConnection.InBuffer[10]);
+            pv3Data.PHIGHZero = pv3Data.PHIGHRaw;
+            pv3Data.AUXINRaw = (ushort)((uint)(usbConnection.InBuffer[13] << 8) + (uint)usbConnection.InBuffer[12]);
+            pv3Data.AUXINZero = pv3Data.AUXINRaw;
+
+        }
+
+        private void ClearAllButton_Click(object sender, EventArgs e)
+        {
+            for (long i = 0; i < HSDP_SAMPLES; ++i)
             {
-                stopwatch.Restart();
+                pv3Data.airwayPressureStream[i] = 0.0;
+                pv3Data.leftLungPressureStream[i] = 0.0;
+                pv3Data.rightLungPressureStream[i] = 0.0;
+                pv3Data.leftVolumeStream[i] = 0.0;
+                pv3Data.rightVolumeStream[i] = 0.0;
+                pv3Data.volumeStream[i] = 0.0;
+                pv3Data.leftFlowStream[i] = 0.0;
+                pv3Data.rightFlowStream[i] = 0.0;
+                pv3Data.flowStream[i] = 0.0;
+
+            }
+
+            PressuresPlot.Render();
+            VolumeFlowPlot.Render();
+
+            dataStopwatch.Restart();
+            cumulativeSavedDataTimeDisplayLabel.Text = (dataStopwatch.ElapsedMilliseconds / 1000.0).ToString("0.000");
+
+        }
+
+        private void startDataAcquisitionButton_Click(object sender, EventArgs e)
+        {
+            if (usbCommTimer.Enabled == false)
+            {
+                // Start data acquisition:
+                cmd = PV3DataTypes.PV3CommandType.START_DATA_ACQ;
+                usbConnection.OutBuffer[1] = (byte)cmd;
                 usbConnection.sendViaUSB();
                 usbConnection.receiveViaUSB();
-                ticks = stopwatch.ElapsedTicks;
-                if (ticks < minTicks)
-                {
-                    minTicks = ticks;
-                }
-                if (ticks > maxTicks)
-                {
-                    maxTicks = ticks;
-                }
-                totalTicks += ticks;
+                DisplayUSBBufferData();
+                usbCommTimer.Enabled = true;
+                //PlotTimer.Enabled = true;
+                dataStopwatch.Start();
+
+                // Change button text & appearence to indicate data acquisition is in progress:
+                StartStopDataAcquisitionButton.Text = "End Data Acquisition";
+
             }
-            Console.WriteLine("Minimum interval between packets: {0:F3} us", (double)minTicks * 1000000.0 / (double)Stopwatch.Frequency);
-            Console.WriteLine("Average interval between packets: {0:F3} us", (double)totalTicks * 1000000.0 / (double)HSDP_SAMPLES / (double)Stopwatch.Frequency);
-            Console.WriteLine("Maximum interval between packets: {0:F3} us", (double)maxTicks * 1000000.0 / (double)Stopwatch.Frequency);
-        }
-
-        private void displayPlotsButton_Click(object sender, EventArgs e)
-        {
-            PlotDisplay pd = new PlotDisplay();
-            pd.Show(this);
-        }
-
-        private void PV3TestUtility3Main_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Control && e.KeyCode == Keys.F)
+            else
             {
-                if (FactoryControlPanel.Dock == DockStyle.None)
-                {
-                    FactoryControlPanel.Dock = DockStyle.Bottom;
-                }
-                else
-                {
-                    FactoryControlPanel.Dock = DockStyle.None;
-                }
+                // End data acquisition:
+                cmd = PV3DataTypes.PV3CommandType.STOP_DATA_ACQ;
+                usbConnection.OutBuffer[1] = (byte)cmd;
+                usbConnection.sendViaUSB();
+                usbConnection.receiveViaUSB();
+                DisplayUSBBufferData();
+                usbCommTimer.Enabled = false;
+                //PlotTimer.Enabled = false;
+                dataStopwatch.Stop();
+
+                // Change button text & appearence to indicate data acquisition can be started:
+                StartStopDataAcquisitionButton.Text = "Start Data Acquisition";
+
+                // Prompt user to save captured data:
+
             }
+        }
+
+        private void showAllPressuresCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            leftLungPressureSignal.IsVisible = showAllPressuresCheckBox.Checked;
+            rightLungPressureSignal.IsVisible = showAllPressuresCheckBox.Checked;
+
+            PressuresPlot.Render();
+        }
+
+        private void showAllVolumesCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            leftVolumeSignal.IsVisible = showAllVolumesCheckBox.Checked;
+            rightVolumeSignal.IsVisible = showAllVolumesCheckBox.Checked;
+
+            VolumeFlowPlot.Render();
         }
 
         private void SaveDataSegmentButton_Click(object sender, EventArgs e)
@@ -720,9 +785,9 @@ namespace PV3TestUtility3
                 //CheckPathExists = true,
                 CheckFileExists = false,
                 OverwritePrompt = true,
-                
+
             };
-            
+
             DialogResult dlgResult = saveFileDialog.ShowDialog();
             if (dlgResult == DialogResult.OK)
             {
@@ -780,10 +845,19 @@ namespace PV3TestUtility3
 
         }
 
+        private void displayPlotsButton_Click(object sender, EventArgs e)
+        {
+            PlotDisplay pd = new PlotDisplay();
+            pd.Show(this);
+        }
+
         private void PlotTimer_Tick(object sender, EventArgs e)
         {
             PressuresPlot.Render();
             VolumeFlowPlot.Render();
         }
+
+
+        #endregion Data capture and plotting event handlers
     }
 }

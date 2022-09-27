@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.20617.1 PREVIEW
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PV3TestUtility3", "PV3TestUtility3.csproj", "{08824F6C-EF64-4281-8605-7F20556ED787}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "PV3TUSetup", "..\PV3TUSetup\PV3TUSetup.vdproj", "{57A9CA27-100C-476D-BB12-CCD23D25C9CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +17,13 @@ Global
 		{08824F6C-EF64-4281-8605-7F20556ED787}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08824F6C-EF64-4281-8605-7F20556ED787}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08824F6C-EF64-4281-8605-7F20556ED787}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57A9CA27-100C-476D-BB12-CCD23D25C9CD}.Debug|Any CPU.ActiveCfg = Debug
+		{57A9CA27-100C-476D-BB12-CCD23D25C9CD}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4C9BF322-6971-41D9-85A5-B4ED26EB1E58}
 	EndGlobalSection
 EndGlobal
