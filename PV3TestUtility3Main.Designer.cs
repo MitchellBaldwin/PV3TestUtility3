@@ -54,8 +54,6 @@
             this.hwVerMajLabel = new System.Windows.Forms.Label();
             this.readLungSerialNumberButton = new System.Windows.Forms.Button();
             this.readLungModelButton = new System.Windows.Forms.Button();
-            this.lungSerialNumberDisplayLabel = new System.Windows.Forms.Label();
-            this.lungModelDisplayLabel = new System.Windows.Forms.Label();
             this.writeLungSerialNumberButton = new System.Windows.Forms.Button();
             this.writeLungModelButton = new System.Windows.Forms.Button();
             this.lungSerialNumberTextBox = new System.Windows.Forms.TextBox();
@@ -105,6 +103,10 @@
             this.toggleBlinkStatusButton = new System.Windows.Forms.Button();
             this.toggleLEDsButton = new System.Windows.Forms.Button();
             this.UserControlPanel = new System.Windows.Forms.Panel();
+            this.ClearAllButton = new System.Windows.Forms.Button();
+            this.ZeroAllButton = new System.Windows.Forms.Button();
+            this.showAllVolumesCheckBox = new System.Windows.Forms.CheckBox();
+            this.showAllPressuresCheckBox = new System.Windows.Forms.CheckBox();
             this.LoadDataSegmentButton = new System.Windows.Forms.Button();
             this.SaveDataSegmentButton = new System.Windows.Forms.Button();
             this.displayPlotsButton = new System.Windows.Forms.Button();
@@ -116,10 +118,10 @@
             this.PressuresPlot = new ScottPlot.FormsPlot();
             this.VolumeFlowPlot = new ScottPlot.FormsPlot();
             this.PlotTimer = new System.Windows.Forms.Timer(this.components);
-            this.showAllVolumesCheckBox = new System.Windows.Forms.CheckBox();
-            this.showAllPressuresCheckBox = new System.Windows.Forms.CheckBox();
-            this.ZeroAllButton = new System.Windows.Forms.Button();
-            this.ClearAllButton = new System.Windows.Forms.Button();
+            this.lungSerialNumberDisplayLabel = new System.Windows.Forms.Label();
+            this.lungModelDisplayLabel = new System.Windows.Forms.Label();
+            this.LeftComplianceComboBox = new System.Windows.Forms.ComboBox();
+            this.RightComplianceComboBox = new System.Windows.Forms.ComboBox();
             this.FactoryControlPanel.SuspendLayout();
             this.UserControlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PlotsSplitContainer)).BeginInit();
@@ -157,8 +159,6 @@
             this.FactoryControlPanel.Controls.Add(this.hwVerMajLabel);
             this.FactoryControlPanel.Controls.Add(this.readLungSerialNumberButton);
             this.FactoryControlPanel.Controls.Add(this.readLungModelButton);
-            this.FactoryControlPanel.Controls.Add(this.lungSerialNumberDisplayLabel);
-            this.FactoryControlPanel.Controls.Add(this.lungModelDisplayLabel);
             this.FactoryControlPanel.Controls.Add(this.writeLungSerialNumberButton);
             this.FactoryControlPanel.Controls.Add(this.writeLungModelButton);
             this.FactoryControlPanel.Controls.Add(this.lungSerialNumberTextBox);
@@ -207,7 +207,7 @@
             this.FactoryControlPanel.Controls.Add(this.testHighSpeedDataRateButton);
             this.FactoryControlPanel.Controls.Add(this.toggleBlinkStatusButton);
             this.FactoryControlPanel.Controls.Add(this.toggleLEDsButton);
-            this.FactoryControlPanel.Location = new System.Drawing.Point(0, 429);
+            this.FactoryControlPanel.Location = new System.Drawing.Point(0, 111);
             this.FactoryControlPanel.Name = "FactoryControlPanel";
             this.FactoryControlPanel.Size = new System.Drawing.Size(1008, 300);
             this.FactoryControlPanel.TabIndex = 78;
@@ -425,24 +425,6 @@
             this.readLungModelButton.Text = "Read Lung Model";
             this.readLungModelButton.UseVisualStyleBackColor = true;
             this.readLungModelButton.Click += new System.EventHandler(this.readLungModelButton_Click);
-            // 
-            // lungSerialNumberDisplayLabel
-            // 
-            this.lungSerialNumberDisplayLabel.AutoSize = true;
-            this.lungSerialNumberDisplayLabel.Location = new System.Drawing.Point(665, 170);
-            this.lungSerialNumberDisplayLabel.Name = "lungSerialNumberDisplayLabel";
-            this.lungSerialNumberDisplayLabel.Size = new System.Drawing.Size(134, 13);
-            this.lungSerialNumberDisplayLabel.TabIndex = 120;
-            this.lungSerialNumberDisplayLabel.Text = "Invalid Lung Serial Number";
-            // 
-            // lungModelDisplayLabel
-            // 
-            this.lungModelDisplayLabel.AutoSize = true;
-            this.lungModelDisplayLabel.Location = new System.Drawing.Point(665, 141);
-            this.lungModelDisplayLabel.Name = "lungModelDisplayLabel";
-            this.lungModelDisplayLabel.Size = new System.Drawing.Size(97, 13);
-            this.lungModelDisplayLabel.TabIndex = 119;
-            this.lungModelDisplayLabel.Text = "Invalid Lung Model";
             // 
             // writeLungSerialNumberButton
             // 
@@ -909,6 +891,10 @@
             // 
             // UserControlPanel
             // 
+            this.UserControlPanel.Controls.Add(this.RightComplianceComboBox);
+            this.UserControlPanel.Controls.Add(this.LeftComplianceComboBox);
+            this.UserControlPanel.Controls.Add(this.lungSerialNumberDisplayLabel);
+            this.UserControlPanel.Controls.Add(this.lungModelDisplayLabel);
             this.UserControlPanel.Controls.Add(this.ClearAllButton);
             this.UserControlPanel.Controls.Add(this.ZeroAllButton);
             this.UserControlPanel.Controls.Add(this.showAllVolumesCheckBox);
@@ -925,6 +911,52 @@
             this.UserControlPanel.Name = "UserControlPanel";
             this.UserControlPanel.Size = new System.Drawing.Size(1008, 101);
             this.UserControlPanel.TabIndex = 79;
+            // 
+            // ClearAllButton
+            // 
+            this.ClearAllButton.Location = new System.Drawing.Point(10, 69);
+            this.ClearAllButton.Name = "ClearAllButton";
+            this.ClearAllButton.Size = new System.Drawing.Size(77, 23);
+            this.ClearAllButton.TabIndex = 118;
+            this.ClearAllButton.Text = "Clear all";
+            this.ClearAllButton.UseVisualStyleBackColor = true;
+            this.ClearAllButton.Click += new System.EventHandler(this.ClearAllButton_Click);
+            // 
+            // ZeroAllButton
+            // 
+            this.ZeroAllButton.Location = new System.Drawing.Point(10, 11);
+            this.ZeroAllButton.Name = "ZeroAllButton";
+            this.ZeroAllButton.Size = new System.Drawing.Size(77, 23);
+            this.ZeroAllButton.TabIndex = 117;
+            this.ZeroAllButton.Text = "Zero all";
+            this.ZeroAllButton.UseVisualStyleBackColor = true;
+            this.ZeroAllButton.Click += new System.EventHandler(this.ZeroAllButton_Click);
+            // 
+            // showAllVolumesCheckBox
+            // 
+            this.showAllVolumesCheckBox.AutoSize = true;
+            this.showAllVolumesCheckBox.Checked = true;
+            this.showAllVolumesCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showAllVolumesCheckBox.Location = new System.Drawing.Point(665, 30);
+            this.showAllVolumesCheckBox.Name = "showAllVolumesCheckBox";
+            this.showAllVolumesCheckBox.Size = new System.Drawing.Size(165, 17);
+            this.showAllVolumesCheckBox.TabIndex = 116;
+            this.showAllVolumesCheckBox.Text = "Show individual lung volumes";
+            this.showAllVolumesCheckBox.UseVisualStyleBackColor = true;
+            this.showAllVolumesCheckBox.CheckedChanged += new System.EventHandler(this.showAllVolumesCheckBox_CheckedChanged);
+            // 
+            // showAllPressuresCheckBox
+            // 
+            this.showAllPressuresCheckBox.AutoSize = true;
+            this.showAllPressuresCheckBox.Checked = true;
+            this.showAllPressuresCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showAllPressuresCheckBox.Location = new System.Drawing.Point(665, 13);
+            this.showAllPressuresCheckBox.Name = "showAllPressuresCheckBox";
+            this.showAllPressuresCheckBox.Size = new System.Drawing.Size(171, 17);
+            this.showAllPressuresCheckBox.TabIndex = 115;
+            this.showAllPressuresCheckBox.Text = "Show individual lung pressures";
+            this.showAllPressuresCheckBox.UseVisualStyleBackColor = true;
+            this.showAllPressuresCheckBox.CheckedChanged += new System.EventHandler(this.showAllPressuresCheckBox_CheckedChanged);
             // 
             // LoadDataSegmentButton
             // 
@@ -967,7 +999,7 @@
             // 
             // cumulativeSavedDataTimeDisplayLabel
             // 
-            this.cumulativeSavedDataTimeDisplayLabel.Location = new System.Drawing.Point(246, 47);
+            this.cumulativeSavedDataTimeDisplayLabel.Location = new System.Drawing.Point(462, 16);
             this.cumulativeSavedDataTimeDisplayLabel.Name = "cumulativeSavedDataTimeDisplayLabel";
             this.cumulativeSavedDataTimeDisplayLabel.Size = new System.Drawing.Size(54, 13);
             this.cumulativeSavedDataTimeDisplayLabel.TabIndex = 81;
@@ -976,7 +1008,7 @@
             // 
             // cumulativeSavedDataTimeLabel
             // 
-            this.cumulativeSavedDataTimeLabel.Location = new System.Drawing.Point(90, 47);
+            this.cumulativeSavedDataTimeLabel.Location = new System.Drawing.Point(306, 16);
             this.cumulativeSavedDataTimeLabel.Name = "cumulativeSavedDataTimeLabel";
             this.cumulativeSavedDataTimeLabel.Size = new System.Drawing.Size(146, 13);
             this.cumulativeSavedDataTimeLabel.TabIndex = 80;
@@ -1007,6 +1039,7 @@
             // PlotsSplitContainer.Panel2
             // 
             this.PlotsSplitContainer.Panel2.Controls.Add(this.VolumeFlowPlot);
+            this.PlotsSplitContainer.Panel2.Controls.Add(this.FactoryControlPanel);
             this.PlotsSplitContainer.Size = new System.Drawing.Size(1008, 628);
             this.PlotsSplitContainer.SplitterDistance = 314;
             this.PlotsSplitContainer.TabIndex = 80;
@@ -1031,51 +1064,65 @@
             // 
             this.PlotTimer.Tick += new System.EventHandler(this.PlotTimer_Tick);
             // 
-            // showAllVolumesCheckBox
+            // lungSerialNumberDisplayLabel
             // 
-            this.showAllVolumesCheckBox.AutoSize = true;
-            this.showAllVolumesCheckBox.Checked = true;
-            this.showAllVolumesCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.showAllVolumesCheckBox.Location = new System.Drawing.Point(509, 46);
-            this.showAllVolumesCheckBox.Name = "showAllVolumesCheckBox";
-            this.showAllVolumesCheckBox.Size = new System.Drawing.Size(165, 17);
-            this.showAllVolumesCheckBox.TabIndex = 116;
-            this.showAllVolumesCheckBox.Text = "Show individual lung volumes";
-            this.showAllVolumesCheckBox.UseVisualStyleBackColor = true;
-            this.showAllVolumesCheckBox.CheckedChanged += new System.EventHandler(this.showAllVolumesCheckBox_CheckedChanged);
+            this.lungSerialNumberDisplayLabel.AutoSize = true;
+            this.lungSerialNumberDisplayLabel.Location = new System.Drawing.Point(206, 75);
+            this.lungSerialNumberDisplayLabel.Name = "lungSerialNumberDisplayLabel";
+            this.lungSerialNumberDisplayLabel.Size = new System.Drawing.Size(134, 13);
+            this.lungSerialNumberDisplayLabel.TabIndex = 122;
+            this.lungSerialNumberDisplayLabel.Text = "Invalid Lung Serial Number";
             // 
-            // showAllPressuresCheckBox
+            // lungModelDisplayLabel
             // 
-            this.showAllPressuresCheckBox.AutoSize = true;
-            this.showAllPressuresCheckBox.Checked = true;
-            this.showAllPressuresCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.showAllPressuresCheckBox.Location = new System.Drawing.Point(332, 46);
-            this.showAllPressuresCheckBox.Name = "showAllPressuresCheckBox";
-            this.showAllPressuresCheckBox.Size = new System.Drawing.Size(171, 17);
-            this.showAllPressuresCheckBox.TabIndex = 115;
-            this.showAllPressuresCheckBox.Text = "Show individual lung pressures";
-            this.showAllPressuresCheckBox.UseVisualStyleBackColor = true;
-            this.showAllPressuresCheckBox.CheckedChanged += new System.EventHandler(this.showAllPressuresCheckBox_CheckedChanged);
+            this.lungModelDisplayLabel.AutoSize = true;
+            this.lungModelDisplayLabel.Location = new System.Drawing.Point(103, 75);
+            this.lungModelDisplayLabel.Name = "lungModelDisplayLabel";
+            this.lungModelDisplayLabel.Size = new System.Drawing.Size(97, 13);
+            this.lungModelDisplayLabel.TabIndex = 121;
+            this.lungModelDisplayLabel.Text = "Invalid Lung Model";
             // 
-            // ZeroAllButton
+            // LeftComplianceComboBox
             // 
-            this.ZeroAllButton.Location = new System.Drawing.Point(10, 11);
-            this.ZeroAllButton.Name = "ZeroAllButton";
-            this.ZeroAllButton.Size = new System.Drawing.Size(77, 23);
-            this.ZeroAllButton.TabIndex = 117;
-            this.ZeroAllButton.Text = "Zero all";
-            this.ZeroAllButton.UseVisualStyleBackColor = true;
-            this.ZeroAllButton.Click += new System.EventHandler(this.ZeroAllButton_Click);
+            this.LeftComplianceComboBox.FormattingEnabled = true;
+            this.LeftComplianceComboBox.Items.AddRange(new object[] {
+            ".01",
+            ".02",
+            ".03",
+            ".04",
+            ".05",
+            ".06",
+            ".07",
+            ".08",
+            ".09",
+            ".10"});
+            this.LeftComplianceComboBox.Location = new System.Drawing.Point(492, 71);
+            this.LeftComplianceComboBox.Name = "LeftComplianceComboBox";
+            this.LeftComplianceComboBox.Size = new System.Drawing.Size(47, 21);
+            this.LeftComplianceComboBox.TabIndex = 123;
+            this.LeftComplianceComboBox.Text = ".05";
+            this.LeftComplianceComboBox.SelectedIndexChanged += new System.EventHandler(this.LeftComplianceComboBox_SelectedIndexChanged);
             // 
-            // ClearAllButton
+            // RightComplianceComboBox
             // 
-            this.ClearAllButton.Location = new System.Drawing.Point(10, 69);
-            this.ClearAllButton.Name = "ClearAllButton";
-            this.ClearAllButton.Size = new System.Drawing.Size(77, 23);
-            this.ClearAllButton.TabIndex = 118;
-            this.ClearAllButton.Text = "Clear all";
-            this.ClearAllButton.UseVisualStyleBackColor = true;
-            this.ClearAllButton.Click += new System.EventHandler(this.ClearAllButton_Click);
+            this.RightComplianceComboBox.FormattingEnabled = true;
+            this.RightComplianceComboBox.Items.AddRange(new object[] {
+            ".01",
+            ".02",
+            ".03",
+            ".04",
+            ".05",
+            ".06",
+            ".07",
+            ".08",
+            ".09",
+            ".10"});
+            this.RightComplianceComboBox.Location = new System.Drawing.Point(587, 72);
+            this.RightComplianceComboBox.Name = "RightComplianceComboBox";
+            this.RightComplianceComboBox.Size = new System.Drawing.Size(47, 21);
+            this.RightComplianceComboBox.TabIndex = 124;
+            this.RightComplianceComboBox.Text = ".05";
+            this.RightComplianceComboBox.SelectedIndexChanged += new System.EventHandler(this.RightComplianceComboBox_SelectedIndexChanged);
             // 
             // PV3TestUtility3Main
             // 
@@ -1084,7 +1131,6 @@
             this.ClientSize = new System.Drawing.Size(1008, 729);
             this.Controls.Add(this.PlotsSplitContainer);
             this.Controls.Add(this.UserControlPanel);
-            this.Controls.Add(this.FactoryControlPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "PV3TestUtility3Main";
@@ -1158,8 +1204,6 @@
         private System.Windows.Forms.Label hwVerMajLabel;
         private System.Windows.Forms.Button readLungSerialNumberButton;
         private System.Windows.Forms.Button readLungModelButton;
-        private System.Windows.Forms.Label lungSerialNumberDisplayLabel;
-        private System.Windows.Forms.Label lungModelDisplayLabel;
         private System.Windows.Forms.Button writeLungSerialNumberButton;
         private System.Windows.Forms.Button writeLungModelButton;
         private System.Windows.Forms.TextBox lungSerialNumberTextBox;
@@ -1194,6 +1238,10 @@
         private System.Windows.Forms.CheckBox showAllPressuresCheckBox;
         private System.Windows.Forms.Button ZeroAllButton;
         private System.Windows.Forms.Button ClearAllButton;
+        private System.Windows.Forms.Label lungSerialNumberDisplayLabel;
+        private System.Windows.Forms.Label lungModelDisplayLabel;
+        private System.Windows.Forms.ComboBox LeftComplianceComboBox;
+        private System.Windows.Forms.ComboBox RightComplianceComboBox;
     }
 }
 

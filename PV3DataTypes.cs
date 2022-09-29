@@ -140,9 +140,9 @@ namespace PV3TestUtility3
         private double vleft;
 
         /// <summary>
-        /// Helper function to calculate volume
+        /// Helper function to calculate left volume
         /// </summary>
-        private double CalculateVolume(double lungPressure)
+        private double CalculateLeftVolume(double lungPressure)
         {
             return Math.Pow(lungPressure, 4) * ccLeft[0] + Math.Pow(lungPressure, 3) * ccLeft[1] + Math.Pow(lungPressure, 2) * ccLeft[2] + lungPressure * ccLeft[3];
         }
@@ -151,7 +151,7 @@ namespace PV3TestUtility3
         {
             get
             {
-                vleft = CalculateVolume(pleft);
+                vleft = CalculateLeftVolume(pleft);
                 return vleft;
             }
             set { vleft = value; }
@@ -159,11 +159,19 @@ namespace PV3TestUtility3
 
         private double vrght;
 
+        /// <summary>
+        /// Helper function to calculate right volume
+        /// </summary>
+        private double CalculateRightVolume(double lungPressure)
+        {
+            return Math.Pow(lungPressure, 4) * ccRight[0] + Math.Pow(lungPressure, 3) * ccRight[1] + Math.Pow(lungPressure, 2) * ccRight[2] + lungPressure * ccRight[3];
+        }
+
         public double VRIGHT
         {
             get
             {
-                vrght = CalculateVolume(prght);
+                vrght = CalculateRightVolume(prght);
                 return vrght;
             }
             set { vrght = value; }
@@ -307,8 +315,8 @@ namespace PV3TestUtility3
                 // Calculate volume measurements from interpolated and smoothed pressure data:
                 for (long sample = saveLastSampleNumber + 1; sample <= sampleNumber; ++sample)
                 {
-                    leftVolumeStream[sample] = CalculateVolume(leftLungPressureStream[sample]);
-                    rightVolumeStream[sample] = CalculateVolume(rightLungPressureStream[sample]);
+                    leftVolumeStream[sample] = CalculateLeftVolume(leftLungPressureStream[sample]);
+                    rightVolumeStream[sample] = CalculateRightVolume(rightLungPressureStream[sample]);
                     volumeStream[sample] = leftVolumeStream[sample] + rightVolumeStream[sample];
                 }
 

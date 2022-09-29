@@ -184,6 +184,42 @@ namespace PV3TestUtility3
             }
         }
 
+        private void LeftComplianceComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            byte command = 0xC0;    // Left lung
+
+            ComboBox cb = (ComboBox)sender;
+            byte currentCompliance = (byte)(cb.SelectedIndex + 1);
+
+            usbConnection.OutBuffer[1] = (byte)(command + currentCompliance);
+            usbConnection.sendViaUSB();
+            usbConnection.receiveViaUSB();
+
+            pv3Data.ccLeft[0] = BitConverter.ToDouble(usbConnection.InBuffer, 2);
+            pv3Data.ccLeft[1] = BitConverter.ToDouble(usbConnection.InBuffer, 10);
+            pv3Data.ccLeft[2] = BitConverter.ToDouble(usbConnection.InBuffer, 18);
+            pv3Data.ccLeft[3] = BitConverter.ToDouble(usbConnection.InBuffer, 26);
+
+        }
+
+        private void RightComplianceComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            byte command = 0xE0;    // Right lung
+
+            ComboBox cb = (ComboBox)sender;
+            byte currentCompliance = (byte)(cb.SelectedIndex + 1);
+
+            usbConnection.OutBuffer[1] = (byte)(command + currentCompliance);
+            usbConnection.sendViaUSB();
+            usbConnection.receiveViaUSB();
+
+            pv3Data.ccRight[0] = BitConverter.ToDouble(usbConnection.InBuffer, 2);
+            pv3Data.ccRight[1] = BitConverter.ToDouble(usbConnection.InBuffer, 10);
+            pv3Data.ccRight[2] = BitConverter.ToDouble(usbConnection.InBuffer, 18);
+            pv3Data.ccRight[3] = BitConverter.ToDouble(usbConnection.InBuffer, 26);
+
+        }
+
         #endregion Main form event handlers
 
         // Connect to PV3 embedded system over USB
@@ -200,11 +236,59 @@ namespace PV3TestUtility3
                 // Configure the form controls for a connected device:
 
                 //TODO: Read lung information (Model, SN, calibration data, compliance coefficient tables):
+                
+                // Read and display lung model:
+                cmd = PV3DataTypes.PV3CommandType.RD_LUNG_MODEL;
+                usbConnection.OutBuffer[1] = (byte)cmd;
+                usbConnection.sendViaUSB();
 
+                usbConnection.receiveViaUSB();
+                ttlModel = usbConnection.InBuffer[2];
+                switch (ttlModel)
+                {
+                    case 1:
+                        lungModelDisplayLabel.Text = "Single Lung";
+                        break;
+                    case 2:
+                        lungModelDisplayLabel.Text = "Adult / Infant";
+                        break;
+                    case 4:
+                        lungModelDisplayLabel.Text = "Dual Adult";
+                        break;
 
+                    default:
+                        lungModelDisplayLabel.Text = string.Format("Invalid flag set: {0:X2}", ttlModel);
+                        break;
+                }
+
+                // Read and display lung serial number:
+                cmd = PV3DataTypes.PV3CommandType.RD_LUNG_SN;
+                usbConnection.OutBuffer[1] = (byte)cmd;
+                usbConnection.sendViaUSB();
+                usbConnection.receiveViaUSB();
+                ttlSN[0] = usbConnection.InBuffer[2];
+                ttlSN[1] = usbConnection.InBuffer[3];
+                lungSerialNumberDisplayLabel.Text = "SN " + (BitConverter.ToUInt16(ttlSN, 0)).ToString();
+
+                // Read high speed sensor channel calibration data:
+                cmd = PV3DataTypes.PV3CommandType.RD_HSSCD;
+                usbConnection.OutBuffer[1] = (byte)cmd;
+                usbConnection.sendViaUSB();
+
+                usbConnection.receiveViaUSB();
+                pv3Data.PPROXGain = (ushort)((uint)(usbConnection.InBuffer[3] << 8) + (uint)usbConnection.InBuffer[2]);
+                pv3Data.PLEFTGain = (ushort)((uint)(usbConnection.InBuffer[5] << 8) + (uint)usbConnection.InBuffer[4]);
+                pv3Data.PRGHTGain = (ushort)((uint)(usbConnection.InBuffer[7] << 8) + (uint)usbConnection.InBuffer[6]);
+                pv3Data.PHIGHGain = (ushort)((uint)(usbConnection.InBuffer[9] << 8) + (uint)usbConnection.InBuffer[8]);
+                pv3Data.AUXINGain = (ushort)((uint)(usbConnection.InBuffer[11] << 8) + (uint)usbConnection.InBuffer[10]);
+
+                // Load initial compliance coefficient sets:
+                LeftComplianceComboBox_SelectedIndexChanged(LeftComplianceComboBox, new EventArgs());
+                RightComplianceComboBox_SelectedIndexChanged(RightComplianceComboBox, new EventArgs());
 
                 return true;
             }
+
             blConnection.connectionState = blConnection.attemptUSBConnection();
             if (blConnection.connectionState == USBClass.CONNECTION_SUCCESSFUL)
             {
@@ -222,7 +306,7 @@ namespace PV3TestUtility3
                 connectionStateLabel.Text = "NOT Connected - click to retry...";
                 usbCommTimer.Enabled = false;
                 
-                // Configure the form controls as appropriate while waqiting for device to connect:
+                // Configure the form controls as appropriate while waiting for device to connect:
 
 
                 return false;
@@ -859,5 +943,6 @@ namespace PV3TestUtility3
 
 
         #endregion Data capture and plotting event handlers
+
     }
 }
