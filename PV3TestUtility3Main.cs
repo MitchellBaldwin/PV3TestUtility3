@@ -746,14 +746,14 @@ namespace PV3TestUtility3
                 fio2DisplayLabel.Text = pv3Data.FiO2.ToString("0.0");
             }
 
-            cumulativeSavedDataTimeDisplayLabel.Text = (dataStopwatch.ElapsedMilliseconds / 1000.0).ToString("0.000");
+            //cumulativeSavedDataTimeDisplayLabel.Text = (dataStopwatch.ElapsedMilliseconds / 1000.0).ToString("0.000");
 
-            // Update plots:
-            if ((dataStopwatch.ElapsedMilliseconds % 100L) == 0)
-            {
-                PressuresPlot.Render();
-                VolumeFlowPlot.Render();
-            }
+            //// Update plots:
+            //if ((dataStopwatch.ElapsedMilliseconds % 100L) == 0)
+            //{
+            //    PressuresPlot.Render();
+            //    VolumeFlowPlot.Render();
+            //}
 
         }
 
@@ -781,24 +781,25 @@ namespace PV3TestUtility3
 
         private void ClearAllButton_Click(object sender, EventArgs e)
         {
-            for (long i = 0; i < HSDP_SAMPLES; ++i)
-            {
-                pv3Data.airwayPressureStream[i] = 0.0;
-                pv3Data.leftLungPressureStream[i] = 0.0;
-                pv3Data.rightLungPressureStream[i] = 0.0;
-                pv3Data.leftVolumeStream[i] = 0.0;
-                pv3Data.rightVolumeStream[i] = 0.0;
-                pv3Data.volumeStream[i] = 0.0;
-                pv3Data.leftFlowStream[i] = 0.0;
-                pv3Data.rightFlowStream[i] = 0.0;
-                pv3Data.flowStream[i] = 0.0;
+            pv3Data.ClearDataStreams();
+            //for (long i = 0; i < HSDP_SAMPLES; ++i)
+            //{
+            //    pv3Data.airwayPressureStream[i] = 0.0;
+            //    pv3Data.leftLungPressureStream[i] = 0.0;
+            //    pv3Data.rightLungPressureStream[i] = 0.0;
+            //    pv3Data.leftVolumeStream[i] = 0.0;
+            //    pv3Data.rightVolumeStream[i] = 0.0;
+            //    pv3Data.volumeStream[i] = 0.0;
+            //    pv3Data.leftFlowStream[i] = 0.0;
+            //    pv3Data.rightFlowStream[i] = 0.0;
+            //    pv3Data.flowStream[i] = 0.0;
 
-            }
+            //}
 
             PressuresPlot.Render();
             VolumeFlowPlot.Render();
 
-            dataStopwatch.Restart();
+            dataStopwatch.Reset();
             cumulativeSavedDataTimeDisplayLabel.Text = (dataStopwatch.ElapsedMilliseconds / 1000.0).ToString("0.000");
 
         }
@@ -814,11 +815,14 @@ namespace PV3TestUtility3
                 usbConnection.receiveViaUSB();
                 DisplayUSBBufferData();
                 usbCommTimer.Enabled = true;
-                //PlotTimer.Enabled = true;
+                PlotTimer.Enabled = true;
                 dataStopwatch.Start();
 
                 // Change button text & appearence to indicate data acquisition is in progress:
                 StartStopDataAcquisitionButton.Text = "End Data Acquisition";
+
+                cumulativeSavedDataTimeLabel.Visible = true; ;
+                cumulativeSavedDataTimeDisplayLabel.Visible = true;
 
             }
             else
@@ -830,11 +834,18 @@ namespace PV3TestUtility3
                 usbConnection.receiveViaUSB();
                 DisplayUSBBufferData();
                 usbCommTimer.Enabled = false;
-                //PlotTimer.Enabled = false;
+                PlotTimer.Enabled = false;
                 dataStopwatch.Stop();
+                //dataStopwatch.Reset();
 
                 // Change button text & appearence to indicate data acquisition can be started:
                 StartStopDataAcquisitionButton.Text = "Start Data Acquisition";
+
+                // Render plots:
+                cumulativeSavedDataTimeLabel.Visible = false;
+                cumulativeSavedDataTimeDisplayLabel.Visible = false;
+                PressuresPlot.Render();
+                VolumeFlowPlot.Render();
 
                 // Prompt user to save captured data:
 
@@ -916,6 +927,10 @@ namespace PV3TestUtility3
                     };
                     filename = saveFileDialog.FileName;
                     Console.WriteLine("Data saved to: {0}", filename);
+
+                    //TODO: Reset timers and data counters:
+
+
                 }
                 catch (Exception ex)
                 {
@@ -937,12 +952,90 @@ namespace PV3TestUtility3
 
         private void PlotTimer_Tick(object sender, EventArgs e)
         {
-            PressuresPlot.Render();
-            VolumeFlowPlot.Render();
+            cumulativeSavedDataTimeDisplayLabel.Text = (dataStopwatch.ElapsedMilliseconds / 1000.0).ToString("0.000");
+
         }
 
 
         #endregion Data capture and plotting event handlers
+
+        private bool SelectDataFile(out string fileName)
+        {
+            OpenFileDialog dlg = new OpenFileDialog
+            {
+                Title = "Select data file to load",
+                DefaultExt = "csv",
+                CheckPathExists = true,
+                Filter = "Comma-separated values (*.csv)|*.csv"
+            };
+
+            DialogResult dlgResult = dlg.ShowDialog();
+
+            if (dlgResult == DialogResult.OK)
+            {
+                fileName = dlg.FileName;
+                return true;
+            }
+            else
+            {
+                fileName = "";
+                return false;
+            }
+        }
+
+        private void ParsePV3RTDataFile(string fileName)
+        {
+            // Clear any earlier data:
+            pv3Data.ClearDataStreams();
+            //for (long i = 0; i < HSDP_SAMPLES; ++i)
+            //{
+            //    pv3Data.airwayPressureStream[i] = 0.0;
+            //    pv3Data.leftLungPressureStream[i] = 0.0;
+            //    pv3Data.rightLungPressureStream[i] = 0.0;
+            //    pv3Data.leftVolumeStream[i] = 0.0;
+            //    pv3Data.rightVolumeStream[i] = 0.0;
+            //    pv3Data.volumeStream[i] = 0.0;
+            //    pv3Data.leftFlowStream[i] = 0.0;
+            //    pv3Data.rightFlowStream[i] = 0.0;
+            //    pv3Data.flowStream[i] = 0.0;
+
+            //}
+            dataStopwatch.Reset();
+            cumulativeSavedDataTimeDisplayLabel.Text = (dataStopwatch.ElapsedMilliseconds / 1000.0).ToString("0.000");
+
+            CSVFileReader csvFileReader = new CSVFileReader(fileName);
+            CSVRow row = new CSVRow();
+            _ = csvFileReader.ReadRow(row); // Throw out first row containing column headings
+
+            long sample = 0;
+            while (csvFileReader.ReadRow(row) && (sample < HSDP_SAMPLES))
+            {
+                pv3Data.airwayPressureStream[sample] = double.Parse(row[1]);
+                pv3Data.leftLungPressureStream[sample] = double.Parse(row[2]);
+                pv3Data.rightLungPressureStream[sample] = double.Parse(row[3]);
+                pv3Data.volumeStream[sample] = double.Parse(row[4]);
+                pv3Data.flowStream[sample] = double.Parse(row[5]);
+                pv3Data.leftVolumeStream[sample] = double.Parse(row[6]);
+                pv3Data.rightVolumeStream[sample] = double.Parse(row[7]);
+                pv3Data.leftFlowStream[sample] = double.Parse(row[8]);
+                pv3Data.rightVolumeStream[sample] = double.Parse(row[9]);
+                ++sample;
+            }
+
+            // Render plots:
+            PressuresPlot.Render();
+            VolumeFlowPlot.Render();
+
+        }
+
+        private void LoadDataSegmentButton_Click(object sender, EventArgs e)
+        {
+            if (SelectDataFile(out string fileName))
+            {
+                ParsePV3RTDataFile(fileName);
+            }
+        }
+
 
     }
 }

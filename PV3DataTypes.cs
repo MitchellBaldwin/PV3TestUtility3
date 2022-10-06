@@ -144,7 +144,7 @@ namespace PV3TestUtility3
         /// </summary>
         private double CalculateLeftVolume(double lungPressure)
         {
-            return Math.Pow(lungPressure, 4) * ccLeft[0] + Math.Pow(lungPressure, 3) * ccLeft[1] + Math.Pow(lungPressure, 2) * ccLeft[2] + lungPressure * ccLeft[3];
+            return Math.Pow(lungPressure, 4) * ccLeft[3] + Math.Pow(lungPressure, 3) * ccLeft[2] + Math.Pow(lungPressure, 1) * ccLeft[1] + lungPressure * ccLeft[0];
         }
 
         public double VLEFT
@@ -164,7 +164,7 @@ namespace PV3TestUtility3
         /// </summary>
         private double CalculateRightVolume(double lungPressure)
         {
-            return Math.Pow(lungPressure, 4) * ccRight[0] + Math.Pow(lungPressure, 3) * ccRight[1] + Math.Pow(lungPressure, 2) * ccRight[2] + lungPressure * ccRight[3];
+            return Math.Pow(lungPressure, 4) * ccRight[3] + Math.Pow(lungPressure, 3) * ccRight[2] + Math.Pow(lungPressure, 2) * ccRight[1] + lungPressure * ccRight[0];
         }
 
         public double VRIGHT
@@ -325,6 +325,26 @@ namespace PV3TestUtility3
             }
 
             lastSampleNumber = sampleNumber;
+        }
+
+        public void ClearDataStreams()
+        {
+            for (long i = 0; i < maxSampleCount; ++i)
+            {
+                airwayPressureStream[i] = 0.0;
+                leftLungPressureStream[i] = 0.0;
+                rightLungPressureStream[i] = 0.0;
+                leftVolumeStream[i] = 0.0;
+                rightVolumeStream[i] = 0.0;
+                volumeStream[i] = 0.0;
+                leftFlowStream[i] = 0.0;
+                rightFlowStream[i] = 0.0;
+                flowStream[i] = 0.0;
+
+            }
+            lastSampleNumber = 0L;
+            sampleCount = 0L;
+
         }
 
     }

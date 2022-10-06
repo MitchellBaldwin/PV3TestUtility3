@@ -103,6 +103,10 @@
             this.toggleBlinkStatusButton = new System.Windows.Forms.Button();
             this.toggleLEDsButton = new System.Windows.Forms.Button();
             this.UserControlPanel = new System.Windows.Forms.Panel();
+            this.RightComplianceComboBox = new System.Windows.Forms.ComboBox();
+            this.LeftComplianceComboBox = new System.Windows.Forms.ComboBox();
+            this.lungSerialNumberDisplayLabel = new System.Windows.Forms.Label();
+            this.lungModelDisplayLabel = new System.Windows.Forms.Label();
             this.ClearAllButton = new System.Windows.Forms.Button();
             this.ZeroAllButton = new System.Windows.Forms.Button();
             this.showAllVolumesCheckBox = new System.Windows.Forms.CheckBox();
@@ -111,17 +115,13 @@
             this.SaveDataSegmentButton = new System.Windows.Forms.Button();
             this.displayPlotsButton = new System.Windows.Forms.Button();
             this.cumulativeSavedDataTimeUnitsLabel = new System.Windows.Forms.Label();
-            this.cumulativeSavedDataTimeDisplayLabel = new System.Windows.Forms.Label();
-            this.cumulativeSavedDataTimeLabel = new System.Windows.Forms.Label();
             this.StartStopDataAcquisitionButton = new System.Windows.Forms.Button();
             this.PlotsSplitContainer = new System.Windows.Forms.SplitContainer();
             this.PressuresPlot = new ScottPlot.FormsPlot();
             this.VolumeFlowPlot = new ScottPlot.FormsPlot();
             this.PlotTimer = new System.Windows.Forms.Timer(this.components);
-            this.lungSerialNumberDisplayLabel = new System.Windows.Forms.Label();
-            this.lungModelDisplayLabel = new System.Windows.Forms.Label();
-            this.LeftComplianceComboBox = new System.Windows.Forms.ComboBox();
-            this.RightComplianceComboBox = new System.Windows.Forms.ComboBox();
+            this.cumulativeSavedDataTimeDisplayLabel = new System.Windows.Forms.Label();
+            this.cumulativeSavedDataTimeLabel = new System.Windows.Forms.Label();
             this.FactoryControlPanel.SuspendLayout();
             this.UserControlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PlotsSplitContainer)).BeginInit();
@@ -903,14 +903,72 @@
             this.UserControlPanel.Controls.Add(this.SaveDataSegmentButton);
             this.UserControlPanel.Controls.Add(this.displayPlotsButton);
             this.UserControlPanel.Controls.Add(this.cumulativeSavedDataTimeUnitsLabel);
-            this.UserControlPanel.Controls.Add(this.cumulativeSavedDataTimeDisplayLabel);
-            this.UserControlPanel.Controls.Add(this.cumulativeSavedDataTimeLabel);
             this.UserControlPanel.Controls.Add(this.StartStopDataAcquisitionButton);
             this.UserControlPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.UserControlPanel.Location = new System.Drawing.Point(0, 628);
             this.UserControlPanel.Name = "UserControlPanel";
             this.UserControlPanel.Size = new System.Drawing.Size(1008, 101);
             this.UserControlPanel.TabIndex = 79;
+            // 
+            // RightComplianceComboBox
+            // 
+            this.RightComplianceComboBox.FormattingEnabled = true;
+            this.RightComplianceComboBox.Items.AddRange(new object[] {
+            ".01",
+            ".02",
+            ".03",
+            ".04",
+            ".05",
+            ".06",
+            ".07",
+            ".08",
+            ".09",
+            ".10"});
+            this.RightComplianceComboBox.Location = new System.Drawing.Point(587, 72);
+            this.RightComplianceComboBox.Name = "RightComplianceComboBox";
+            this.RightComplianceComboBox.Size = new System.Drawing.Size(47, 21);
+            this.RightComplianceComboBox.TabIndex = 124;
+            this.RightComplianceComboBox.Text = ".05";
+            this.RightComplianceComboBox.SelectedIndexChanged += new System.EventHandler(this.RightComplianceComboBox_SelectedIndexChanged);
+            // 
+            // LeftComplianceComboBox
+            // 
+            this.LeftComplianceComboBox.FormattingEnabled = true;
+            this.LeftComplianceComboBox.Items.AddRange(new object[] {
+            ".01",
+            ".02",
+            ".03",
+            ".04",
+            ".05",
+            ".06",
+            ".07",
+            ".08",
+            ".09",
+            ".10"});
+            this.LeftComplianceComboBox.Location = new System.Drawing.Point(492, 71);
+            this.LeftComplianceComboBox.Name = "LeftComplianceComboBox";
+            this.LeftComplianceComboBox.Size = new System.Drawing.Size(47, 21);
+            this.LeftComplianceComboBox.TabIndex = 123;
+            this.LeftComplianceComboBox.Text = ".05";
+            this.LeftComplianceComboBox.SelectedIndexChanged += new System.EventHandler(this.LeftComplianceComboBox_SelectedIndexChanged);
+            // 
+            // lungSerialNumberDisplayLabel
+            // 
+            this.lungSerialNumberDisplayLabel.AutoSize = true;
+            this.lungSerialNumberDisplayLabel.Location = new System.Drawing.Point(206, 75);
+            this.lungSerialNumberDisplayLabel.Name = "lungSerialNumberDisplayLabel";
+            this.lungSerialNumberDisplayLabel.Size = new System.Drawing.Size(134, 13);
+            this.lungSerialNumberDisplayLabel.TabIndex = 122;
+            this.lungSerialNumberDisplayLabel.Text = "Invalid Lung Serial Number";
+            // 
+            // lungModelDisplayLabel
+            // 
+            this.lungModelDisplayLabel.AutoSize = true;
+            this.lungModelDisplayLabel.Location = new System.Drawing.Point(103, 75);
+            this.lungModelDisplayLabel.Name = "lungModelDisplayLabel";
+            this.lungModelDisplayLabel.Size = new System.Drawing.Size(97, 13);
+            this.lungModelDisplayLabel.TabIndex = 121;
+            this.lungModelDisplayLabel.Text = "Invalid Lung Model";
             // 
             // ClearAllButton
             // 
@@ -966,6 +1024,7 @@
             this.LoadDataSegmentButton.TabIndex = 114;
             this.LoadDataSegmentButton.Text = "Load Data Segment";
             this.LoadDataSegmentButton.UseVisualStyleBackColor = true;
+            this.LoadDataSegmentButton.Click += new System.EventHandler(this.LoadDataSegmentButton_Click);
             // 
             // SaveDataSegmentButton
             // 
@@ -997,24 +1056,6 @@
             this.cumulativeSavedDataTimeUnitsLabel.TabIndex = 82;
             this.cumulativeSavedDataTimeUnitsLabel.Text = "s";
             // 
-            // cumulativeSavedDataTimeDisplayLabel
-            // 
-            this.cumulativeSavedDataTimeDisplayLabel.Location = new System.Drawing.Point(462, 16);
-            this.cumulativeSavedDataTimeDisplayLabel.Name = "cumulativeSavedDataTimeDisplayLabel";
-            this.cumulativeSavedDataTimeDisplayLabel.Size = new System.Drawing.Size(54, 13);
-            this.cumulativeSavedDataTimeDisplayLabel.TabIndex = 81;
-            this.cumulativeSavedDataTimeDisplayLabel.Text = "0.000";
-            this.cumulativeSavedDataTimeDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // cumulativeSavedDataTimeLabel
-            // 
-            this.cumulativeSavedDataTimeLabel.Location = new System.Drawing.Point(306, 16);
-            this.cumulativeSavedDataTimeLabel.Name = "cumulativeSavedDataTimeLabel";
-            this.cumulativeSavedDataTimeLabel.Size = new System.Drawing.Size(146, 13);
-            this.cumulativeSavedDataTimeLabel.TabIndex = 80;
-            this.cumulativeSavedDataTimeLabel.Text = "Cumulative saved data time:";
-            this.cumulativeSavedDataTimeLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
             // StartStopDataAcquisitionButton
             // 
             this.StartStopDataAcquisitionButton.Location = new System.Drawing.Point(93, 11);
@@ -1034,6 +1075,8 @@
             // 
             // PlotsSplitContainer.Panel1
             // 
+            this.PlotsSplitContainer.Panel1.Controls.Add(this.cumulativeSavedDataTimeDisplayLabel);
+            this.PlotsSplitContainer.Panel1.Controls.Add(this.cumulativeSavedDataTimeLabel);
             this.PlotsSplitContainer.Panel1.Controls.Add(this.PressuresPlot);
             // 
             // PlotsSplitContainer.Panel2
@@ -1064,65 +1107,31 @@
             // 
             this.PlotTimer.Tick += new System.EventHandler(this.PlotTimer_Tick);
             // 
-            // lungSerialNumberDisplayLabel
+            // cumulativeSavedDataTimeDisplayLabel
             // 
-            this.lungSerialNumberDisplayLabel.AutoSize = true;
-            this.lungSerialNumberDisplayLabel.Location = new System.Drawing.Point(206, 75);
-            this.lungSerialNumberDisplayLabel.Name = "lungSerialNumberDisplayLabel";
-            this.lungSerialNumberDisplayLabel.Size = new System.Drawing.Size(134, 13);
-            this.lungSerialNumberDisplayLabel.TabIndex = 122;
-            this.lungSerialNumberDisplayLabel.Text = "Invalid Lung Serial Number";
+            this.cumulativeSavedDataTimeDisplayLabel.AutoSize = true;
+            this.cumulativeSavedDataTimeDisplayLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cumulativeSavedDataTimeDisplayLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.cumulativeSavedDataTimeDisplayLabel.Location = new System.Drawing.Point(651, 129);
+            this.cumulativeSavedDataTimeDisplayLabel.Name = "cumulativeSavedDataTimeDisplayLabel";
+            this.cumulativeSavedDataTimeDisplayLabel.Size = new System.Drawing.Size(87, 31);
+            this.cumulativeSavedDataTimeDisplayLabel.TabIndex = 83;
+            this.cumulativeSavedDataTimeDisplayLabel.Text = "0.000";
+            this.cumulativeSavedDataTimeDisplayLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.cumulativeSavedDataTimeDisplayLabel.Visible = false;
             // 
-            // lungModelDisplayLabel
+            // cumulativeSavedDataTimeLabel
             // 
-            this.lungModelDisplayLabel.AutoSize = true;
-            this.lungModelDisplayLabel.Location = new System.Drawing.Point(103, 75);
-            this.lungModelDisplayLabel.Name = "lungModelDisplayLabel";
-            this.lungModelDisplayLabel.Size = new System.Drawing.Size(97, 13);
-            this.lungModelDisplayLabel.TabIndex = 121;
-            this.lungModelDisplayLabel.Text = "Invalid Lung Model";
-            // 
-            // LeftComplianceComboBox
-            // 
-            this.LeftComplianceComboBox.FormattingEnabled = true;
-            this.LeftComplianceComboBox.Items.AddRange(new object[] {
-            ".01",
-            ".02",
-            ".03",
-            ".04",
-            ".05",
-            ".06",
-            ".07",
-            ".08",
-            ".09",
-            ".10"});
-            this.LeftComplianceComboBox.Location = new System.Drawing.Point(492, 71);
-            this.LeftComplianceComboBox.Name = "LeftComplianceComboBox";
-            this.LeftComplianceComboBox.Size = new System.Drawing.Size(47, 21);
-            this.LeftComplianceComboBox.TabIndex = 123;
-            this.LeftComplianceComboBox.Text = ".05";
-            this.LeftComplianceComboBox.SelectedIndexChanged += new System.EventHandler(this.LeftComplianceComboBox_SelectedIndexChanged);
-            // 
-            // RightComplianceComboBox
-            // 
-            this.RightComplianceComboBox.FormattingEnabled = true;
-            this.RightComplianceComboBox.Items.AddRange(new object[] {
-            ".01",
-            ".02",
-            ".03",
-            ".04",
-            ".05",
-            ".06",
-            ".07",
-            ".08",
-            ".09",
-            ".10"});
-            this.RightComplianceComboBox.Location = new System.Drawing.Point(587, 72);
-            this.RightComplianceComboBox.Name = "RightComplianceComboBox";
-            this.RightComplianceComboBox.Size = new System.Drawing.Size(47, 21);
-            this.RightComplianceComboBox.TabIndex = 124;
-            this.RightComplianceComboBox.Text = ".05";
-            this.RightComplianceComboBox.SelectedIndexChanged += new System.EventHandler(this.RightComplianceComboBox_SelectedIndexChanged);
+            this.cumulativeSavedDataTimeLabel.AutoSize = true;
+            this.cumulativeSavedDataTimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cumulativeSavedDataTimeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.cumulativeSavedDataTimeLabel.Location = new System.Drawing.Point(262, 129);
+            this.cumulativeSavedDataTimeLabel.Name = "cumulativeSavedDataTimeLabel";
+            this.cumulativeSavedDataTimeLabel.Size = new System.Drawing.Size(383, 31);
+            this.cumulativeSavedDataTimeLabel.TabIndex = 82;
+            this.cumulativeSavedDataTimeLabel.Text = "Cumulative saved data time:";
+            this.cumulativeSavedDataTimeLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.cumulativeSavedDataTimeLabel.Visible = false;
             // 
             // PV3TestUtility3Main
             // 
@@ -1142,6 +1151,7 @@
             this.UserControlPanel.ResumeLayout(false);
             this.UserControlPanel.PerformLayout();
             this.PlotsSplitContainer.Panel1.ResumeLayout(false);
+            this.PlotsSplitContainer.Panel1.PerformLayout();
             this.PlotsSplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PlotsSplitContainer)).EndInit();
             this.PlotsSplitContainer.ResumeLayout(false);
@@ -1213,8 +1223,6 @@
         private System.Windows.Forms.Button setReadComplianceCalibrationDataButton;
         private System.Windows.Forms.Panel UserControlPanel;
         private System.Windows.Forms.Label cumulativeSavedDataTimeUnitsLabel;
-        private System.Windows.Forms.Label cumulativeSavedDataTimeDisplayLabel;
-        private System.Windows.Forms.Label cumulativeSavedDataTimeLabel;
         private System.Windows.Forms.Button StartStopDataAcquisitionButton;
         private System.Windows.Forms.Label fio2RawDisplayLabel;
         private System.Windows.Forms.Label rltRawDisplayLabel;
@@ -1242,6 +1250,8 @@
         private System.Windows.Forms.Label lungModelDisplayLabel;
         private System.Windows.Forms.ComboBox LeftComplianceComboBox;
         private System.Windows.Forms.ComboBox RightComplianceComboBox;
+        private System.Windows.Forms.Label cumulativeSavedDataTimeDisplayLabel;
+        private System.Windows.Forms.Label cumulativeSavedDataTimeLabel;
     }
 }
 
