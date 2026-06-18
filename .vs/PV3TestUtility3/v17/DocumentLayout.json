@@ -3,11 +3,11 @@
   "WorkspaceRootPath": "C:\\Repos\\PV3TestUtility\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|PV3TestUtility3||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{08824F6C-EF64-4281-8605-7F20556ED787}|PV3TestUtility3.csproj|C:\\Repos\\PV3TestUtility\\pv3testutility3main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{08824F6C-EF64-4281-8605-7F20556ED787}|PV3TestUtility3.csproj|solutionrelative:pv3testutility3main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|PV3TestUtility3||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{08824F6C-EF64-4281-8605-7F20556ED787}|PV3TestUtility3.csproj|C:\\Repos\\PV3TestUtility\\pv3testutility3main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -28,7 +28,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -51,8 +51,12 @@
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "PV3TestUtility3",
               "DocumentMoniker": "C:\\Repos\\PV3TestUtility\\PV3TestUtility3.csproj",
               "RelativeDocumentMoniker": "PV3TestUtility3.csproj",
@@ -63,10 +67,6 @@
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "PV3TestUtility3Main.Designer.cs",
@@ -74,9 +74,10 @@
               "RelativeDocumentMoniker": "PV3TestUtility3Main.Designer.cs",
               "ToolTip": "C:\\Repos\\PV3TestUtility\\PV3TestUtility3Main.Designer.cs",
               "RelativeToolTip": "PV3TestUtility3Main.Designer.cs",
-              "ViewState": "AgIAACcEAAAAAAAAAAAawDcEAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACcEAAAAAAAAAAAawDgEAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-18T22:32:00.932Z"
+              "WhenOpened": "2026-06-18T22:32:00.932Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -86,20 +87,22 @@
               "RelativeDocumentMoniker": "PV3TestUtility3Main.cs",
               "ToolTip": "C:\\Repos\\PV3TestUtility\\PV3TestUtility3Main.cs",
               "RelativeToolTip": "PV3TestUtility3Main.cs",
-              "ViewState": "AgIAAIgCAAAAAAAAAAAAAIgCAAA9AAAAAAAAAA==",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAQwHMAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-18T19:44:58.549Z"
+              "WhenOpened": "2026-06-18T19:44:58.549Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "PV3TestUtility3Main.cs [Design]",
               "DocumentMoniker": "C:\\Repos\\PV3TestUtility\\PV3TestUtility3Main.cs",
               "RelativeDocumentMoniker": "PV3TestUtility3Main.cs",
               "ToolTip": "C:\\Repos\\PV3TestUtility\\PV3TestUtility3Main.cs [Design]",
               "RelativeToolTip": "PV3TestUtility3Main.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-18T19:39:00.413Z"
+              "WhenOpened": "2026-06-18T19:39:00.413Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }
