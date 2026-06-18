@@ -591,65 +591,62 @@ namespace PV3TestUtility3
             
             int sampleSetsInPacket = usbConnection.InBuffer[3];
 
-            while (sampleSetsInPacket > 0)
+            for (int i = 0; i < sampleSetsInPacket; ++i)
             {
-                for (int i = 0; i < sampleSetsInPacket; ++i)
+                if (i == 0)
                 {
-                    if (i == 0)
-                    {
-                        pv3Data.PPROXRaw = (ushort)((uint)(usbConnection.InBuffer[5] << 8) + (uint)usbConnection.InBuffer[4]);
-                        pv3Data.PLEFTRaw = (ushort)((uint)(usbConnection.InBuffer[7] << 8) + (uint)usbConnection.InBuffer[6]);
-                        pv3Data.PRGHTRaw = (ushort)((uint)(usbConnection.InBuffer[9] << 8) + (uint)usbConnection.InBuffer[8]);
-                        pv3Data.PHIGHRaw = (ushort)((uint)(usbConnection.InBuffer[11] << 8) + (uint)usbConnection.InBuffer[10]);
-                        pv3Data.AUXINRaw = (ushort)((uint)(usbConnection.InBuffer[13] << 8) + (uint)usbConnection.InBuffer[12]);
+                    pv3Data.PPROXRaw = (ushort)((uint)(usbConnection.InBuffer[5] << 8) + (uint)usbConnection.InBuffer[4]);
+                    pv3Data.PLEFTRaw = (ushort)((uint)(usbConnection.InBuffer[7] << 8) + (uint)usbConnection.InBuffer[6]);
+                    pv3Data.PRGHTRaw = (ushort)((uint)(usbConnection.InBuffer[9] << 8) + (uint)usbConnection.InBuffer[8]);
+                    pv3Data.PHIGHRaw = (ushort)((uint)(usbConnection.InBuffer[11] << 8) + (uint)usbConnection.InBuffer[10]);
+                    pv3Data.AUXINRaw = (ushort)((uint)(usbConnection.InBuffer[13] << 8) + (uint)usbConnection.InBuffer[12]);
 
-                        // TODO: Smooth pressure data streams
-                        // TODO: Reset missed package count when restarting data acquisition
-                        // DONE: Use stopwatch to set data sample position in data stream arrays
-                        // DONE: Interpolate missed samples - in progress
-                        // TODO: Handle first data sample
+                    // TODO: Smooth pressure data streams
+                    // TODO: Reset missed package count when restarting data acquisition
+                    // DONE: Use stopwatch to set data sample position in data stream arrays
+                    // DONE: Interpolate missed samples - in progress
+                    // TODO: Handle first data sample
 
-                        long sampleNumber = dataStopwatch.ElapsedMilliseconds / 2;
-                        pv3Data.AddSampleSet(sampleNumber);
-
-                    }
-
-                    long elapsedMilliseconds = stopwatch.ElapsedMilliseconds;
-                    if (elapsedMilliseconds > maxPackageInterval)
-                    {
-                        maxPackageInterval = elapsedMilliseconds;
-                    }
-                    avgPackageInterval += elapsedMilliseconds;
-
-                    stopwatch.Restart();
-                    packetNum = nextPacketNum;
-                }
-                
-                nextPacketNum = usbConnection.InBuffer[2];
-                
-                if (FactoryControlPanel.Visible == true)
-                {
-                    if ((packetNum != 0) && (packetNum != 255))
-                    {
-                        packagesMissedDisplayLabel.Text = (nextPacketNum - packetNum - 1).ToString();
-                    }
-                    else
-                    {
-                        packagesMissedDisplayLabel.Text = "0";
-                    }
-
-                    packageCountDisplayLabel.Text = nextPacketNum.ToString();
-                    sizeDisplayLabel.Text = sampleSetsInPacket.ToString();
-
-                    packageIntervalDisplayLabel.Text = ((double)avgPackageInterval / sampleSetsInPacket).ToString("0.0");
-                    avgPackageInterval = 0;
+                    long sampleNumber = dataStopwatch.ElapsedMilliseconds / 2;
+                    pv3Data.AddSampleSet(sampleNumber);
 
                 }
 
-                usbConnection.sendViaUSB();
-                usbConnection.receiveViaUSB();
-                sampleSetsInPacket = usbConnection.InBuffer[3];
+                long elapsedMilliseconds = stopwatch.ElapsedMilliseconds;
+                if (elapsedMilliseconds > maxPackageInterval)
+                {
+                    maxPackageInterval = elapsedMilliseconds;
+                }
+                avgPackageInterval += elapsedMilliseconds;
+
+                stopwatch.Restart();
+                packetNum = nextPacketNum;
             }
+                
+            nextPacketNum = usbConnection.InBuffer[2];
+                
+            if (FactoryControlPanel.Visible == true)
+            {
+                if ((packetNum != 0) && (packetNum != 255))
+                {
+                    packagesMissedDisplayLabel.Text = (nextPacketNum - packetNum - 1).ToString();
+                }
+                else
+                {
+                    packagesMissedDisplayLabel.Text = "0";
+                }
+
+                packageCountDisplayLabel.Text = nextPacketNum.ToString();
+                sizeDisplayLabel.Text = sampleSetsInPacket.ToString();
+
+                packageIntervalDisplayLabel.Text = ((double)avgPackageInterval / sampleSetsInPacket).ToString("0.0");
+                avgPackageInterval = 0;
+
+            }
+
+            //usbConnection.sendViaUSB();
+            //usbConnection.receiveViaUSB();
+            //sampleSetsInPacket = usbConnection.InBuffer[3];
 
             if (FactoryControlPanel.Visible == true)
             {
